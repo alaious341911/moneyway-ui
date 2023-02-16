@@ -127,4 +127,100 @@ color: '#3538CD',
         color: '#3538CD' ,
         fontWeight: 'bolder',
       }
+
+      export const dashBoardField: CSS.Properties = {
+        boxSizing: 'border-box',
+
+        /* Auto layout */
+
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
+        padding: '12px 16px',
+        gap: '8px',
+
+        width: '623px',
+        height: '44px',
+
+        /* White */
+
+        background: '#FFFFFF',
+        /* Grey 400 */
+
+        border: '1px solid #98A2B3',
+        borderRadius: '6px',
+      }
+
+      export const submitButtonDashboard: CSS.Properties = {
+        justifyContent: 'center',
+        alignItems: 'center',
+        padding: '12px 16px',
+        gap: '8px',
+        color: '#fff',
+        width: '623px',
+        height: '44px',
+  
+        /* Indigo 700 */
+  
+        background: '#3538CD',
+        borderRadius: '6px',
+        }
+
+      export const cardBoxStyle: CSS.Properties = {
+        boxSizing: 'border-box',
+
+        /* Auto layout */
+
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'flex-start',
+        padding: '32px',
+        gap: '40px',
+
+        // width: '623px',
+        // height: '516px',
+
+        /* White */
+
+        background: '#FFFFFF',
+        /* Grey 400 */
+
+        border: '1px solid #fff',
+        borderRadius: '6px',
+      }
+
+      export const dashboardFormPText: CSS.Properties = {
+    
+        height: '20px',
+
+       /* Button Semi Bold - 14 */
+
+       fontFamily: 'Inter',
+       fontStyle: 'normal',
+       fontWeight: 600,
+       fontSize: '14px',
+       lineHeight: '20px',
+       color: '#3538CD',
+       marginBottom: '10px',
+     };
+
+     export const dashboardHeading: CSS.Properties = {
+    
+      height: '34px',
+
+     /* Button Semi Bold - 14 */
+
+     fontFamily: 'Inter',
+     fontStyle: 'normal',
+     fontWeight: 700,
+     fontSize: '24px',
+     lineHeight: '140%',
+     color: '#101828',
+     marginBottom: '10px',
+   };
+
+
+
+      
     

@@ -15,9 +15,9 @@ type Props = {
   onClick?: (e: React.MouseEvent) => void
 }
 
-export default function CardBox({
+export default function CardBoxGeneral({
   rounded = 'rounded-2xl',
-  flex = 'flex-col',
+  flex = 'flex-col justify-items-center',
   className = '',
   hasComponentLayout = false,
   hasTable = false,

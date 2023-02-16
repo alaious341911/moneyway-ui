@@ -5,7 +5,7 @@ import { ReactElement, useState, useEffect } from 'react'
 import BaseButton from '../components/BaseButton'
 import BaseButtons from '../components/BaseButtons'
 import BaseDivider from '../components/BaseDivider'
-import CardBox from '../components/CardBox'
+import CardBoxGeneral from '../components/CardBoxGeneral'
 import FormCheckRadio from '../components/FormCheckRadio'
 import FormCheckRadioGroup from '../components/FormCheckRadioGroup'
 import FormField from '../components/FormField'
@@ -13,14 +13,15 @@ import FormFilePicker from '../components/FormFilePicker'
 import LayoutAuthenticated from '../layouts/Authenticated'
 import SectionMain from '../components/SectionMain'
 import SectionTitle from '../components/SectionTitle'
-import SectionTitleLineWithButton from '../components/SectionTitleLineWithButton'
+import SectionTitleLineWithoutButton from '../components/SectionTitleLineWithoutButton'
 import { getPageTitle } from '../config'
 import axios from '../stores/hooks'
 import {useAppDispatch, useAppSelector, decodeErrorStatus} from '../stores/hooks'
-import type {MenuForm} from '../interfaces'
+import type {AirtimeForm} from '../interfaces'
 import { toast, ToastContainer } from 'react-toastify';
   import "react-toastify/dist/ReactToastify.css";
-  import * as Yup from 'yup'
+  import * as Yup from 'yup';
+  import {cardBoxStyle, dashBoardField, dashboardFormPText, dashboardHeading, submitButton} from  '../styles';
 
 const MenuPage = () => {
     const CREATE_MENU_ENDPOINT = "/api/v1/menus";
@@ -29,12 +30,10 @@ const MenuPage = () => {
     const [errMsg, setErrMsg] = useState('');
     const [token, setAppToken] = useState('');
 
-    const newMenuForm: MenuForm ={
-      name: '',
-      costPrice: null,
-      sellingPrice: null,
-      description: '',
-
+    const airTimeValue: AirtimeForm ={
+      amount: '',
+      network: '',
+      phoneNumber: '',
     }
 
     useEffect(() => {
@@ -79,26 +78,24 @@ const MenuPage = () => {
       </Head>
 
       <SectionMain>
-        <SectionTitleLineWithButton icon={mdiMenu} title="Add Menu Item" main>
+        <div style={dashboardHeading}>
+        <SectionTitleLineWithoutButton icon={mdiMenu} title="Buy Airtime on-the-go!" main>  
+        </SectionTitleLineWithoutButton>
+        </div>
+        
          
-        </SectionTitleLineWithButton>
-
-        <CardBox>
+         <div style={cardBoxStyle}>
+        <CardBoxGeneral>
         <ToastContainer />
+        <p  style={dashboardFormPText}><a href='#'>Beneficiaries</a></p>
           <Formik
-            initialValues={newMenuForm}
+            initialValues={airTimeValue}
             validationSchema={Yup.object({
-              name: Yup.string()
+              phoneNumber: Yup.string()
                 .required('Required'),
-              costPrice: Yup.number()
-                .min(100, 'can\'t be less than 100 naira')
-                .max(10000, 'can\'t be more than 10,000 naira')
+             network: Yup.string()
                 .required('Required'),
-                sellingPrice: Yup.number()
-                .min(100, 'can\'t be less than 100 naira')
-                .max(10000, 'can\'t be more than 10,000 naira')
-                .required('Required'),
-                description: Yup.string()
+                amount: Yup.string()
                 .required('Required'),
               
             
@@ -106,34 +103,38 @@ const MenuPage = () => {
             onSubmit= {(values, {setSubmitting}) => handleCreateMenu(values, {setSubmitting})}
           >
             <Form>
-              <FormField label="Required Fields" icons={[mdiAccount, mdiMail]}>
-                <Field  type="text" name="name" placeholder="menu item name" />
-                <ErrorMessage name="name" />
-                <Field type="number" name="costPrice" placeholder="cost price" />
-                <ErrorMessage name="costPrice" />
-                <Field type="number" name="sellingPrice" placeholder="selling price" />
-                <ErrorMessage name="sellingPrice" />
-              </FormField>
+              <FormField label="Amount">
+                <Field style={dashBoardField}  type="text" name="amount" placeholder="Enter an amount" />
+                <ErrorMessage name="amount" />
+               </FormField>
 
-              <FormField
-                label="Item Description"
-                labelFor="description"
-                help="give short descripton for the created menu"
-              >
-                <Field name="description" placeholder="menu description" id="description" />
-                <ErrorMessage name="description" />
-              </FormField>
+               <FormField label="Network">
+                <select style={dashBoardField}  name="amount" >
+                    <option>MTN</option>
+                    <option>Airtel</option>
+                    <option>Etisalat</option>
+                    </select>
+                <ErrorMessage name="amount" />
+               </FormField>
 
+               <FormField label="Phone Number">
+                <Field style={dashBoardField}  type="text" name="phoneNumber" placeholder="Enter a phone number" />
+                <ErrorMessage name="phoneNumber" />
+               </FormField>
+
+               <p  style={dashboardFormPText}><a href='#'>Save as beneficiary</a></p>
 
               <BaseDivider />
-    
+             
               <BaseButtons>
-                <BaseButton type="submit" color="info" label="Add" />
-                <BaseButton type="reset" color="info" outline label="Reset" />
+                <button type='submit' style={submitButton}>Submit</button>
               </BaseButtons>
             </Form>
           </Formik>
-        </CardBox>
+
+ 
+        </CardBoxGeneral>
+        </div>
       </SectionMain>
 
       

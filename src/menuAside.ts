@@ -30,22 +30,22 @@ const menuAside: MenuAsideItem[] = [
     label: 'Dashboard',
   },
   {
-    href: '/buy-airtime',
+    href: 'buy-airtime',
     icon: mdiCellphone,
     label: 'Buy Airtime',
   },
   {
-    href: '/pay-bill',
+    href: 'pay-bill',
     icon: mdiCashMinus,
     label: 'Pay Bill',
   },
   {
-    href: '/transfer',
+    href: 'transfer',
     icon: mdiBankTransfer,
     label: 'Transfer',
   },
   {
-    href: '/fund-wallet',
+    href: 'fund-wallet',
     icon: mdiWallet,
     label: 'Fund Wallet',
   },

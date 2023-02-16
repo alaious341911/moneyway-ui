@@ -76,3 +76,10 @@ export type UserForm = {
   name: string
   email: string
 }
+
+export type AirtimeForm = {
+  amount: string
+  network: string
+  phoneNumber: string
+  
+}
