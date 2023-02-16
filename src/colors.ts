@@ -4,6 +4,7 @@ export const gradientBgBase = 'bg-gradient-to-tr'
 export const gradientBgPurplePink = `${gradientBgBase} from-blue-200 via-blue-200 to-blue-200`
 export const gradientBgDark = `${gradientBgBase} from-slate-700 via-slate-900 to-slate-800`
 export const gradientBgPinkRed = `${gradientBgBase} from-pink-400 via-red-500 to-yellow-500`
+export const gradientBgLigthBlue = `${gradientBgBase} from-sky-50 via-sky-50 to-sky-50`
 
 export const colorsBgLight = {
   white: 'bg-white text-black',

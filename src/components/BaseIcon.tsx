@@ -7,6 +7,7 @@ type Props = {
   size?: string | number | null
   className?: string
   children?: ReactNode
+  color?: string
 }
 
 export default function BaseIcon({
@@ -15,6 +16,7 @@ export default function BaseIcon({
   h = 'h-6',
   size = null,
   className = '',
+  color,
   children,
 }: Props) {
   const iconSize = size ?? 16
@@ -22,7 +24,7 @@ export default function BaseIcon({
   return (
     <span className={`inline-flex justify-center items-center ${w} ${h} ${className}`}>
       <svg viewBox="0 0 24 24" width={iconSize} height={iconSize} className="inline-block">
-        <path fill="currentColor" d={path} />
+        <path  fill="currentColor" d={path} color={color} />
       </svg>
       {children}
     </span>

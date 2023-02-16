@@ -12,8 +12,9 @@ import BaseDivider from '../components/BaseDivider'
 import BaseButtons from '../components/BaseButtons'
 import { useRouter } from 'next/router'
 import { getPageTitle } from '../config'
-import { mdiAccount, mdiEmail, mdiFormTextboxPassword, mdiBallotOutline, mdiPhone} from '@mdi/js'
-import SectionTitleLineWithButton from '../components/SectionTitleLineWithButton'
+import { mdiAccount, mdiEmail, mdiFormTextboxPassword, mdiBallotOutline, mdiPhone, mdiAccountOutline, mdiEmailOutline, mdiTrackpadLock, mdiLockOutline} from '@mdi/js'
+import SectionTitleLineWithoutButton from '../components/SectionTitleLineWithoutButton'
+import {textInput, submitButton, formPText, formLink} from  '../styles'
 
 
 export default function Error() {
@@ -29,45 +30,47 @@ export default function Error() {
         <title>{getPageTitle('Signup')}</title>
       </Head>
 
-      <SectionFullScreen bg="purplePink">
+      <SectionFullScreen bg="lightBlue">
         <CardBoxGeneral className="w-11/12 md:w-7/12 lg:w-6/12 xl:w-4/12 shadow-2xl">
-        <SectionTitleLineWithButton icon={mdiBallotOutline} title="Get Started with MoneyWay">
+        <SectionTitleLineWithoutButton main={true} title="Get Started with MoneyWay">
          
-         </SectionTitleLineWithButton>
+         </SectionTitleLineWithoutButton>
           <Formik
             initialValues={{ login: '', password: '' }}
             onSubmit={() => handleSubmit()}
           >
             <Form>
-              <FormField label="First Name" icons={[mdiAccount]}>
-                <Field name="firstName" />
+              <FormField label="First Name" icons={[mdiAccountOutline]}>
+                <Field style={textInput} name="firstName" />
               </FormField>
-              <FormField label="Last Name" icons={[mdiAccount]}>
-                <Field name="lastName" />
+              <FormField label="Last Name" icons={[mdiAccountOutline]}>
+                <Field style={textInput} name="lastName" />
               </FormField>
 
-              <FormField label="email" icons={[mdiEmail]}>
-                <Field name="email" />
+              <FormField label="email" icons={[mdiEmailOutline]}>
+                <Field style={textInput} name="email" />
               </FormField>
               <FormField label="Phone Number" icons={[mdiPhone]}>
-                <Field name="phoneNumber" />
+                <Field style={textInput} name="phoneNumber" />
               </FormField>
 
-              <FormField label="Password" icons={[mdiFormTextboxPassword]}>
-                <Field name="password" type="password" />
+              <FormField label="Password" icons={[mdiLockOutline]}>
+                <Field style={textInput} name="password" type="password" />
               </FormField>
-              <FormField label="Confirm Password"  icons={[mdiFormTextboxPassword]}>
-                <Field name="confirmPassword" type="password" />
+              <FormField  label="Confirm Password"  icons={[mdiLockOutline]}>
+                <Field style={textInput} name="confirmPassword" type="password" />
               </FormField>
 
 
               <BaseDivider />
 
               <BaseButtons>
-                <BaseButton type="submit" label="Sign Up" color="info" />
+              <button type="submit" style={submitButton} >Sign Up</button>
               </BaseButtons>
             </Form>
+            
           </Formik>
+          <p style={formPText}>Already have an account? <a href='#' style={formLink}>Login</a></p>
         </CardBoxGeneral>
       </SectionFullScreen>
     </>
