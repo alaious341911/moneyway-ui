@@ -67,9 +67,6 @@ color: '#3538CD',
     padding: '12px 16px',
     gap: '8px',
 
-    width: '383px',
-    height: '44px',
-
     /* White */
 
     background: '#FFFFFF',
@@ -85,9 +82,7 @@ color: '#3538CD',
       padding: '12px 16px',
       gap: '8px',
       color: '#fff',
-      width: '383px',
-      height: '44px',
-
+      
       /* Indigo 700 */
 
       background: '#3538CD',
@@ -96,9 +91,7 @@ color: '#3538CD',
 
      export const moneyWayHeader: CSS.Properties = {
     
-        width: '500px',
-        height: '24px',
-        
+    
         fontFamily: 'Inter',
         fontStyle: 'normal',
         fontWeight: '700',
@@ -120,7 +113,62 @@ color: '#3538CD',
         fontSize: '14px',
         lineHeight: '20px',
         marginTop: '10px',
+        marginBottom: '20px',
       };
+
+      export const dashBoardHText: CSS.Properties = {
+    
+        height: '20px',
+
+       /* Button Semi Bold - 14 */
+
+       fontFamily: 'Inter',
+       fontStyle: 'normal',
+       fontWeight: 600,
+       fontSize: '16px',
+       lineHeight: '20px',
+      color: '#101828',
+     };
+
+     export const darkBlueBox: CSS.Properties = {
+      background: '#3538CD',
+      borderRadius: '24px',
+     }
+
+     export const orangeBox: CSS.Properties = {
+      background: '#FEFDF0',
+      borderRadius: '24px',
+     }
+
+     
+      export const forgotPText: CSS.Properties = {
+    
+        height: '20px',
+
+       /* Button Semi Bold - 14 */
+
+       fontFamily: 'Inter',
+       fontStyle: 'normal',
+       fontWeight: 400,
+       fontSize: '13px',
+       lineHeight: '20px',
+       color: '#1570EF',
+     };
+
+     export const dashIconText: CSS.Properties = {
+    
+      height: '20px',
+
+     /* Button Semi Bold - 14 */
+
+     fontFamily: 'Inter',
+     fontStyle: 'normal',
+     fontWeight: 400,
+     fontSize: '13px',
+     lineHeight: '20px',
+     color: '#101828',
+   };
+
 
 
       export const formLink: CSS.Properties = {
@@ -139,8 +187,7 @@ color: '#3538CD',
         padding: '12px 16px',
         gap: '8px',
 
-        width: '623px',
-        height: '44px',
+         height: '44px',
 
         /* White */
 
@@ -157,8 +204,8 @@ color: '#3538CD',
         padding: '12px 16px',
         gap: '8px',
         color: '#fff',
-        width: '623px',
         height: '44px',
+        
   
         /* Indigo 700 */
   
@@ -219,6 +266,28 @@ color: '#3538CD',
      color: '#101828',
      marginBottom: '10px',
    };
+
+   export const tabCss: CSS.Properties = {
+    padding: '15px',
+    textAlign: 'center',
+    width: '50%',
+    background: 'rgba(128, 128, 128, 0.075)',
+    cursor: 'pointer',
+    borderBottom: '1px solid rgba(0, 0, 0, 0.274)',
+    boxSizing: 'content-box',
+    position: 'relative',
+    outline: 'none',
+   };
+
+   export const tabBlock: CSS.Properties = {
+    display: 'flex',
+    };
+
+    export const activeTab: CSS.Properties = {
+      background: 'white',
+  borderBottom: '1px solid transparent',
+    };
+   
 
 
 

@@ -10,6 +10,7 @@ import SectionMain from '../components/SectionMain'
 import SectionTitleLineWithButton from '../components/SectionTitleLineWithButton'
 import TableSampleClients from '../components/TableSampleClients'
 import { getPageTitle } from '../config'
+import CardBoxGeneral from '../components/CardBoxGeneral'
 
 const TablesPage = () => {
   return (
@@ -34,9 +35,9 @@ const TablesPage = () => {
           <b>Responsive table.</b> Collapses on mobile
         </NotificationBar>
 
-        <CardBox className="mb-6" hasTable>
+        <CardBoxGeneral className="mb-6" hasTable>
           <TableSampleClients />
-        </CardBox>
+        </CardBoxGeneral>
 
         <SectionTitleLineWithButton icon={mdiTableOff} title="Empty variation" />
 

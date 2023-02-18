@@ -83,3 +83,10 @@ export type AirtimeForm = {
   phoneNumber: string
   
 }
+export type FundWalletForm = {
+  amount: string
+  bank: string
+  pin: string
+  description: string
+  
+}

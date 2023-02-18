@@ -17,7 +17,7 @@ import SectionTitleLineWithoutButton from '../components/SectionTitleLineWithout
 import { getPageTitle } from '../config'
 import axios from '../stores/hooks'
 import {useAppDispatch, useAppSelector, decodeErrorStatus} from '../stores/hooks'
-import type {AirtimeForm} from '../interfaces'
+import type {FundWalletForm} from '../interfaces'
 import { toast, ToastContainer } from 'react-toastify';
   import "react-toastify/dist/ReactToastify.css";
   import * as Yup from 'yup';
@@ -30,10 +30,12 @@ const MenuPage = () => {
     const [errMsg, setErrMsg] = useState('');
     const [token, setAppToken] = useState('');
 
-    const airTimeValue: AirtimeForm ={
+    const fundWalletValue: FundWalletForm ={
       amount: '',
-      network: '',
-      phoneNumber: '',
+      bank: '',
+      pin: '',
+      description: '',
+
     }
 
     useEffect(() => {
@@ -80,22 +82,23 @@ const MenuPage = () => {
         {/* <SectionTitleLineWithoutButton icon={mdiMenu} title="Buy Airtime on-the-go!" main>  
         </SectionTitleLineWithoutButton> */}
         
-        <SectionTitle ><p style={dashboardHeading}>Buy Airtime on-the-go!</p></SectionTitle>
+        <SectionTitle ><p style={dashboardHeading}>Fund Wallet</p></SectionTitle>
         
         <div className="md:w-7/12 shadow-1xl md:mx-auto border-white">
       <SectionMain>
        
         <CardBoxGeneral>
         <ToastContainer />
-        <p  style={dashboardFormPText}><a href='#'>Beneficiaries</a></p>
          <Formik 
-            initialValues={airTimeValue}
+            initialValues={fundWalletValue}
             validationSchema={Yup.object({
-              phoneNumber: Yup.string()
+              amount: Yup.string()
                 .required('Required'),
-             network: Yup.string()
+             bank: Yup.string()
                 .required('Required'),
-                amount: Yup.string()
+                pin: Yup.string()
+                .required('Required'),
+                description: Yup.string()
                 .required('Required'),
               
             
@@ -108,20 +111,23 @@ const MenuPage = () => {
                 <Field className='' style={dashBoardField}  type="text" name="amount" placeholder="Enter an amount" />
                </FormField>
 
-               <FormField label="Network">
-                <select style={dashBoardField}  name="amount" >
-                    <option>MTN</option>
-                    <option>Airtel</option>
-                    <option>Etisalat</option>
+               <FormField label="Bank">
+                <select style={dashBoardField}  name="bank" >
+                    <option disabled aria-readonly>Select</option>
+                    <option>First Bank</option>
+                    <option>Guarranty Trust Bank</option>
+                    <option>Polaris Bank</option>
                     </select>
                </FormField>
 
-               <FormField label="Phone Number">
-                <Field style={dashBoardField}  type="text" name="phoneNumber" placeholder="Enter a phone number" />
+               <FormField label="Pin">
+                <Field style={dashBoardField}  type="text" name="pin" placeholder="Enter pin" />
                  </FormField>
 
+                 <FormField label="Description">
+                <Field className='' style={dashBoardField}  type="text" name="description" placeholder="Write a short description" />
+               </FormField>
 
-               <p  style={dashboardFormPText}><a href='#'>Save as beneficiary</a></p>
 
               <BaseDivider />
              

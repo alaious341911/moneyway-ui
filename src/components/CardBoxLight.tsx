@@ -28,7 +28,7 @@ export default function CardBox({
   onClick,
 }: Props) {
   const componentClass = [
-    'bg-orange-100 flex',
+    'bg-[#FEFDF0] border-radius[24px] flex',
     className,
     rounded,
     flex,

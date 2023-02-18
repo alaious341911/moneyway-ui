@@ -13,13 +13,13 @@ import BaseButtons from '../components/BaseButtons'
 import { useRouter } from 'next/router'
 import { getPageTitle } from '../config'
 import { mdiAccount, mdiMail, mdiBallotOutline} from '@mdi/js'
-import SectionTitleLineWithButton from '../components/SectionTitleLineWithButton'
-
+import SectionTitle from '../components/SectionTitle'
+import {textInput, submitButton, formPText, formLink, moneyWayHeader} from  '../styles'
 export default function Error() {
   const router = useRouter()
 
   const handleSubmit = () => {
-    router.push('/dashboard')
+    router.push('/email-check')
   }
 
   return (
@@ -28,17 +28,17 @@ export default function Error() {
         <title>{getPageTitle('Forgot-Password')}</title>
       </Head>
 
-      <SectionFullScreen bg="purplePink">
+      <SectionFullScreen bg="lightBlue">
       
         <CardBoxGeneral className="w-11/12 md:w-7/12 lg:w-6/12 xl:w-4/12 shadow-2xl">
-        <SectionTitleLineWithButton icon={mdiBallotOutline} title="Forgot Password">
-         
-         </SectionTitleLineWithButton>
+        
+         <SectionTitle ><p style={moneyWayHeader}>Forgot Password</p></SectionTitle>
           <Formik
             initialValues={{ login: 'john.doe', password: 'bG1sL9eQ1uD2sK3b', remember: true }}
             onSubmit={() => handleSubmit()}
           >
             <Form>
+            <p style={formPText}>Enter the email associated with your account and we'll send an email with instruction to reset your password</p>
               <FormField label="Email"  icons={[mdiMail]}>
                 <Field name="email" placeholder="enter your email" />
               </FormField>
@@ -46,9 +46,10 @@ export default function Error() {
 
               <BaseDivider />
 
-              <BaseButtons>
-                <BaseButton type="submit" label="Reset Password" color="info" />
-              </BaseButtons>
+              <FormField>
+              <Field type="submit" value="Reset Password"  style={submitButton}/>
+       
+              </FormField>
             </Form>
           </Formik>
         </CardBoxGeneral>

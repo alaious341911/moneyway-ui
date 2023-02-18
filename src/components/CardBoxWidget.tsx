@@ -8,6 +8,7 @@ import CardBox from './CardBox'
 import CardBoxLight from './CardBoxLight'
 import NumberDynamic from './NumberDynamic'
 import PillTagTrend from './PillTagTrend'
+import {darkBlueBox} from '../styles'
 
 type Props = {
   number: number
@@ -25,6 +26,7 @@ type Props = {
 const CardBoxWidget = (props: Props) => {
 if(props.cardBoxLight ==="yes")
   return  (
+   
     <CardBoxLight>
       {props.trendLabel && props.trendType && props.trendColor && (
         <div className="flex items-center justify-between mb-3">
@@ -59,6 +61,7 @@ if(props.cardBoxLight ==="yes")
         )}
       </div>
     </CardBoxLight>
+   
   )
 
   return (

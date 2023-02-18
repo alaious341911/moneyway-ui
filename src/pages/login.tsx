@@ -14,8 +14,8 @@ import BaseButtons from '../components/BaseButtons'
 import { useRouter } from 'next/router'
 import { getPageTitle } from '../config'
 import { mdiAccount, mdiMail, mdiBallotOutline, mdiEmail, mdiKey, mdiEmailAlertOutline, mdiEmailOutline} from '@mdi/js'
-import SectionTitleLineWithoutButton from '../components/SectionTitleLineWithoutButton'
-import {textInput, submitButton, formPText, formLink} from  '../styles'
+import SectionTitle from '../components/SectionTitle'
+import {textInput, submitButton, formPText, formLink, moneyWayHeader, forgotPText} from  '../styles'
 
 
 export default function Error() {
@@ -38,31 +38,35 @@ export default function Error() {
       </div> */}
 
         <CardBoxGeneral className="w-11/12 md:w-7/12 lg:w-6/12 xl:w-4/12 shadow-2xl">
-        <SectionTitleLineWithoutButton title="Hi, Welcome back" main={true}>
-         
-         </SectionTitleLineWithoutButton>
+       
+
+         <SectionTitle ><p style={moneyWayHeader}>Hi, Welcome back</p></SectionTitle>
           <Formik
             initialValues={{ email: '', password: '', remember: true }}
             onSubmit={() => handleSubmit()}
           >
             <Form>
               <FormField label="Email" icons={[mdiEmailOutline]}>
-                <Field style={textInput} name="email" />
+                <Field style={textInput} name="email" placeholder="Enter your email" />
+                
               </FormField>
 
-              <FormField label="Password" help="forgot password?" icons={[mdiKey]}>
-                <Field style={textInput} name="password" type="password" />
+              <FormField label="Password" icons={[mdiKey]}>
+                <Field style={textInput} name="password" type="password" placeholder="Enter your password" />
+                
               </FormField>
+              <a href='forgot-password' style={forgotPText}>forgot password?</a>
 
 
               <BaseDivider />
-
-              <BaseButtons>
-                <button type="submit" style={submitButton} >Login</button>
-              </BaseButtons>
+              
+              <FormField>
+              <Field type="submit" value="Submit"  style={submitButton}/>
+       
+              </FormField>
             </Form>
           </Formik>
-          <p style={formPText}>Don't have an account? <a href='#' style={formLink}>Create account</a></p>
+          <p style={formPText}>Don't have an account? <a href='signup' style={formLink}>Create account</a></p>
         </CardBoxGeneral>
       </SectionFullScreen>
     </>

@@ -17,11 +17,13 @@ import SectionTitleLineWithoutButton from '../components/SectionTitleLineWithout
 import { getPageTitle } from '../config'
 import axios from '../stores/hooks'
 import {useAppDispatch, useAppSelector, decodeErrorStatus} from '../stores/hooks'
-import type {AirtimeForm} from '../interfaces'
+import type {FundWalletForm} from '../interfaces'
 import { toast, ToastContainer } from 'react-toastify';
   import "react-toastify/dist/ReactToastify.css";
   import * as Yup from 'yup';
-  import {cardBoxStyle, dashBoardField, dashboardFormPText, dashboardHeading, submitButton, submitButtonDashboard} from  '../styles';
+  import {cardBoxStyle, dashBoardField, dashboardFormPText, 
+    dashboardHeading, submitButton, submitButtonDashboard} from  '../styles';
+    import PayBillTable from '../components/PayBillTable'
 
 const MenuPage = () => {
     const CREATE_MENU_ENDPOINT = "/api/v1/menus";
@@ -30,10 +32,12 @@ const MenuPage = () => {
     const [errMsg, setErrMsg] = useState('');
     const [token, setAppToken] = useState('');
 
-    const airTimeValue: AirtimeForm ={
+    const fundWalletValue: FundWalletForm ={
       amount: '',
-      network: '',
-      phoneNumber: '',
+      bank: '',
+      pin: '',
+      description: '',
+
     }
 
     useEffect(() => {
@@ -80,57 +84,14 @@ const MenuPage = () => {
         {/* <SectionTitleLineWithoutButton icon={mdiMenu} title="Buy Airtime on-the-go!" main>  
         </SectionTitleLineWithoutButton> */}
         
-        <SectionTitle ><p style={dashboardHeading}>Buy Airtime on-the-go!</p></SectionTitle>
+        <SectionTitle ><p style={dashboardHeading}>Pay Bills</p></SectionTitle>
         
         <div className="md:w-7/12 shadow-1xl md:mx-auto border-white">
       <SectionMain>
        
         <CardBoxGeneral>
         <ToastContainer />
-        <p  style={dashboardFormPText}><a href='#'>Beneficiaries</a></p>
-         <Formik 
-            initialValues={airTimeValue}
-            validationSchema={Yup.object({
-              phoneNumber: Yup.string()
-                .required('Required'),
-             network: Yup.string()
-                .required('Required'),
-                amount: Yup.string()
-                .required('Required'),
-              
-            
-            })}
-            onSubmit= {(values, {setSubmitting}) => handleCreateMenu(values, {setSubmitting})}
-          >
-            
-            <Form>
-              <FormField label="Amount">
-                <Field className='' style={dashBoardField}  type="text" name="amount" placeholder="Enter an amount" />
-               </FormField>
-
-               <FormField label="Network">
-                <select style={dashBoardField}  name="amount" >
-                    <option>MTN</option>
-                    <option>Airtel</option>
-                    <option>Etisalat</option>
-                    </select>
-               </FormField>
-
-               <FormField label="Phone Number">
-                <Field style={dashBoardField}  type="text" name="phoneNumber" placeholder="Enter a phone number" />
-                 </FormField>
-
-
-               <p  style={dashboardFormPText}><a href='#'>Save as beneficiary</a></p>
-
-              <BaseDivider />
-             
-              <BaseButtons>
-                <button type='submit' style={submitButton}>Submit</button>
-              </BaseButtons>
-            </Form>
-          </Formik>
-            
+        <PayBillTable /> 
         </CardBoxGeneral>
       </SectionMain>
       </div>

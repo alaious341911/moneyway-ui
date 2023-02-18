@@ -16,6 +16,8 @@ import BaseButton from '../components/BaseButton'
 import LayoutAuthenticated from '../layouts/Authenticated'
 import SectionMain from '../components/SectionMain'
 import SectionTitleLineWithButton from '../components/SectionTitleLineWithButton'
+import SectionTitleLineWithoutButton from '../components/SectionTitleLineWithoutButton'
+import SectionTitle from '../components/SectionTitle'
 import CardBoxWidget from '../components/CardBoxWidget'
 import { useSampleClients, useSampleTransactions } from '../hooks/sampleData'
 import CardBoxTransaction from '../components/CardBoxTransaction'
@@ -27,6 +29,7 @@ import { sampleChartData } from '../components/ChartLineSample/config'
 import ChartLineSample from '../components/ChartLineSample'
 import TableSampleClients from '../components/TableSampleClients'
 import { getPageTitle } from '../config'
+import { dashboardHeading, dashBoardHText, darkBlueBox} from '../styles'
 
 const Dashboard = () => {
   const { clients } = useSampleClients()
@@ -47,25 +50,28 @@ const Dashboard = () => {
       <Head>
         <title>{getPageTitle('Dashboard')}</title>
       </Head>
+      <div className="md:w-9/12 shadow-1xl md:mx-auto border-white">
       <SectionMain>
-        <SectionTitleLineWithButton icon={mdiChartTimelineVariant} title="Dashboard" main>
+        <SectionTitleLineWithoutButton icon={mdiChartTimelineVariant} title="Dashboard" main={true}>
           
-        </SectionTitleLineWithButton>
-
-        <div className="grid grid-cols-1 gap-6 lg:grid-cols-2 mb-6">
-          <CardBoxWidget
-            trendLabel="12%"
+        </SectionTitleLineWithoutButton>
+        
+        <div className="grid grid-cols-1 gap-10 lg:grid-cols-2 mb-6">
+         <div style={darkBlueBox}>
+         <CardBoxWidget
+            // trendLabel="12%"
             trendType="up"
             trendColor="white"
             icon={mdiWallet}
             iconColor="success"
             number={60000}
             label="Account Balance"
-            
-           
+    
           />
-          <CardBoxWidget
-            trendLabel="16%"
+         </div>
+         <div style={darkBlueBox}>
+         <CardBoxWidget
+            // trendLabel="16%"
             trendType="down"
             trendColor="white"
             icon={mdiTransfer}
@@ -76,14 +82,16 @@ const Dashboard = () => {
             cardBoxLight="yes"
             
           />
+         </div>
+          
          
         </div>
 
 
-        <SectionTitleLineWithButton icon={mdiChartPie} title="Statistics showing your monthly spending">
+        {/* <SectionTitleLineWithButton icon={mdiChartPie} title="Statistics showing your monthly spending">
           <BaseButton icon={mdiReload} color="whiteDark" onClick={fillChartData} />
-        </SectionTitleLineWithButton>
-
+        </SectionTitleLineWithButton> */}
+        <p  style={dashBoardHText}>Statistics showing your monthly spending</p>
         <CardBoxGeneral className="mb-6">{chartData && <ChartLineSample data={chartData} />}</CardBoxGeneral>
 
         <SectionTitleLineWithButton icon={mdiAccountMultiple} title="Transaction history" />
@@ -92,6 +100,7 @@ const Dashboard = () => {
           <TableSampleClients />
         </CardBoxGeneral>
       </SectionMain>
+      </div>
     </>
   )
 }
