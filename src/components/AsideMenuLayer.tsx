@@ -6,6 +6,7 @@ import AsideMenuList from './AsideMenuList'
 import { MenuAsideItem } from '../interfaces'
 import { useAppSelector } from '../stores/hooks'
 import BaseDivider from './BaseDivider'
+import {moneyWayTitle} from '../styles'
 
 type Props = {
   menu: MenuAsideItem[]
@@ -42,12 +43,12 @@ export default function AsideMenuLayer({ menu, className = '', ...props }: Props
           className={`flex flex-row h-14 items-center justify-between dark:bg-slate-900 ${asideBrandStyle}`}
         >
           <div className="text-center flex-1 lg:text-left lg:pl-6 xl:text-center xl:pl-0">
-          {/* <img
+          <img
         src="moneyway.png"
         alt="moneyway"
-        className="rounded-full block h-auto w-full max-w-full bg-gray-100 dark:bg-slate-800"
-      /> */}
-            <b className="font-black">MoneyWay</b>
+        className="rounded-full inline w-11 h-11 m-2"
+      />
+            <span style={moneyWayTitle}>MoneyWay</span>
           </div>
           <button
             className="hidden lg:inline-block xl:hidden p-3"

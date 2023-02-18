@@ -12,6 +12,7 @@ type Props = {
   isModal?: boolean
   children: ReactNode
   footer?: ReactNode
+  boxColor?: string
   onClick?: (e: React.MouseEvent) => void
 }
 
@@ -25,10 +26,11 @@ export default function CardBox({
   isModal = false,
   children,
   footer,
+  boxColor,
   onClick,
 }: Props) {
   const componentClass = [
-    'bg-[#3538CD] border-radius[24px]0 flex',
+    boxColor + 'flex',
     className,
     rounded,
     flex,

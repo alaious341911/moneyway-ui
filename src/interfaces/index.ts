@@ -27,7 +27,7 @@ export type MenuNavBarItem = {
   menu?: MenuNavBarItem[]
 }
 
-export type ColorKey = 'white' | 'light' | 'contrast' | 'success' | 'danger' | 'warning' | 'info'
+export type ColorKey = 'white' |'dark' | 'light' | 'contrast' | 'success' | 'danger' | 'warning' | 'info'
 
 export type ColorButtonKey =
   | 'white'

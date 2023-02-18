@@ -6,8 +6,10 @@ import {
   mdiGithub,
   mdiMonitorCellphone,
   mdiReload,
+  mdiSendOutline,
   mdiTransfer,
   mdiWallet,
+  mdiWalletOutline,
 } from '@mdi/js'
 import Head from 'next/head'
 import React, { useState } from 'react'
@@ -57,29 +59,36 @@ const Dashboard = () => {
         </SectionTitleLineWithoutButton>
         
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-2 mb-6">
-         <div style={darkBlueBox}>
+         <div>
          <CardBoxWidget
             // trendLabel="12%"
             trendType="up"
             trendColor="white"
-            icon={mdiWallet}
-            iconColor="success"
+            icon={mdiWalletOutline}
+            iconColor="white"
             number={60000}
             label="Account Balance"
+            bankName='Wema bank'
+            accountNumber='3089434692'
+            cardBoxColor='bg-[#3538CD] border-radius[24px]'
+            cardBoxLight="yes"
     
           />
          </div>
-         <div style={darkBlueBox}>
+         <div>
          <CardBoxWidget
-            // trendLabel="16%"
+            
             trendType="down"
             trendColor="white"
-            icon={mdiTransfer}
-            iconColor="info"
+            icon={mdiSendOutline}
+            iconColor="dark"
             number={65000}
             numberPrefix="N"
             label="Amount spent"
-            cardBoxLight="yes"
+            
+            cardBoxColor='bg-[#FEFDF0] border-radius[24px]'
+            bankName='Monthly percentage'
+            accountNumber='0.5% - 2%'
             
           />
          </div>

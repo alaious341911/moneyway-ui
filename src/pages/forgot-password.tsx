@@ -14,7 +14,8 @@ import { useRouter } from 'next/router'
 import { getPageTitle } from '../config'
 import { mdiAccount, mdiMail, mdiBallotOutline} from '@mdi/js'
 import SectionTitle from '../components/SectionTitle'
-import {textInput, submitButton, formPText, formLink, moneyWayHeader} from  '../styles'
+import {textInput, submitButton, formPText, formLink, moneyWayHeader, pagesTitle} from  '../styles'
+import PagesTitle from '../components/PagesTitle'
 export default function Error() {
   const router = useRouter()
 
@@ -27,6 +28,17 @@ export default function Error() {
       <Head>
         <title>{getPageTitle('Forgot-Password')}</title>
       </Head>
+
+      <PagesTitle >
+      <div className="text-center flex-1 lg:text-left lg:pl-6 xl:text-center xl:pl-0">
+          <img
+        src="moneyway.png"
+        alt="moneyway"
+        className="rounded-full inline w-11 h-11 m-2"
+      />
+            <span style={pagesTitle}>MoneyWay</span>
+          </div>
+      </PagesTitle>
 
       <SectionFullScreen bg="lightBlue">
       

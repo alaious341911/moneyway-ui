@@ -8,7 +8,7 @@ import CardBox from './CardBox'
 import CardBoxLight from './CardBoxLight'
 import NumberDynamic from './NumberDynamic'
 import PillTagTrend from './PillTagTrend'
-import {darkBlueBox} from '../styles'
+import {darkBlueBox, dashboardBoxTextDark, dashboardBoxTextLDark, dashboardBoxTextLWhite, dashboardBoxTextWhite} from '../styles'
 
 type Props = {
   number: number
@@ -21,51 +21,16 @@ type Props = {
   trendType?: TrendType
   trendColor?: ColorKey
   cardBoxLight?: string
+  cardBoxColor?: string
+  bankName?: string
+  accountNumber?: string
 }
 
 const CardBoxWidget = (props: Props) => {
-if(props.cardBoxLight ==="yes")
-  return  (
-   
-    <CardBoxLight>
-      {props.trendLabel && props.trendType && props.trendColor && (
-        <div className="flex items-center justify-between mb-3">
-          <PillTagTrend
-            label={props.trendLabel}
-            type={props.trendType}
-            color={props.trendColor}
-            small
-          />
-          <BaseButton icon={mdiCog} color="lightDark" small />
-        </div>
-      )}
-      <div className="flex items-center justify-between">
-        <div>
-          <h3 className="text-lg leading-tight text-gray-500 dark:text-slate-400">{props.label}</h3>
-          <h2 className="text-3xl leading-tight font-semibold">
-            <NumberDynamic
-              value={props.number}
-              prefix={props.numberPrefix}
-              suffix={props.numberSuffix}
-            />
-          </h2>
-        </div>
-        {props.icon && (
-          <BaseIcon
-            path={props.icon}
-            size="48"
-            w=""
-            h="h-16"
-            className={colorsText[props.iconColor]}
-          />
-        )}
-      </div>
-    </CardBoxLight>
-   
-  )
+
 
   return (
-    <CardBox>
+    <CardBox boxColor={props.cardBoxColor}>
       {props.trendLabel && props.trendType && props.trendColor && (
         <div className="flex items-center justify-between mb-3">
           <PillTagTrend
@@ -77,18 +42,8 @@ if(props.cardBoxLight ==="yes")
           <BaseButton icon={mdiCog} color="lightDark" small />
         </div>
       )}
-      <div className="flex items-center justify-between">
-        <div>
-          <h3 className="text-lg leading-tight text-white dark:text-slate-400">{props.label}</h3>
-          <h2 className="text-3xl leading-tight font-semibold text-white">
-            <NumberDynamic
-              value={props.number}
-              prefix={props.numberPrefix}
-              suffix={props.numberSuffix}
-            />
-          </h2>
-        </div>
-        {props.icon && (
+      <div className="flex items-center gap-10">
+      {props.icon && (
           <BaseIcon
             path={props.icon}
             size="48"
@@ -97,6 +52,24 @@ if(props.cardBoxLight ==="yes")
             className={colorsText[props.iconColor]}
           />
         )}
+        <div>
+          <h3 className="text-lg leading-tight text-white dark:text-slate-400" style={props.cardBoxLight=== 'yes'? dashboardBoxTextWhite : dashboardBoxTextDark}>{props.label}</h3>
+          <h2 className="text-3xl leading-tight font-semibold text-white" style={props.cardBoxLight === 'yes'? dashboardBoxTextLWhite : dashboardBoxTextLDark}>
+            <NumberDynamic
+              value={props.number}
+              prefix={props.numberPrefix}
+              suffix={props.numberSuffix}
+            />
+          </h2>
+          <h3 className="text-lg leading-tight text-white dark:text-slate-400" style={props.cardBoxLight=== 'yes'? dashboardBoxTextWhite : dashboardBoxTextDark}>{props.bankName}</h3>
+          <h2 className="text-3xl leading-tight font-semibold text-white" style={props.cardBoxLight === 'yes'? dashboardBoxTextWhite : dashboardBoxTextDark}>
+            <NumberDynamic
+              accountNumber={props.accountNumber}
+            />
+          </h2>
+        </div>
+
+        
       </div>
     </CardBox>
   )

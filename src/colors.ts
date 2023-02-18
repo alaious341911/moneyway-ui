@@ -17,7 +17,7 @@ export const colorsBgLight = {
 }
 
 export const colorsText = {
-  white: 'text-black dark:text-slate-100',
+  white: 'text-white light:text-slate-100',
   light: 'text-gray-700 dark:text-slate-400',
   contrast: 'dark:text-white',
   success: 'text-emerald-500',

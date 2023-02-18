@@ -101,6 +101,31 @@ color: '#3538CD',
         color: '#012A4A',
       };
 
+      export const moneyWayTitle: CSS.Properties = {
+    
+    
+        fontFamily: 'Inter',
+        fontStyle: 'normal',
+        fontWeight: '700',
+        fontSize: '24px',
+        lineHeight: '140%',
+        
+        color: '#3538CD',
+      };
+
+      export const pagesTitle: CSS.Properties = {
+    
+    
+        fontFamily: 'Inter',
+        fontStyle: 'normal',
+        fontWeight: '700',
+        fontSize: '32px',
+        lineHeight: '140%',
+        letterSpacing: '0.25px',
+        
+        color: '#3538CD',
+      };
+
       export const formPText: CSS.Properties = {
     
          height: '20px',
@@ -252,6 +277,50 @@ color: '#3538CD',
        marginBottom: '10px',
      };
 
+     export const dashboardBoxTextWhite: CSS.Properties = {
+    
+     fontFamily: 'Inter',
+     fontStyle: 'normal',
+     fontWeight: 400,
+     fontSize: '14px',
+     color: '#fff',
+    
+   };
+
+   export const dashboardBoxTextLWhite: CSS.Properties = {
+    
+    fontFamily: 'Inter',
+    fontStyle: 'normal',
+    fontWeight: 700,
+    fontSize: '24px',
+    lineHeight: '140%',
+    color: '#fff',
+    
+  };
+
+
+  export const dashboardBoxTextDark: CSS.Properties = {
+    
+    fontFamily: 'Inter',
+    fontStyle: 'normal',
+    fontWeight: 400,
+    fontSize: '14px',
+    color: '#101828',
+    lineHeight: '20px',
+    
+  };
+
+  export const dashboardBoxTextLDark: CSS.Properties = {
+   
+   fontFamily: 'Inter',
+   fontStyle: 'normal',
+   fontWeight: 700,
+   fontSize: '24px',
+   lineHeight: '140%',
+   color: '#101828',
+   
+ };
+
      export const dashboardHeading: CSS.Properties = {
     
       height: '34px',
@@ -266,6 +335,8 @@ color: '#3538CD',
      color: '#101828',
      marginBottom: '10px',
    };
+
+   
 
    export const tabCss: CSS.Properties = {
     padding: '15px',
