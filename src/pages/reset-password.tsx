@@ -15,7 +15,8 @@ import { useRouter } from 'next/router'
 import { getPageTitle } from '../config'
 import {mdiLockOutline} from '@mdi/js'
 import SectionTitle from '../components/SectionTitle'
-import {textInput, submitButton, formPText, formLink, moneyWayHeader, forgotPText} from  '../styles'
+import {textInput, submitButton, formPText, formLink, moneyWayHeader, forgotPText, pagesTitle} from  '../styles'
+import PagesTitle from '../components/PagesTitle'
 
 
 export default function Error() {
@@ -31,13 +32,19 @@ export default function Error() {
         <title>{getPageTitle('Login')}</title>
       </Head>
      
+      <PagesTitle>
+      <div className="text-center flex-1 lg:text-left lg:pl-6 xl:text-center xl:pl-0 pt-10">
+      <img
+        src="MONEYWAY-3.png"
+        alt="moneyway"
+        className="rounded-full inline w-14 h-14"
+      />
+            <span style={pagesTitle}>MoneyWay</span>
+          </div>
+      </PagesTitle>
+      
       <SectionFullScreen bg="lightBlue">
-      {/* <div style={ellipse}>
-        <Image style={moneyIcon} src={profilePic} alt='icon'/>
-        <p style={moneyWayText}>MoneyWay</p>
-      </div> */}
-
-        <CardBoxGeneral className="w-11/12 md:w-7/12 lg:w-6/12 xl:w-4/12 shadow-2xl">
+        <CardBoxGeneral className="w-11/12 md:w-7/12 lg:w-6/12 xl:w-4/12 shadow-2xl mt-20">
     
 
          <SectionTitle ><p style={moneyWayHeader}>Reset Password</p></SectionTitle>

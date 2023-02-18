@@ -44,11 +44,11 @@ export default function AsideMenuLayer({ menu, className = '', ...props }: Props
         >
           <div className="text-center flex-1 lg:text-left lg:pl-6 xl:text-center xl:pl-0">
           <img
-        src="moneyway.png"
+        src="MONEYWAY-2.png"
         alt="moneyway"
-        className="rounded-full inline w-11 h-11 m-2"
+        className="inline h-12"
       />
-            <span style={moneyWayTitle}>MoneyWay</span>
+            {/* <span style={moneyWayTitle}>MoneyWay</span> */}
           </div>
           <button
             className="hidden lg:inline-block xl:hidden p-3"

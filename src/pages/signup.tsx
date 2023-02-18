@@ -31,17 +31,17 @@ export default function Error() {
         <title>{getPageTitle('Signup')}</title>
       </Head>
       <PagesTitle >
-      <div className="text-center flex-1 lg:text-left lg:pl-6 xl:text-center xl:pl-0">
-          <img
-        src="moneyway.png"
+      <div className="text-center flex-1 lg:text-left lg:pl-6 xl:text-center xl:pl-0 pt-10">
+      <img
+        src="MONEYWAY-3.png"
         alt="moneyway"
-        className="rounded-full inline w-11 h-11 m-2"
+        className="rounded-full inline w-14 h-14"
       />
             <span style={pagesTitle}>MoneyWay</span>
           </div>
       </PagesTitle>
       <SectionFullScreen bg="lightBlue">
-        <CardBoxGeneral className="w-11/12 md:w-7/12 lg:w-6/12 xl:w-4/12 shadow-2xl">
+        <CardBoxGeneral className="w-11/12 md:w-7/12 lg:w-6/12 xl:w-4/12 shadow-2xl mt-20">
         
          <SectionTitle ><p style={moneyWayHeader}>Get Started with MoneyWay</p></SectionTitle>
           <Formik

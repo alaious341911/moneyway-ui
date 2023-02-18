@@ -11,7 +11,7 @@ type Props = {
 export default function SectionFullScreen({ bg, children }: Props) {
   const darkMode = useAppSelector((state) => state.style.darkMode)
 
-  let componentClass = 'flex min-h-screen items-center justify-center '
+  let componentClass = 'flex items-center justify-center '
 
   if (darkMode) {
     componentClass += gradientBgDark
@@ -24,5 +24,16 @@ export default function SectionFullScreen({ bg, children }: Props) {
     componentClass += gradientBgLigthBlue
   }
 
-  return <div className={componentClass}>{children}</div>
+  return (
+    <>
+    {/* <div className='flex items-center justify-center'>
+    <img
+  src="MONEYWAY-3.png"
+  alt="moneyway"
+  className="w-12 h-12"
+/>
+    </div> */}
+  <div className={componentClass}>{children}</div>
+  </>
+  )
 }
