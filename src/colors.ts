@@ -76,6 +76,7 @@ export const getButtonColor = (
       danger: 'bg-red-600 dark:bg-red-500 text-white',
       warning: 'bg-yellow-600 dark:bg-yellow-500 text-white',
       info: 'bg-blue-800 dark:bg-blue-500 text-white',
+      lightBlu: 'bg-[#EEF4FF] dark:bg-[#EEF4FF] text-black'
     },
     bgHover: {
       white: 'hover:bg-gray-100',
