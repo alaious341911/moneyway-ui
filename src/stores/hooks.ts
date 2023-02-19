@@ -10,20 +10,20 @@ export default axios.create({
     baseURL: 'http://localhost:8080'
 });
 
-export function decodeErrorStatus(err: number){
-    let errorMsg = ''
-    if (err === 200) {
-        errorMsg = 'No Server Response';
-    } else if (err === 400) {
-       errorMsg = 'Missing required filed. Retry';
-  } else if (err=== 401 || err === 403) {
-       errorMsg = 'Unauthorized action';
-    }
-    else if (err=== 302){
-     errorMsg = 'Duplicate actionn';
-    } else {
-      errorMsg = 'menu item creation failed';
-   }
+// export function decodeErrorStatus(err){
+//     let errorMsg = ''
+//     if (err === 200) {
+//         errorMsg = 'No Server Response';
+//     } else if (err === 400) {
+//        errorMsg = 'Missing required filed. Retry';
+//   } else if (err=== 401 || err === 403) {
+//        errorMsg = 'Unauthorized action';
+//     }
+//     else if (err=== 302){
+//      errorMsg = 'Duplicate actionn';
+//     } else {
+//       errorMsg = 'menu item creation failed';
+//    }
 
-   return errorMsg
-}
+//    return errorMsg
+// }

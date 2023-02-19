@@ -16,7 +16,7 @@ import SectionTitle from '../components/SectionTitle'
 import SectionTitleLineWithoutButton from '../components/SectionTitleLineWithoutButton'
 import { getPageTitle } from '../config'
 import axios from '../stores/hooks'
-import {useAppDispatch, useAppSelector, decodeErrorStatus} from '../stores/hooks'
+import {useAppDispatch, useAppSelector} from '../stores/hooks'
 import type {AirtimeForm} from '../interfaces'
 import { toast, ToastContainer } from 'react-toastify';
   import "react-toastify/dist/ReactToastify.css";
@@ -41,36 +41,6 @@ const MenuPage = () => {
     }, [])
 
 
-
-    const handleCreateMenu = async (values, {setSubmitting}) => {
-      try {
-          const response = await axios.post(CREATE_MENU_ENDPOINT,
-              values,
-              {
-                  headers: { 'Content-Type': 'application/json',
-                             'Authorization': 'Bearer ' + token
-                },
-                  withCredentials: true
-              }
-          );
-            if(response?.status == 200){
-              
-              toast("Menu item added!");
-              
-            }
-          console.log(JSON.stringify(response?.status));
-          
-      } catch (err) {
-           if (!err?.response) {
-              setErrMsg('No Server Response');
-           } 
-           else  {
-            setErrMsg(decodeErrorStatus(err?.response.status))
-              }
-  
-          toast(errMsg || "Unknown error")
-      }
-  }
   return (
     <>
       <Head>
@@ -100,7 +70,7 @@ const MenuPage = () => {
               
             
             })}
-            onSubmit= {(values, {setSubmitting}) => handleCreateMenu(values, {setSubmitting})}
+            onSubmit= {(values, {setSubmitting}) => console.log(values)}
           >
             
             <Form>
