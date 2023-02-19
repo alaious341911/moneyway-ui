@@ -14,7 +14,6 @@ import {
 import { MenuNavBarItem } from './interfaces'
 
 const menuNavBar: MenuNavBarItem[] = [
-  
   {
     isCurrentUser: true,
     menu: [
@@ -27,7 +26,7 @@ const menuNavBar: MenuNavBarItem[] = [
         icon: mdiCogOutline,
         label: 'Security',
       },
-      
+
       {
         isDivider: true,
       },
@@ -38,7 +37,6 @@ const menuNavBar: MenuNavBarItem[] = [
       },
     ],
   },
-  
 ]
 
 export default menuNavBar

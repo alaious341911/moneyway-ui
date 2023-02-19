@@ -7,8 +7,8 @@ export const useAppDispatch: () => AppDispatch = useDispatch
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector
 
 export default axios.create({
-    baseURL: 'http://localhost:8080'
-});
+  baseURL: 'http://localhost:8080',
+})
 
 // export function decodeErrorStatus(err){
 //     let errorMsg = ''

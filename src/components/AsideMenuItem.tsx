@@ -38,7 +38,13 @@ const AsideMenuItem = ({ item, isDropdownList = false }: Props) => {
   const asideMenuItemInnerContents = (
     <>
       {item.icon && (
-        <BaseIcon path={item.icon} color={'#3538CD'} className={`flex-none ${activeClassAddon}`} w="w-16" size="18" />
+        <BaseIcon
+          path={item.icon}
+          color={'#3538CD'}
+          className={`flex-none ${activeClassAddon}`}
+          w="w-16"
+          size="18"
+        />
       )}
       <span
         className={`grow text-ellipsis line-clamp-1 ${

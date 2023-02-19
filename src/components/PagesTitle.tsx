@@ -16,10 +16,7 @@ const PagesTitle = ({ custom = false, first = false, last = false, children }: P
     classAddon = '-mt-6'
   }
 
-  return (
-    
-   <div className='bg-gradient-to-r from-cyan-50 to-cyan-50'>{children}</div> 
-  )
+  return <div className="bg-gradient-to-r from-cyan-50 to-cyan-50">{children}</div>
 }
 
 export default PagesTitle

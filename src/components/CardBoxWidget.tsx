@@ -8,7 +8,13 @@ import CardBox from './CardBox'
 import CardBoxLight from './CardBoxLight'
 import NumberDynamic from './NumberDynamic'
 import PillTagTrend from './PillTagTrend'
-import {darkBlueBox, dashboardBoxTextDark, dashboardBoxTextLDark, dashboardBoxTextLWhite, dashboardBoxTextWhite} from '../styles'
+import {
+  darkBlueBox,
+  dashboardBoxTextDark,
+  dashboardBoxTextLDark,
+  dashboardBoxTextLWhite,
+  dashboardBoxTextWhite,
+} from '../styles'
 
 type Props = {
   number: number
@@ -27,8 +33,6 @@ type Props = {
 }
 
 const CardBoxWidget = (props: Props) => {
-
-
   return (
     <CardBox boxColor={props.cardBoxColor}>
       {props.trendLabel && props.trendType && props.trendColor && (
@@ -43,7 +47,7 @@ const CardBoxWidget = (props: Props) => {
         </div>
       )}
       <div className="flex items-center gap-10">
-      {props.icon && (
+        {props.icon && (
           <BaseIcon
             path={props.icon}
             size="48"
@@ -53,23 +57,35 @@ const CardBoxWidget = (props: Props) => {
           />
         )}
         <div>
-          <h3 className="text-lg leading-tight text-white dark:text-slate-400" style={props.cardBoxLight=== 'yes'? dashboardBoxTextWhite : dashboardBoxTextDark}>{props.label}</h3>
-          <h2 className="text-3xl leading-tight font-semibold text-white" style={props.cardBoxLight === 'yes'? dashboardBoxTextLWhite : dashboardBoxTextLDark}>
+          <h3
+            className="text-lg leading-tight text-white dark:text-slate-400"
+            style={props.cardBoxLight === 'yes' ? dashboardBoxTextWhite : dashboardBoxTextDark}
+          >
+            {props.label}
+          </h3>
+          <h2
+            className="text-3xl leading-tight font-semibold text-white"
+            style={props.cardBoxLight === 'yes' ? dashboardBoxTextLWhite : dashboardBoxTextLDark}
+          >
             <NumberDynamic
               value={props.number}
               prefix={props.numberPrefix}
               suffix={props.numberSuffix}
             />
           </h2>
-          <h3 className="text-lg leading-tight text-white dark:text-slate-400" style={props.cardBoxLight=== 'yes'? dashboardBoxTextWhite : dashboardBoxTextDark}>{props.bankName}</h3>
-          <h2 className="text-3xl leading-tight font-semibold text-white" style={props.cardBoxLight === 'yes'? dashboardBoxTextWhite : dashboardBoxTextDark}>
-            <NumberDynamic
-              accountNumber={props.accountNumber}
-            />
+          <h3
+            className="text-lg leading-tight text-white dark:text-slate-400"
+            style={props.cardBoxLight === 'yes' ? dashboardBoxTextWhite : dashboardBoxTextDark}
+          >
+            {props.bankName}
+          </h3>
+          <h2
+            className="text-3xl leading-tight font-semibold text-white"
+            style={props.cardBoxLight === 'yes' ? dashboardBoxTextWhite : dashboardBoxTextDark}
+          >
+            <NumberDynamic accountNumber={props.accountNumber} />
           </h2>
         </div>
-
-        
       </div>
     </CardBox>
   )

@@ -16,174 +16,224 @@ import SectionTitle from '../components/SectionTitle'
 import SectionTitleLineWithoutButton from '../components/SectionTitleLineWithoutButton'
 import { getPageTitle } from '../config'
 import axios from '../stores/hooks'
-import {useAppDispatch, useAppSelector} from '../stores/hooks'
-import type {FundWalletForm} from '../interfaces'
-import { toast, ToastContainer } from 'react-toastify';
-  import "react-toastify/dist/ReactToastify.css";
-  import * as Yup from 'yup';
-  import {cardBoxStyle, dashBoardField, dashboardFormPText,
-     dashboardHeading, submitButton, submitButtonDashboard, tabCss, tabBlock, activeTab} from  '../styles';
-     import FundWalletTable from '../components/FundWalletTable'
+import { useAppDispatch, useAppSelector } from '../stores/hooks'
+import type { FundWalletForm } from '../interfaces'
+import { toast, ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+import * as Yup from 'yup'
+import {
+  cardBoxStyle,
+  dashBoardField,
+  dashboardFormPText,
+  dashboardHeading,
+  submitButton,
+  submitButtonDashboard,
+  tabCss,
+  tabBlock,
+  activeTab,
+} from '../styles'
+import FundWalletTable from '../components/FundWalletTable'
 
 const MenuPage = () => {
-    const CREATE_MENU_ENDPOINT = "/api/v1/menus";
-    
-    
-    const [errMsg, setErrMsg] = useState('');
-    const [token, setAppToken] = useState('');
-    const [toggleState, setToggleState] = useState(1);
+  const CREATE_MENU_ENDPOINT = '/api/v1/menus'
 
-    const fundWalletValue: FundWalletForm ={
-      amount: '',
-      bank: '',
-      pin: '',
-      description: '',
+  const [errMsg, setErrMsg] = useState('')
+  const [token, setAppToken] = useState('')
+  const [toggleState, setToggleState] = useState(1)
 
-    }
+  const fundWalletValue: FundWalletForm = {
+    amount: '',
+    bank: '',
+    pin: '',
+    description: '',
+  }
 
-    const toggleTab = (index)  => {
-        console.log(index);
-        setToggleState(index);
-    };
+  const toggleTab = (index) => {
+    console.log(index)
+    setToggleState(index)
+  }
 
-    useEffect(() => {
-      setAppToken(localStorage.getItem("token"));
-    }, [])
-
-
+  useEffect(() => {
+    setAppToken(localStorage.getItem('token'))
+  }, [])
 
   return (
     <>
       <Head>
         <title>{getPageTitle('Create-Menu')}</title>
       </Head>
-      
-       
-        <SectionTitle ><p style={dashboardHeading}>Transfer</p></SectionTitle>
-        
-        <div className="md:w-7/12 shadow-1xl md:mx-auto border-white">
-      <SectionMain>
-       
-        <CardBoxGeneral>
-        <ToastContainer />
-        
-      <div className="px-2 mb-4">
-  <div className="flex -mx-2">
-    <div className="w-1/3 px-1">
-      <div 
-       className={toggleState === 1 ? 'border-4 border-white border-b-indigo-600' : 'border-4 border-white border-b-gray-400'}
-       onClick={() => toggleTab(1)}
-      >Local Transfer</div>
-    </div>
-    <div className="w-1/3 px-1">
-      <div
-       className={toggleState === 2 ? 'border-4 border-white border-b-indigo-600' : 'border-4 border-white border-b-gray-400'}
-       onClick={() => toggleTab(2)}
-      >Other Bank Transfer</div>
-      
-    </div>
-    <div className="w-1/3 px-1">
-      <div 
-       className={toggleState === 3 ? 'border-4 border-white border-b-indigo-600' : 'border-4 border-white border-b-gray-400'}
-       onClick={() => toggleTab(3)}
-      >Beneficiaries</div>
-    </div>
-  </div>
-</div>
-         <Formik 
-            initialValues={fundWalletValue}
-            validationSchema={Yup.object({
-              amount: Yup.string()
-                .required('Required'),
-             bank: Yup.string()
-                .required('Required'),
-                pin: Yup.string()
-                .required('Required'),
-                description: Yup.string()
-                .required('Required'),
-              
-            
-            })}
-            onSubmit= {(values, {setSubmitting}) => console.log(values)}
-          >
-            
-           
-                
-                <Form>
-                {toggleState === 1 &&(
-                    <>
-              <FormField label="Email">
-                <Field className='' style={dashBoardField}  type="email" name="email" placeholder="Enter email address" />
-               </FormField>
 
-               <FormField label="Amount">
-                <Field className='' style={dashBoardField}  type="text" name="amount" placeholder="Enter an amount" />
-               </FormField>
-               
+      <SectionTitle>
+        <p style={dashboardHeading}>Transfer</p>
+      </SectionTitle>
 
-               <FormField label="Pin">
-                <Field style={dashBoardField}  type="text" name="pin" placeholder="Enter pin" />
-                 </FormField>
+      <div className="md:w-7/12 shadow-1xl md:mx-auto border-white">
+        <SectionMain>
+          <CardBoxGeneral>
+            <ToastContainer />
 
-                 <FormField label="Description">
-                <Field className='' style={dashBoardField}  type="text" name="description" placeholder="Write a short description" />
-               </FormField>
+            <div className="px-2 mb-4">
+              <div className="flex -mx-2">
+                <div className="w-1/3 px-1">
+                  <div
+                    className={
+                      toggleState === 1
+                        ? 'border-4 border-white border-b-indigo-600'
+                        : 'border-4 border-white border-b-gray-400'
+                    }
+                    onClick={() => toggleTab(1)}
+                  >
+                    Local Transfer
+                  </div>
+                </div>
+                <div className="w-1/3 px-1">
+                  <div
+                    className={
+                      toggleState === 2
+                        ? 'border-4 border-white border-b-indigo-600'
+                        : 'border-4 border-white border-b-gray-400'
+                    }
+                    onClick={() => toggleTab(2)}
+                  >
+                    Other Bank Transfer
+                  </div>
+                </div>
+                <div className="w-1/3 px-1">
+                  <div
+                    className={
+                      toggleState === 3
+                        ? 'border-4 border-white border-b-indigo-600'
+                        : 'border-4 border-white border-b-gray-400'
+                    }
+                    onClick={() => toggleTab(3)}
+                  >
+                    Beneficiaries
+                  </div>
+                </div>
+              </div>
+            </div>
+            <Formik
+              initialValues={fundWalletValue}
+              validationSchema={Yup.object({
+                amount: Yup.string().required('Required'),
+                bank: Yup.string().required('Required'),
+                pin: Yup.string().required('Required'),
+                description: Yup.string().required('Required'),
+              })}
+              onSubmit={(values, { setSubmitting }) => console.log(values)}
+            >
+              <Form>
+                {toggleState === 1 && (
+                  <>
+                    <FormField label="Email">
+                      <Field
+                        className=""
+                        style={dashBoardField}
+                        type="email"
+                        name="email"
+                        placeholder="Enter email address"
+                      />
+                    </FormField>
 
-               <p  style={dashboardFormPText}><a href='#'>Save as beneficiary</a></p>
+                    <FormField label="Amount">
+                      <Field
+                        className=""
+                        style={dashBoardField}
+                        type="text"
+                        name="amount"
+                        placeholder="Enter an amount"
+                      />
+                    </FormField>
 
-              <BaseDivider />
-             
-              <BaseButtons>
-                <button type='submit' style={submitButton}>Submit</button>
-              </BaseButtons>
-              </>
-              ) }
+                    <FormField label="Pin">
+                      <Field
+                        style={dashBoardField}
+                        type="text"
+                        name="pin"
+                        placeholder="Enter pin"
+                      />
+                    </FormField>
 
-{toggleState === 2 &&(
-                    <>
+                    <FormField label="Description">
+                      <Field
+                        className=""
+                        style={dashBoardField}
+                        type="text"
+                        name="description"
+                        placeholder="Write a short description"
+                      />
+                    </FormField>
 
-               <FormField label="Bank">
-                <select style={dashBoardField}  name="bank" >
-                    <option disabled>Select</option>
-                    <option>First Bank</option>
-                    <option>Guarranty Trust Bank</option>
-                    <option>Polaris Bank</option>
-                    </select>
-               </FormField>
+                    <p style={dashboardFormPText}>
+                      <a href="#">Save as beneficiary</a>
+                    </p>
 
-               <FormField label="Amount">
-                <Field className='' style={dashBoardField}  type="text" name="amount" placeholder="Enter an amount" />
-               </FormField>
+                    <BaseDivider />
 
-               <FormField label="Pin">
-                <Field style={dashBoardField}  type="text" name="pin" placeholder="Enter pin" />
-                 </FormField>
+                    <BaseButtons>
+                      <button type="submit" style={submitButton}>
+                        Submit
+                      </button>
+                    </BaseButtons>
+                  </>
+                )}
 
-                 <FormField label="Description">
-                <Field className='' style={dashBoardField}  type="text" name="description" placeholder="Write a short description" />
-               </FormField>
+                {toggleState === 2 && (
+                  <>
+                    <FormField label="Bank">
+                      <select style={dashBoardField} name="bank">
+                        <option disabled>Select</option>
+                        <option>First Bank</option>
+                        <option>Guarranty Trust Bank</option>
+                        <option>Polaris Bank</option>
+                      </select>
+                    </FormField>
 
+                    <FormField label="Amount">
+                      <Field
+                        className=""
+                        style={dashBoardField}
+                        type="text"
+                        name="amount"
+                        placeholder="Enter an amount"
+                      />
+                    </FormField>
 
-              <BaseDivider />
-             
-              <BaseButtons>
-                <button type='submit' style={submitButton}>Submit</button>
-              </BaseButtons>
-              </>
-              ) }
+                    <FormField label="Pin">
+                      <Field
+                        style={dashBoardField}
+                        type="text"
+                        name="pin"
+                        placeholder="Enter pin"
+                      />
+                    </FormField>
 
-{toggleState === 3 &&(
-                   <FundWalletTable />
-              ) }
+                    <FormField label="Description">
+                      <Field
+                        className=""
+                        style={dashBoardField}
+                        type="text"
+                        name="description"
+                        placeholder="Write a short description"
+                      />
+                    </FormField>
 
-            </Form>
-            
-          </Formik>
-            
-        </CardBoxGeneral>
-      </SectionMain>
+                    <BaseDivider />
+
+                    <BaseButtons>
+                      <button type="submit" style={submitButton}>
+                        Submit
+                      </button>
+                    </BaseButtons>
+                  </>
+                )}
+
+                {toggleState === 3 && <FundWalletTable />}
+              </Form>
+            </Formik>
+          </CardBoxGeneral>
+        </SectionMain>
       </div>
-      
     </>
   )
 }

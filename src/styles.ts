@@ -1,4 +1,4 @@
-import CSS from 'csstype';
+import CSS from 'csstype'
 
 interface StyleObject {
   aside: string
@@ -43,324 +43,291 @@ export const moneyWayText: CSS.Properties = {
   width: '176px',
   height: '45px',
 
-/* Headline Bold - 32 */
+  /* Headline Bold - 32 */
 
   fontFamily: 'Inter',
-fontStyle: 'normal',
-fontWeight: 700,
-fontSize: '32px',
-lineHeight: '140%',
-display: 'inline',
-marginTop: '100px',
-marginLeft: '85px',
+  fontStyle: 'normal',
+  fontWeight: 700,
+  fontSize: '32px',
+  lineHeight: '140%',
+  display: 'inline',
+  marginTop: '100px',
+  marginLeft: '85px',
 
-/* identical to box height, or 45px */
+  /* identical to box height, or 45px */
 
-letterSpacing: '0.25px',
+  letterSpacing: '0.25px',
 
-/* Indigo 700 */
+  /* Indigo 700 */
 
-color: '#3538CD',
-  }
+  color: '#3538CD',
+}
 
-  export const textInput: CSS.Properties = {
-    padding: '12px 16px',
-    gap: '8px',
+export const textInput: CSS.Properties = {
+  padding: '12px 16px',
+  gap: '8px',
 
-    /* White */
+  /* White */
 
-    background: '#FFFFFF',
-    /* Grey 400 */
+  background: '#FFFFFF',
+  /* Grey 400 */
 
-    border: '1px solid #98A2B3',
-    borderRadius: '6px',
-    }
+  border: '1px solid #98A2B3',
+  borderRadius: '6px',
+}
 
-    export const submitButton: CSS.Properties = {
-      justifyContent: 'center',
-      alignItems: 'center',
-      padding: '12px 16px',
-      gap: '8px',
-      color: '#fff',
-      
-      /* Indigo 700 */
+export const submitButton: CSS.Properties = {
+  justifyContent: 'center',
+  alignItems: 'center',
+  padding: '12px 16px',
+  gap: '8px',
+  color: '#fff',
 
-      background: '#3538CD',
-      borderRadius: '6px',
-      }
+  /* Indigo 700 */
 
-     export const moneyWayHeader: CSS.Properties = {
-    
-    
-        fontFamily: 'Inter',
-        fontStyle: 'normal',
-        fontWeight: '700',
-        fontSize: '24px',
-        lineHeight: '24px',
-        
-        color: '#012A4A',
-      };
+  background: '#3538CD',
+  borderRadius: '6px',
+}
 
-      export const moneyWayTitle: CSS.Properties = {
-    
-    
-        fontFamily: 'Inter',
-        fontStyle: 'normal',
-        fontWeight: '700',
-        fontSize: '24px',
-        lineHeight: '140%',
-        
-        color: '#3538CD',
-      };
+export const moneyWayHeader: CSS.Properties = {
+  fontFamily: 'Inter',
+  fontStyle: 'normal',
+  fontWeight: '700',
+  fontSize: '24px',
+  lineHeight: '24px',
 
-      export const pagesTitle: CSS.Properties = {
-    
-    
-        fontFamily: 'Inter',
-        fontStyle: 'normal',
-        fontWeight: '700',
-        fontSize: '32px',
-        lineHeight: '140%',
-        letterSpacing: '0.25px',
-        
-        color: '#3538CD',
-      };
+  color: '#012A4A',
+}
 
-      export const formPText: CSS.Properties = {
-    
-         height: '20px',
+export const moneyWayTitle: CSS.Properties = {
+  fontFamily: 'Inter',
+  fontStyle: 'normal',
+  fontWeight: '700',
+  fontSize: '24px',
+  lineHeight: '140%',
 
-        /* Button Semi Bold - 14 */
+  color: '#3538CD',
+}
 
-        fontFamily: 'Inter',
-        fontStyle: 'normal',
-        fontWeight: 400,
-        fontSize: '14px',
-        lineHeight: '20px',
-        marginTop: '10px',
-        marginBottom: '20px',
-      };
+export const pagesTitle: CSS.Properties = {
+  fontFamily: 'Inter',
+  fontStyle: 'normal',
+  fontWeight: '700',
+  fontSize: '32px',
+  lineHeight: '140%',
+  letterSpacing: '0.25px',
 
-      export const dashBoardHText: CSS.Properties = {
-    
-        height: '20px',
+  color: '#3538CD',
+}
 
-       /* Button Semi Bold - 14 */
+export const formPText: CSS.Properties = {
+  height: '20px',
 
-       fontFamily: 'Inter',
-       fontStyle: 'normal',
-       fontWeight: 600,
-       fontSize: '16px',
-       lineHeight: '20px',
-      color: '#101828',
-     };
+  /* Button Semi Bold - 14 */
 
-     export const darkBlueBox: CSS.Properties = {
-      background: '#3538CD',
-      borderRadius: '24px',
-     }
+  fontFamily: 'Inter',
+  fontStyle: 'normal',
+  fontWeight: 400,
+  fontSize: '14px',
+  lineHeight: '20px',
+  marginTop: '10px',
+  marginBottom: '20px',
+}
 
-     export const orangeBox: CSS.Properties = {
-      background: '#FEFDF0',
-      borderRadius: '24px',
-     }
+export const dashBoardHText: CSS.Properties = {
+  height: '20px',
 
-     
-      export const forgotPText: CSS.Properties = {
-    
-        height: '20px',
+  /* Button Semi Bold - 14 */
 
-       /* Button Semi Bold - 14 */
+  fontFamily: 'Inter',
+  fontStyle: 'normal',
+  fontWeight: 600,
+  fontSize: '16px',
+  lineHeight: '20px',
+  color: '#101828',
+}
 
-       fontFamily: 'Inter',
-       fontStyle: 'normal',
-       fontWeight: 400,
-       fontSize: '13px',
-       lineHeight: '20px',
-       color: '#1570EF',
-     };
+export const darkBlueBox: CSS.Properties = {
+  background: '#3538CD',
+  borderRadius: '24px',
+}
 
-     export const dashIconText: CSS.Properties = {
-    
-      height: '20px',
+export const orangeBox: CSS.Properties = {
+  background: '#FEFDF0',
+  borderRadius: '24px',
+}
 
-     /* Button Semi Bold - 14 */
+export const forgotPText: CSS.Properties = {
+  height: '20px',
 
-     fontFamily: 'Inter',
-     fontStyle: 'normal',
-     fontWeight: 400,
-     fontSize: '13px',
-     lineHeight: '20px',
-     color: '#101828',
-   };
+  /* Button Semi Bold - 14 */
 
+  fontFamily: 'Inter',
+  fontStyle: 'normal',
+  fontWeight: 400,
+  fontSize: '13px',
+  lineHeight: '20px',
+  color: '#1570EF',
+}
 
+export const dashIconText: CSS.Properties = {
+  height: '20px',
 
-      export const formLink: CSS.Properties = {
-        color: '#3538CD' ,
-        fontWeight: 'bolder',
-      }
+  /* Button Semi Bold - 14 */
 
-      export const dashBoardField: CSS.Properties = {
-        boxSizing: 'border-box',
+  fontFamily: 'Inter',
+  fontStyle: 'normal',
+  fontWeight: 400,
+  fontSize: '13px',
+  lineHeight: '20px',
+  color: '#101828',
+}
 
-        /* Auto layout */
+export const formLink: CSS.Properties = {
+  color: '#3538CD',
+  fontWeight: 'bolder',
+}
 
-        display: 'flex',
-        flexDirection: 'row',
-        alignItems: 'center',
-        padding: '12px 16px',
-        gap: '8px',
+export const dashBoardField: CSS.Properties = {
+  boxSizing: 'border-box',
 
-         height: '44px',
+  /* Auto layout */
 
-        /* White */
+  display: 'flex',
+  flexDirection: 'row',
+  alignItems: 'center',
+  padding: '12px 16px',
+  gap: '8px',
 
-        background: '#FFFFFF',
-        /* Grey 400 */
+  height: '44px',
 
-        border: '1px solid #98A2B3',
-        borderRadius: '6px',
-      }
+  /* White */
 
-      export const submitButtonDashboard: CSS.Properties = {
-        justifyContent: 'center',
-        alignItems: 'center',
-        padding: '12px 16px',
-        gap: '8px',
-        color: '#fff',
-        height: '44px',
-        
-  
-        /* Indigo 700 */
-  
-        background: '#3538CD',
-        borderRadius: '6px',
-        }
+  background: '#FFFFFF',
+  /* Grey 400 */
 
-      export const cardBoxStyle: CSS.Properties = {
-        boxSizing: 'border-box',
+  border: '1px solid #98A2B3',
+  borderRadius: '6px',
+}
 
-        /* Auto layout */
+export const submitButtonDashboard: CSS.Properties = {
+  justifyContent: 'center',
+  alignItems: 'center',
+  padding: '12px 16px',
+  gap: '8px',
+  color: '#fff',
+  height: '44px',
 
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'flex-start',
-        padding: '32px',
-        gap: '40px',
+  /* Indigo 700 */
 
-        // width: '623px',
-        // height: '516px',
+  background: '#3538CD',
+  borderRadius: '6px',
+}
 
-        /* White */
+export const cardBoxStyle: CSS.Properties = {
+  boxSizing: 'border-box',
 
-        background: '#FFFFFF',
-        /* Grey 400 */
+  /* Auto layout */
 
-        border: '1px solid #fff',
-        borderRadius: '6px',
-      }
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  alignItems: 'flex-start',
+  padding: '32px',
+  gap: '40px',
 
-      export const dashboardFormPText: CSS.Properties = {
-    
-        height: '20px',
+  // width: '623px',
+  // height: '516px',
 
-       /* Button Semi Bold - 14 */
+  /* White */
 
-       fontFamily: 'Inter',
-       fontStyle: 'normal',
-       fontWeight: 600,
-       fontSize: '14px',
-       lineHeight: '20px',
-       color: '#3538CD',
-       marginBottom: '10px',
-     };
+  background: '#FFFFFF',
+  /* Grey 400 */
 
-     export const dashboardBoxTextWhite: CSS.Properties = {
-    
-     fontFamily: 'Inter',
-     fontStyle: 'normal',
-     fontWeight: 400,
-     fontSize: '14px',
-     color: '#fff',
-    
-   };
+  border: '1px solid #fff',
+  borderRadius: '6px',
+}
 
-   export const dashboardBoxTextLWhite: CSS.Properties = {
-    
-    fontFamily: 'Inter',
-    fontStyle: 'normal',
-    fontWeight: 700,
-    fontSize: '24px',
-    lineHeight: '140%',
-    color: '#fff',
-    
-  };
+export const dashboardFormPText: CSS.Properties = {
+  height: '20px',
 
+  /* Button Semi Bold - 14 */
 
-  export const dashboardBoxTextDark: CSS.Properties = {
-    
-    fontFamily: 'Inter',
-    fontStyle: 'normal',
-    fontWeight: 400,
-    fontSize: '14px',
-    color: '#101828',
-    lineHeight: '20px',
-    
-  };
+  fontFamily: 'Inter',
+  fontStyle: 'normal',
+  fontWeight: 600,
+  fontSize: '14px',
+  lineHeight: '20px',
+  color: '#3538CD',
+  marginBottom: '10px',
+}
 
-  export const dashboardBoxTextLDark: CSS.Properties = {
-   
-   fontFamily: 'Inter',
-   fontStyle: 'normal',
-   fontWeight: 700,
-   fontSize: '24px',
-   lineHeight: '140%',
-   color: '#101828',
-   
- };
+export const dashboardBoxTextWhite: CSS.Properties = {
+  fontFamily: 'Inter',
+  fontStyle: 'normal',
+  fontWeight: 400,
+  fontSize: '14px',
+  color: '#fff',
+}
 
-     export const dashboardHeading: CSS.Properties = {
-    
-      height: '34px',
+export const dashboardBoxTextLWhite: CSS.Properties = {
+  fontFamily: 'Inter',
+  fontStyle: 'normal',
+  fontWeight: 700,
+  fontSize: '24px',
+  lineHeight: '140%',
+  color: '#fff',
+}
 
-     /* Button Semi Bold - 14 */
+export const dashboardBoxTextDark: CSS.Properties = {
+  fontFamily: 'Inter',
+  fontStyle: 'normal',
+  fontWeight: 400,
+  fontSize: '14px',
+  color: '#101828',
+  lineHeight: '20px',
+}
 
-     fontFamily: 'Inter',
-     fontStyle: 'normal',
-     fontWeight: 700,
-     fontSize: '24px',
-     lineHeight: '140%',
-     color: '#101828',
-     marginBottom: '10px',
-   };
+export const dashboardBoxTextLDark: CSS.Properties = {
+  fontFamily: 'Inter',
+  fontStyle: 'normal',
+  fontWeight: 700,
+  fontSize: '24px',
+  lineHeight: '140%',
+  color: '#101828',
+}
 
-   
+export const dashboardHeading: CSS.Properties = {
+  height: '34px',
 
-   export const tabCss: CSS.Properties = {
-    padding: '15px',
-    textAlign: 'center',
-    width: '50%',
-    background: 'rgba(128, 128, 128, 0.075)',
-    cursor: 'pointer',
-    borderBottom: '1px solid rgba(0, 0, 0, 0.274)',
-    boxSizing: 'content-box',
-    position: 'relative',
-    outline: 'none',
-   };
+  /* Button Semi Bold - 14 */
 
-   export const tabBlock: CSS.Properties = {
-    display: 'flex',
-    };
+  fontFamily: 'Inter',
+  fontStyle: 'normal',
+  fontWeight: 700,
+  fontSize: '24px',
+  lineHeight: '140%',
+  color: '#101828',
+  marginBottom: '10px',
+}
 
-    export const activeTab: CSS.Properties = {
-      background: 'white',
+export const tabCss: CSS.Properties = {
+  padding: '15px',
+  textAlign: 'center',
+  width: '50%',
+  background: 'rgba(128, 128, 128, 0.075)',
+  cursor: 'pointer',
+  borderBottom: '1px solid rgba(0, 0, 0, 0.274)',
+  boxSizing: 'content-box',
+  position: 'relative',
+  outline: 'none',
+}
+
+export const tabBlock: CSS.Properties = {
+  display: 'flex',
+}
+
+export const activeTab: CSS.Properties = {
+  background: 'white',
   borderBottom: '1px solid transparent',
-    };
-   
-
-
-
-      
-    
+}

@@ -63,15 +63,13 @@ const FundWalletTable = () => {
       </CardBoxModal>
 
       <table>
-        
         <tbody>
           {clientsPaginated.map((client: Client) => (
             <tr key={client.id}>
               <td data-label="Name">{client.name}</td>
-              <td data-label="Company" className='text-right'>{client.company}</td>
-             
-             
-              
+              <td data-label="Company" className="text-right">
+                {client.company}
+              </td>
             </tr>
           ))}
         </tbody>

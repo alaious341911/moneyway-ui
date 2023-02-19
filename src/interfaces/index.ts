@@ -27,7 +27,15 @@ export type MenuNavBarItem = {
   menu?: MenuNavBarItem[]
 }
 
-export type ColorKey = 'white' |'dark' | 'light' | 'contrast' | 'success' | 'danger' | 'warning' | 'info'
+export type ColorKey =
+  | 'white'
+  | 'dark'
+  | 'light'
+  | 'contrast'
+  | 'success'
+  | 'danger'
+  | 'warning'
+  | 'info'
 
 export type ColorButtonKey =
   | 'white'
@@ -82,12 +90,10 @@ export type AirtimeForm = {
   amount: string
   network: string
   phoneNumber: string
-  
 }
 export type FundWalletForm = {
   amount: string
   bank: string
   pin: string
   description: string
-  
 }

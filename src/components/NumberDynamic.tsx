@@ -9,7 +9,13 @@ type Props = {
   accountNumber?: string
 }
 
-const NumberDynamic = ({ prefix = '', suffix = '', accountNumber='', value, duration = 500 }: Props) => {
+const NumberDynamic = ({
+  prefix = '',
+  suffix = '',
+  accountNumber = '',
+  value,
+  duration = 500,
+}: Props) => {
   const [newValue, setNewValue] = useState(0)
 
   const newValueFormatted = newValue < 1000 ? newValue : numeral(newValue).format('0,0')
@@ -45,17 +51,9 @@ const NumberDynamic = ({ prefix = '', suffix = '', accountNumber='', value, dura
     }
   })
 
-  if(accountNumber){
-    return(
-      <div>
-       
-        {accountNumber}
-        
-      </div>
-    )
-  }
-
-  else{
+  if (accountNumber) {
+    return <div>{accountNumber}</div>
+  } else {
     return (
       <div>
         {prefix}
@@ -64,7 +62,6 @@ const NumberDynamic = ({ prefix = '', suffix = '', accountNumber='', value, dura
       </div>
     )
   }
-  
 }
 
 export default NumberDynamic

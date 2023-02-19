@@ -24,7 +24,7 @@ export default function BaseIcon({
   return (
     <span className={`inline-flex justify-center items-center ${w} ${h} ${className}`}>
       <svg viewBox="0 0 24 24" width={iconSize} height={iconSize} className="inline-block">
-        <path  fill="currentColor" d={path} color={color} />
+        <path fill="currentColor" d={path} color={color} />
       </svg>
       {children}
     </span>

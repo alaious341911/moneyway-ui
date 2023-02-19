@@ -7,7 +7,7 @@ import AsideMenuList from './AsideMenuList'
 import { MenuAsideItem } from '../interfaces'
 import { useAppSelector } from '../stores/hooks'
 import BaseDivider from './BaseDivider'
-import {moneyWayTitle} from '../styles'
+import { moneyWayTitle } from '../styles'
 
 type Props = {
   menu: MenuAsideItem[]
@@ -44,11 +44,7 @@ export default function AsideMenuLayer({ menu, className = '', ...props }: Props
           className={`flex flex-row h-14 items-center justify-between dark:bg-slate-900 ${asideBrandStyle}`}
         >
           <div className="text-center flex-1 lg:text-left lg:pl-6 xl:text-center xl:pl-0">
-          <Image
-        src="MONEYWAY-2.png"
-        alt="moneyway"
-        className="inline h-12"
-      />
+            <Image src="MONEYWAY-2.png" alt="moneyway" className="inline h-12" />
           </div>
           <button
             className="hidden lg:inline-block xl:hidden p-3"
@@ -66,7 +62,6 @@ export default function AsideMenuLayer({ menu, className = '', ...props }: Props
           <BaseDivider />
           <AsideMenuItem item={logoutItem} />
         </div>
-    
       </div>
     </aside>
   )

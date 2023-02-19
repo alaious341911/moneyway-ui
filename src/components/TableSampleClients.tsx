@@ -63,7 +63,6 @@ const TableSampleClients = () => {
       </CardBoxModal>
 
       <table>
-        
         <tbody>
           {clientsPaginated.map((client: Client) => (
             <tr key={client.id}>
@@ -71,7 +70,7 @@ const TableSampleClients = () => {
                 <UserAvatar username={client.name} className="w-24 h-24 mx-auto lg:w-6 lg:h-6" />
               </td>
               <td data-label="Name">{client.name}</td>
-              
+
               <td data-label="Created" className="lg:w-1 whitespace-nowrap">
                 <small className="text-gray-500 dark:text-slate-400">{client.created}</small>
               </td>

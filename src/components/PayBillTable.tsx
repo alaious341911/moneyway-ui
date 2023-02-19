@@ -63,7 +63,6 @@ const PayBillTable = () => {
       </CardBoxModal>
 
       <table>
-        
         <tbody>
           {clientsPaginated.map((client: Client) => (
             <tr key={client.id}>
@@ -78,9 +77,6 @@ const PayBillTable = () => {
                   />
                 </BaseButtons>
               </td>
-             
-             
-              
             </tr>
           ))}
         </tbody>

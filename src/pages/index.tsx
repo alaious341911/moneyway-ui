@@ -5,7 +5,7 @@ import React, { ReactElement } from 'react'
 import CardBoxGeneral from '../components/CardBoxGeneral'
 import LayoutGuest from '../layouts/Guest'
 import SectionMain from '../components/SectionMain'
-import { HomeMenus} from '../interfaces'
+import { HomeMenus } from '../interfaces'
 import { gradientBgPurplePink } from '../colors'
 import { appTitle } from '../config'
 import { useAppDispatch } from '../stores/hooks'
@@ -17,7 +17,7 @@ const HomePage = () => {
 
   dispatch(setDarkMode(false))
 
-  const homeMenus: HomeMenus[] = ['login' , 'signup' , 'forgot-password' , 'verify-link']
+  const homeMenus: HomeMenus[] = ['login', 'signup', 'forgot-password', 'verify-link']
 
   const router = useRouter()
 
@@ -39,10 +39,9 @@ const HomePage = () => {
           <h1 className="text-4xl md:text-5xl text-center text-white font-bold mt-12 mb-3 lg:mt-0">
             MoneyWay&hellip;
           </h1>
-          
+
           <div className="grid gap-6 grid-cols-1 lg:grid-cols-4 px-6 max-w-6xl mx-auto">
             {homeMenus.map((menu) => (
-               
               <CardBoxGeneral
                 key={menu}
                 className="cursor-pointer bg-gray-50"
@@ -50,7 +49,6 @@ const HomePage = () => {
                 onClick={(e) => handleStylePick(e, menu)}
               >
                 <div className="mb-3 md:mb-6">
-                  
                   <BaseButton href={menu} label={menu} color="info" />
                 </div>
                 {/* <h1 className="text-xl md:text-2xl font-black capitalize">{style}</h1>

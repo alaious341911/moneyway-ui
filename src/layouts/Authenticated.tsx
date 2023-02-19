@@ -101,7 +101,6 @@ export default function LayoutAuthenticated({ children }: Props) {
           onAsideLgClose={() => setIsAsideLgActive(false)}
         />
         {children}
-       
       </div>
     </div>
   )
