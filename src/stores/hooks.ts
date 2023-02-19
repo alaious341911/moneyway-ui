@@ -11,7 +11,7 @@ export default axios.create({
 });
 
 export function decodeErrorStatus(err: number): string{
-    let errorMsg: string = ''
+    let errorMsg = ''
     if (err === 200) {
         errorMsg = 'No Server Response';
     } else if (err === 400) {
