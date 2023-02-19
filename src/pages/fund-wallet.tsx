@@ -1,5 +1,6 @@
 import { mdiAccount, mdiBallotOutline, mdiGithub, mdiMail, mdiMenu, mdiUpload } from '@mdi/js'
 import { Field, Form, Formik, ErrorMessage } from 'formik'
+import Image from 'next/image'
 import Head from 'next/head'
 import { ReactElement, useState, useEffect } from 'react'
 import BaseButton from '../components/BaseButton'
@@ -49,8 +50,6 @@ const MenuPage = () => {
         <title>{getPageTitle('Create-Menu')}</title>
       </Head>
       
-        {/* <SectionTitleLineWithoutButton icon={mdiMenu} title="Buy Airtime on-the-go!" main>  
-        </SectionTitleLineWithoutButton> */}
         
         <SectionTitle ><p style={dashboardHeading}>Fund Wallet</p></SectionTitle>
         
@@ -83,7 +82,7 @@ const MenuPage = () => {
 
                <FormField label="Bank">
                 <select style={dashBoardField}  name="bank" >
-                    <option disabled aria-readonly>Select</option>
+                    <option disabled>Select</option>
                     <option>First Bank</option>
                     <option>Guarranty Trust Bank</option>
                     <option>Polaris Bank</option>

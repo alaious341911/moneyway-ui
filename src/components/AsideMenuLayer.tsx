@@ -1,4 +1,5 @@
 import React from 'react'
+import Image from 'next/image'
 import { mdiLogout, mdiClose } from '@mdi/js'
 import BaseIcon from './BaseIcon'
 import AsideMenuItem from './AsideMenuItem'
@@ -43,12 +44,11 @@ export default function AsideMenuLayer({ menu, className = '', ...props }: Props
           className={`flex flex-row h-14 items-center justify-between dark:bg-slate-900 ${asideBrandStyle}`}
         >
           <div className="text-center flex-1 lg:text-left lg:pl-6 xl:text-center xl:pl-0">
-          <img
+          <Image
         src="MONEYWAY-2.png"
         alt="moneyway"
         className="inline h-12"
       />
-            {/* <span style={moneyWayTitle}>MoneyWay</span> */}
           </div>
           <button
             className="hidden lg:inline-block xl:hidden p-3"

@@ -144,7 +144,7 @@ const MenuPage = () => {
 
                <FormField label="Bank">
                 <select style={dashBoardField}  name="bank" >
-                    <option disabled aria-readonly>Select</option>
+                    <option disabled>Select</option>
                     <option>First Bank</option>
                     <option>Guarranty Trust Bank</option>
                     <option>Polaris Bank</option>

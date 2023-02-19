@@ -1,4 +1,5 @@
 import React from 'react'
+import Image from 'next/image'
 import type { ReactElement } from 'react'
 import Head from 'next/head'
 import BaseButton from '../components/BaseButton'
@@ -32,7 +33,7 @@ export default function Error() {
 
       <PagesTitle>
       <div className="text-center flex-1 lg:text-left lg:pl-6 xl:text-center xl:pl-0 pt-10">
-      <img
+      <Image
         src="MONEYWAY-3.png"
         alt="moneyway"
         className="rounded-full inline w-14 h-14"
