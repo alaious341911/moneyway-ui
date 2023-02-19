@@ -10,7 +10,7 @@ export default axios.create({
     baseURL: 'http://localhost:8080'
 });
 
-export function decodeErrorStatus(err: number): string{
+export function decodeErrorStatus(err: number){
     let errorMsg = ''
     if (err === 200) {
         errorMsg = 'No Server Response';
