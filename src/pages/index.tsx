@@ -17,7 +17,7 @@ const HomePage = () => {
 
   dispatch(setDarkMode(false))
 
-  const homeMenus: HomeMenus[] = ['login', 'signup', 'forgot-password', 'verify-link']
+  const homeMenus: HomeMenus[] = ['login', 'Create an account', 'forgot-password', 'verify-link']
 
   const router = useRouter()
 

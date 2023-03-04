@@ -17,7 +17,9 @@ import { mdiAccount, mdiMail, mdiBallotOutline } from '@mdi/js'
 import SectionTitle from '../components/SectionTitle'
 import { textInput, submitButton, formPText, formLink, moneyWayHeader, pagesTitle } from '../styles'
 import PagesTitle from '../components/PagesTitle'
-export default function Error() {
+
+
+export default function ForgotPassword() {
   const router = useRouter()
 
   const handleSubmit = () => {
@@ -67,6 +69,6 @@ export default function Error() {
   )
 }
 
-Error.getLayout = function getLayout(page: ReactElement) {
+ForgotPassword.getLayout = function getLayout(page: ReactElement) {
   return <LayoutGuest>{page}</LayoutGuest>
 }

@@ -79,7 +79,7 @@ export type Client = {
 
 export type StyleKey = 'white' | 'basic'
 
-export type HomeMenus = 'login' | 'signup' | 'forgot-password' | 'verify-link'
+export type HomeMenus = 'login' | 'Create an account' | 'forgot-password' | 'verify-link'
 
 export type UserForm = {
   name: string
