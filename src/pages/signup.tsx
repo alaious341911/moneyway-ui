@@ -29,7 +29,16 @@ import SectionTitle from '../components/SectionTitle'
 import { textInput, submitButton, formPText, formLink, moneyWayHeader, pagesTitle } from '../styles'
 import PagesTitle from '../components/PagesTitle'
 
-export default function Error() {
+export default function SignUp() {
+  const textInput = {
+    width: '100%',
+    height: 40,
+    borderRadius: 5,
+    borderColor: 'gray',
+    borderWidth: 1,
+    paddingLeft: 40, // Add padding to the left to create space for the icon
+    marginBottom: 20,
+  };
   const router = useRouter()
 
   const handleSubmit = () => {
@@ -107,6 +116,6 @@ export default function Error() {
   )
 }
 
-Error.getLayout = function getLayout(page: ReactElement) {
+SignUp.getLayout = function getLayout(page: ReactElement) {
   return <LayoutGuest>{page}</LayoutGuest>
 }

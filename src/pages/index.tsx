@@ -11,6 +11,13 @@ import { appTitle } from '../config'
 import { useAppDispatch } from '../stores/hooks'
 import { setDarkMode, setStyle } from '../stores/styleSlice'
 import BaseButton from '../components/BaseButton'
+import Layout from '../components/Layout/Layout'
+import Footer from '../components/Layout/Footer'
+import Hero from '../components/Hero'
+import Feature from '../components/Feature'
+import HowItWork from '../components/HowItWork'
+import Pricing from '../components/Pricing'
+import SeoHead from '../components/SeoHead'
 
 const HomePage = () => {
   const dispatch = useAppDispatch()
@@ -31,33 +38,13 @@ const HomePage = () => {
 
   return (
     <>
-      <Head>
-        <title>{appTitle}</title>
-      </Head>
-      <div className={`flex min-h-screen items-center justify-center ${gradientBgPurplePink}`}>
-        <SectionMain>
-          <h1 className="text-4xl md:text-5xl text-center text-white font-bold mt-12 mb-3 lg:mt-0">
-            MoneyWay&hellip;
-          </h1>
-
-          <div className="grid gap-6 grid-cols-1 lg:grid-cols-4 px-6 max-w-6xl mx-auto">
-            {homeMenus.map((menu) => (
-              <CardBoxGeneral
-                key={menu}
-                className="cursor-pointer bg-gray-50"
-                isHoverable
-                onClick={(e) => handleStylePick(e, menu)}
-              >
-                <div className="mb-3 md:mb-6">
-                  <BaseButton href={menu} label={menu} color="info" />
-                </div>
-                {/* <h1 className="text-xl md:text-2xl font-black capitalize">{style}</h1>
-                <h2 className="text-lg md:text-xl">& Dark mode</h2> */}
-              </CardBoxGeneral>
-            ))}
-          </div>
-        </SectionMain>
-      </div>
+      <SeoHead title='LaslesVPN Landing Page' />
+      <Layout>
+        <Hero />
+        <Feature />
+        <HowItWork />
+        {/* <Pricing /> */}
+      </Layout>
     </>
   )
 }

@@ -62,6 +62,26 @@ export const moneyWayText: CSS.Properties = {
 
   color: '#3538CD',
 }
+export const heroHeadline: CSS.Properties = {
+   /* Headline Bold - 32 */
+
+  fontFamily: 'Inter',
+  fontStyle: 'normal',
+  fontWeight: 700,
+  fontSize: '58px',
+  lineHeight: '140%',
+  display: 'inline',
+  marginTop: '100px',
+  marginLeft: '85px',
+
+  /* identical to box height, or 45px */
+
+  letterSpacing: '-0.5px',
+
+  /* Indigo 700 */
+
+  color: '#101828',
+}
 
 export const textInput: CSS.Properties = {
   padding: '12px 16px',
@@ -133,6 +153,63 @@ export const formPText: CSS.Properties = {
   marginTop: '10px',
   marginBottom: '20px',
 }
+
+export const heroSubText: CSS.Properties = {
+  /* Button Semi Bold - 14 */
+
+  fontFamily: 'Inter',
+  fontStyle: 'normal',
+  fontWeight: 400,
+  fontSize: '24px',
+  lineHeight: '140%',
+  color: "#667085",
+}
+
+export const itemText: CSS.Properties = {
+  /* Button Semi Bold - 14 */
+
+  fontFamily: 'Inter',
+  fontStyle: 'normal',
+  fontWeight: 400,
+  fontSize: '14px',
+  lineHeight: '20px',
+  color: "#3538CD",
+}
+
+export const descText: CSS.Properties = {
+  /* Button Semi Bold - 14 */
+
+  fontFamily: 'Inter',
+  fontStyle: 'normal',
+  fontWeight: 700,
+  fontSize: '24px',
+  lineHeight: '140%',
+  color: "#012A4A",
+}
+
+export const detailText: CSS.Properties = {
+  /* Button Semi Bold - 14 */
+
+  fontFamily: 'Inter',
+  fontStyle: 'normal',
+  fontWeight: 400,
+  fontSize: '14px',
+  lineHeight: "20px",
+  color: "012A4A",
+}
+
+export const convenientText: CSS.Properties = {
+  /* Button Semi Bold - 14 */
+
+  fontFamily: 'Inter',
+  fontStyle: 'normal',
+  fontWeight: 700,
+  fontSize: '40px',
+  lineHeight: '140%',
+  color: "#3538CD",
+  letterSpacing: "0.25px",
+}
+
 
 export const dashBoardHText: CSS.Properties = {
   height: '20px',
