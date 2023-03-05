@@ -10,8 +10,8 @@ const Footer = () => {
         <div className="row-span-2 sm:col-span-4 col-start-1 col-end-4 sm:col-end-5 flex flex-col items-start ">
           {/* <LogoVPN className="h-8 w-auto mb-6" /> */}
           <p className="mb-4">
-            <strong className="font-medium">LaslesVPN</strong> is a private
-            virtual network that has unique features and has high security.
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cursus in orci quis eleifend id.
+           Adipiscing cras scelerisque aliquet nisi, velit, aliquam tortor vestibulum.
           </p>
           <div className="flex w-full mt-2 mb-8 -mx-2">
             <div className="mx-2 bg-white-500 rounded-full items-center justify-center flex p-2 shadow-md">
@@ -30,49 +30,39 @@ const Footer = () => {
           <p className="text-black-600 mb-4 font-medium text-lg">Product</p>
           <ul className="text-black-500 ">
             <li className="my-2 hover:text-orange-500 cursor-pointer transition-all">
-              Download{" "}
+              Home{" "}
             </li>
             <li className="my-2 hover:text-orange-500 cursor-pointer transition-all">
-              Pricing{" "}
+              Aboust U{" "}
             </li>
             <li className="my-2 hover:text-orange-500 cursor-pointer transition-all">
-              Locations{" "}
+              Features{" "}
             </li>
             <li className="my-2 hover:text-orange-500 cursor-pointer transition-all">
-              Server{" "}
+              Contact Us{" "}
             </li>
-            <li className="my-2 hover:text-orange-500 cursor-pointer transition-all">
-              Countries{" "}
-            </li>
-            <li className="my-2 hover:text-orange-500 cursor-pointer transition-all">
-              Blog{" "}
-            </li>
+            
           </ul>
         </div>
         <div className="row-span-2 sm:col-span-2 sm:col-start-9 sm:col-end-11 flex flex-col">
-          <p className="text-black-600 mb-4 font-medium text-lg">Engage</p>
+          <p className="text-black-600 mb-4 font-medium text-lg">Learn More</p>
           <ul className="text-black-500">
-            <li className="my-2 hover:text-orange-500 cursor-pointer transition-all">
-              LaslesVPN ?{" "}
-            </li>
-            <li className="my-2 hover:text-orange-500 cursor-pointer transition-all">
-              FAQ{" "}
-            </li>
-            <li className="my-2 hover:text-orange-500 cursor-pointer transition-all">
-              Tutorials{" "}
-            </li>
-            <li className="my-2 hover:text-orange-500 cursor-pointer transition-all">
-              About Us{" "}
-            </li>
-            <li className="my-2 hover:text-orange-500 cursor-pointer transition-all">
+          <li className="my-2 hover:text-orange-500 cursor-pointer transition-all">
               Privacy Policy{" "}
             </li>
             <li className="my-2 hover:text-orange-500 cursor-pointer transition-all">
-              Terms of Service{" "}
+              Terms & Conditions{" "}
             </li>
+            <li className="my-2 hover:text-orange-500 cursor-pointer transition-all">
+              Legal{" "}
+            </li>
+            <li className="my-2 hover:text-orange-500 cursor-pointer transition-all">
+              Help{" "}
+            </li>
+            
           </ul>
         </div>
-        <div className="row-span-2 sm:col-span-2 sm:col-start-11 sm:col-end-13 flex flex-col">
+        {/* <div className="row-span-2 sm:col-span-2 sm:col-start-11 sm:col-end-13 flex flex-col">
           <p className="text-black-600 mb-4 font-medium text-lg">Earn Money</p>
           <ul className="text-black-500">
             <li className="my-2 hover:text-orange-500 cursor-pointer transition-all">
@@ -82,7 +72,7 @@ const Footer = () => {
               Become Partner{" "}
             </li>
           </ul>
-        </div>
+        </div> */}
       </div>
     </div>
   );

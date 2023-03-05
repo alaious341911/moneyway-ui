@@ -58,8 +58,8 @@ export default function Login() {
 
       <PagesTitle>
         <div className="text-center flex-1 lg:text-left lg:pl-6 xl:text-center xl:pl-0 pt-11">
-          <Image src="MONEYWAY-3.png" width={34} height={10} alt="moneyway" className="rounded-full inline w-14 h-14" />
-          <span style={pagesTitle}>MoneyWay</span>
+          <Image src="moneyway-logo.png" width={250} height={100} alt="moneyway" className="inline" />
+          {/* <span style={pagesTitle}>MoneyWay</span> */}
         </div>
       </PagesTitle>
 

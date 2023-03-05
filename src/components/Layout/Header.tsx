@@ -6,7 +6,7 @@ import { useRouter } from 'next/router'
 import { Link as LinkScroll } from "react-scroll";
 import LogoVPN from "public/assets/Logo.svg";
 import ButtonOutline from "../misc/ButtonOutline";
-import logoImage from "public/MONEYWAY-2.png";
+import logoImage from "public/moneyway-logo.png";
 import { HomeMenus } from "../../interfaces";
 
 export default function Header() {
@@ -37,7 +37,7 @@ export default function Header() {
       >
         <nav className="max-w-screen-xl px-6 sm:px-8 lg:px-16 mx-auto grid grid-flow-col py-3 sm:py-4">
           <div className="col-start-1 col-end-2 flex items-center">
-          <Image src={logoImage} width={75} height={50} alt="deelad-place" className="inline h-8 w-auto" />
+          <Image src={logoImage} width={200} height={100} alt="moneyway" className="inline" />
             {/* <LogoVPN className="h-8 w-auto" /> */}
           </div>
           <ul className="hidden lg:flex col-start-4 col-end-8 text-black-500  items-center">
