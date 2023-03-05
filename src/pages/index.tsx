@@ -13,11 +13,11 @@ import { setDarkMode, setStyle } from '../stores/styleSlice'
 import BaseButton from '../components/BaseButton'
 import Layout from '../components/Layout/Layout'
 import Footer from '../components/Layout/Footer'
-import Hero from '../components/Hero'
 import Feature from '../components/Feature'
 import HowItWork from '../components/HowItWork'
 import Pricing from '../components/Pricing'
 import SeoHead from '../components/SeoHead'
+import Hero from '../components/Hero'
 
 const HomePage = () => {
   const dispatch = useAppDispatch()

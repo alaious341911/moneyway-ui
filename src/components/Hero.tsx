@@ -1,5 +1,6 @@
-import React, { useMemo } from "react";
+import React, { useMemo, ReactElement } from "react";
 import Image from "next/image";
+import { useRouter } from 'next/router'
 import ButtonPrimary from "./misc/ButtonPrimary";
 import {motion} from "framer-motion";
 import getScrollAnimation from "../utils/getScrollAnimation";
@@ -8,6 +9,7 @@ import heroImage from "public/hero2.png";
 import {heroHeadline, heroSubText, submitButtonDashboard, convenientText} from '../styles'
 import { mdiAccount, mdiChatProcessing, mdiFuseAlert, mdiGraphql, mdiNetworkStrength1 } from "@mdi/js";
 import BaseIcon from './BaseIcon'
+import { HomeMenus } from "../interfaces";
 
 const Hero = ({
   listUser = [
@@ -30,6 +32,16 @@ const Hero = ({
 }) => {
   const scrollAnimation = useMemo(() => getScrollAnimation(), []);
 
+  const router = useRouter()
+
+  const handleStylePick = (e: React.MouseEvent, menu: HomeMenus) => {
+    e.preventDefault()
+
+    //dispatch(setStyle(style))
+
+    router.push(menu)
+  }
+
   return (
     <div
       className="max-w-screen-xl mt-24 px-8 xl:px-16 mx-auto"
@@ -45,7 +57,7 @@ const Hero = ({
               <p className="mt-4 mb-6" style={heroSubText}>
               Save and manage all your transaction in one place, easy payment anytime & anyday
               </p>
-              <ButtonPrimary style={submitButtonDashboard}>Create an account</ButtonPrimary>
+              <ButtonPrimary style={submitButtonDashboard} onclick={handleStylePick} href="signup">Create an account</ButtonPrimary>
             </div>
             <div className="flex w-full">
               <motion.div className="h-full w-full" variants={scrollAnimation}>
