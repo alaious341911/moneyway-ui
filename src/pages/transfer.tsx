@@ -164,6 +164,9 @@ const MenuPage = () => {
                       />
                     </FormField>
 
+                    <FormCheckRadio type="switch" label="">
+                    <Field type="checkbox" name="switches" value="lorem" />
+                  </FormCheckRadio>
                     <p style={dashboardFormPText}>
                       <a href="#">Save as beneficiary</a>
                     </p>
