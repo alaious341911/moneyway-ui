@@ -47,7 +47,7 @@ export type ColorButtonKey =
   | 'warning'
   | 'info'
   | 'void'
-  | 'lightBlu'
+  | 'lightBlue'
 
 export type BgKey = 'purplePink' | 'pinkRed' | 'lightBlue'
 
