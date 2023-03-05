@@ -20,6 +20,15 @@ import PagesTitle from '../components/PagesTitle'
 
 
 export default function ForgotPassword() {
+  const textInput = {
+    width: '100%',
+    height: 40,
+    borderRadius: 5,
+    borderColor: 'gray',
+    borderWidth: 1,
+    paddingLeft: 40, // Add padding to the left to create space for the icon
+    marginBottom: 20,
+  };
   const router = useRouter()
 
   const handleSubmit = () => {

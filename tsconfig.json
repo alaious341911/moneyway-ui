@@ -23,7 +23,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-  ],
+, "src/components/Hero.js", "src/components/Feature.js", "src/components/Layout/Layout.jsx", "src/components/Layout/Header.tsx", "src/components/Layout/Footer.jsx", "src/components/misc/ButtonOutline.tsx", "src/components/misc/ButtonPrimary.js", "src/utils/getScrollAnimation.js"  ],
   "exclude": [
     "node_modules"
   ]
