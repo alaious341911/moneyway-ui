@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Image from 'next/image'
 import type { ReactElement } from 'react'
 import Head from 'next/head'
@@ -6,7 +6,7 @@ import BaseButton from '../components/BaseButton'
 import CardBoxGeneral from '../components/CardBoxGeneral'
 import SectionFullScreen from '../components/SectionFullScreen'
 import LayoutGuest from '../layouts/Guest'
-import { Field, Form, Formik } from 'formik'
+import { ErrorMessage, Field, Form, Formik } from 'formik'
 import FormField from '../components/FormField'
 import FormCheckRadio from '../components/FormCheckRadio'
 import BaseDivider from '../components/BaseDivider'
@@ -28,8 +28,16 @@ import {
 import SectionTitle from '../components/SectionTitle'
 import { textInput, submitButton, formPText, formLink, moneyWayHeader, pagesTitle } from '../styles'
 import PagesTitle from '../components/PagesTitle'
+import { SignupForm } from '../interfaces'
+import * as Yup from 'yup'
+import axios from '../stores/hooks'
+import { toast, ToastContainer } from 'react-toastify';
+  import "react-toastify/dist/ReactToastify.css";
+  import {decodeErrorStatus} from '../stores/hooks'
 
 export default function SignUp() {
+  const SIGNUP_ENDPOINT = "/api/v1/auth/sign-up";
+
   const textInput = {
     width: '100%',
     height: 40,
@@ -39,11 +47,64 @@ export default function SignUp() {
     paddingLeft: 40, // Add padding to the left to create space for the icon
     marginBottom: 20,
   };
+
+  const signupFormInitialValues: SignupForm ={
+    firstName: '',
+    lastName: '',
+    email: '',
+    bvn: '',
+    password: '',
+    pin: '',
+    phoneNumber: ''
+
+
+  }
   const router = useRouter()
 
-  const handleSubmit = () => {
-    router.push('/verify-link')
-  }
+  const [errMsg, setErrMsg] = useState('');
+
+  // const handleSubmit = () => {
+  //   router.push('/verify-link')
+  // }
+
+  const handleSignup = async (values, {setSubmitting}) => {
+    const id = toast.loading("Proccessing...", {theme: 'light'})
+       const customId = "sign-up-id";
+    try {
+      
+        const response = await axios.post(SIGNUP_ENDPOINT,
+            values,
+            {
+                withCredentials: true
+            }
+        );
+          if(response?.data.status == "Successful"){
+            
+            toast.update(id, { render: "User signup successful!", type: "success", 
+          toastId: customId, theme: "colored", isLoading: false,
+           closeOnClick: true, position: "top-right",
+           autoClose: 10000, });
+
+          //alert (JSON.stringify(response.data))
+            
+          }
+        console.log(JSON.stringify(response?.status));
+        console.log(JSON.stringify(response?.data));
+        
+    } catch (err) {
+         if (!err?.response) {
+            setErrMsg('No Server Response');
+         } 
+         else  {
+          setErrMsg(decodeErrorStatus(err?.response.status))
+            }
+
+            toast.update(id, { render: errMsg, type: "error", 
+            toastId: customId, theme: "colored", isLoading: false,
+            closeOnClick: true, position: "top-right",
+            autoClose: 1000});
+    }
+}
 
   return (
     <>
@@ -57,10 +118,21 @@ export default function SignUp() {
       </PagesTitle>
       <SectionFullScreen bg="lightBlue">
         <CardBoxGeneral className="w-11/12 md:w-7/12 lg:w-6/12 xl:w-4/12 shadow-2xl mt-20">
+        <ToastContainer />
           <SectionTitle>
             <p style={moneyWayHeader}>Get Started with MoneyWay</p>
           </SectionTitle>
-          <Formik initialValues={{ login: '', password: '' }} onSubmit={() => handleSubmit()}>
+          <Formik initialValues={signupFormInitialValues}
+              validationSchema={Yup.object({
+                firstName: Yup.string().required('first is required'),
+                lastName: Yup.string().required('last name is required'),
+                email: Yup.string().email().required('email is required'),
+                phoneNumber: Yup.string().required('phone number is required'),
+                password: Yup.string().required('Required'),
+                pin: Yup.string().required('pin required'),
+                bvn: Yup.string().required('bvn is required'),
+              })}
+              onSubmit= {(values, {setSubmitting}) => handleSignup(values, {setSubmitting})}>
             <Form>
               <FormField label="First Name" icons={[mdiAccountOutline]}>
                 <Field style={textInput} name="firstName" placeholder="Type your first name" />
@@ -84,17 +156,22 @@ export default function SignUp() {
                   placeholder="Enter your password"
                 />
               </FormField>
-              <FormField label="Confirm Password" icons={[mdiLockOutline]}>
+              {/* <FormField label="Confirm Password" icons={[mdiLockOutline]}>
                 <Field
                   style={textInput}
                   name="confirmPassword"
                   type="password"
                   placeholder="Confirm your password"
                 />
-              </FormField>
+              </FormField> */}
               <FormField label="Pin" icons={[mdiPin]}>
                 <Field style={textInput} name="pin" type="password" placeholder="Enter pin" />
               </FormField>
+
+              <FormField label="BVN" icons={[mdiPin]}>
+                <Field style={textInput} name="bvn" type="text" placeholder="Enter BVN" />
+              </FormField>
+              <ErrorMessage name="bvn" />
 
               <BaseDivider />
 

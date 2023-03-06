@@ -97,3 +97,14 @@ export type FundWalletForm = {
   pin: string
   description: string
 }
+
+export type SignupForm = {
+  firstName: string
+  lastName: string
+  middleName? : string
+  email: string
+  phoneNumber: string
+  password: string
+  bvn: string
+  pin: string
+}
