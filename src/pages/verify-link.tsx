@@ -6,7 +6,7 @@ import BaseButton from '../components/BaseButton'
 import CardBoxGeneral from '../components/CardBoxGeneral'
 import SectionFullScreen from '../components/SectionFullScreen'
 import LayoutGuest from '../layouts/Guest'
-import { Field, Form, Formik } from 'formik'
+import { ErrorMessage, Field, Form, Formik } from 'formik'
 import FormField from '../components/FormField'
 import FormCheckRadio from '../components/FormCheckRadio'
 import BaseDivider from '../components/BaseDivider'
@@ -15,7 +15,7 @@ import { useRouter } from 'next/router'
 import { getPageTitle } from '../config'
 import { mdiAccount, mdiMail, mdiBallotOutline } from '@mdi/js'
 import SectionTitle from '../components/SectionTitle'
-import { textInput, submitButton, formPText, formLink, moneyWayHeader, pagesTitle } from '../styles'
+import { textInput, submitButton, formPText, formLink, moneyWayHeader, pagesTitle, submitButtonDashboard } from '../styles'
 import PagesTitle from '../components/PagesTitle'
 
 export default function VerifyLink() {
@@ -27,13 +27,19 @@ export default function VerifyLink() {
     borderWidth: 1,
     paddingLeft: 40, // Add padding to the left to create space for the icon
     marginBottom: 20,
-  };
+  }
   const router = useRouter()
 
   const handleSubmit = () => {
     router.push('/dashboard')
   }
 
+  const initialValues = { email: '' };
+  const handleVerify = () => {
+    const gmailLink = `https://mail.google.com/mail/u/0/`;
+    window.open(gmailLink, '_blank');
+    //resetForm();
+  }
   return (
     <>
       <Head>
@@ -42,8 +48,13 @@ export default function VerifyLink() {
 
       <PagesTitle>
         <div className="text-center flex-1 lg:text-left lg:pl-6 xl:text-center xl:pl-0 pt-10">
-          <Image src="MONEYWAY-3.png" alt="moneyway" width={0} height={0} className="rounded-full inline w-14 h-14" />
-          <span style={pagesTitle}>MoneyWay</span>
+          <Image
+             src="moneyway-logo.png"
+             width={250}
+             height={100}
+             alt="moneyway"
+             className="inline"
+          />
         </div>
       </PagesTitle>
       <SectionFullScreen bg="lightBlue">
@@ -51,29 +62,33 @@ export default function VerifyLink() {
           <SectionTitle>
             <p style={moneyWayHeader}>Email Verification</p>
           </SectionTitle>
+          
           <Formik
-            initialValues={{ login: '', password: '', remember: true }}
-            onSubmit={() => handleSubmit()}
-          >
-            <Form>
-              <p style={formPText}>
+        initialValues={initialValues}
+        onSubmit={() => handleVerify()}
+      >
+        {({ isSubmitting }) => (
+          <Form>
+            <p style={formPText}>
                 {' '}
-                Hi there, use the link below to verify your email and start enjoin MoneyWay
+                Hi there, an email confirmation link has been sent to your email. Verify your mail and start enjoin MoneyWay
               </p>
 
               <BaseDivider />
-
-              <FormField>
-                <Field type="submit" value="Verify email" style={submitButton} />
-              </FormField>
-            </Form>
-          </Formik>
+            
+            <BaseButtons>
+                <BaseButton className='mt-3' type="submit" label="Open Gmail" color="info" />
+              </BaseButtons>
+            
+          </Form>
+        )}
+      </Formik>
         </CardBoxGeneral>
       </SectionFullScreen>
     </>
   )
-}
 
+        }
 VerifyLink.getLayout = function getLayout(page: ReactElement) {
   return <LayoutGuest>{page}</LayoutGuest>
 }

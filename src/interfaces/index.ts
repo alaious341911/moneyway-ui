@@ -101,7 +101,7 @@ export type FundWalletForm = {
 export type SignupForm = {
   firstName: string
   lastName: string
-  middleName? : string
+  middleName?: string
   email: string
   phoneNumber: string
   password: string

@@ -44,7 +44,13 @@ export default function AsideMenuLayer({ menu, className = '', ...props }: Props
           className={`flex flex-row h-14 items-center justify-between dark:bg-slate-900 ${asideBrandStyle}`}
         >
           <div className="text-center flex-1 lg:text-left lg:pl-6 xl:text-center xl:pl-0">
-            <Image src="moneyway-logo.png" width={170} height={80} alt="moneyway" className="inline" />
+            <Image
+              src="moneyway-logo.png"
+              width={170}
+              height={80}
+              alt="moneyway"
+              className="inline"
+            />
           </div>
           <button
             className="hidden lg:inline-block xl:hidden p-3"
