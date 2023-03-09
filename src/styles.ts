@@ -63,7 +63,7 @@ export const moneyWayText: CSS.Properties = {
   color: '#3538CD',
 }
 export const heroHeadline: CSS.Properties = {
-   /* Headline Bold - 32 */
+  /* Headline Bold - 32 */
 
   fontFamily: 'Inter',
   fontStyle: 'normal',
@@ -162,7 +162,7 @@ export const heroSubText: CSS.Properties = {
   fontWeight: 400,
   fontSize: '24px',
   lineHeight: '140%',
-  color: "#667085",
+  color: '#667085',
 }
 
 export const itemText: CSS.Properties = {
@@ -173,7 +173,7 @@ export const itemText: CSS.Properties = {
   fontWeight: 400,
   fontSize: '14px',
   lineHeight: '20px',
-  color: "#3538CD",
+  color: '#3538CD',
 }
 
 export const descText: CSS.Properties = {
@@ -184,7 +184,7 @@ export const descText: CSS.Properties = {
   fontWeight: 700,
   fontSize: '24px',
   lineHeight: '140%',
-  color: "#012A4A",
+  color: '#012A4A',
 }
 
 export const detailText: CSS.Properties = {
@@ -194,8 +194,8 @@ export const detailText: CSS.Properties = {
   fontStyle: 'normal',
   fontWeight: 400,
   fontSize: '14px',
-  lineHeight: "20px",
-  color: "012A4A",
+  lineHeight: '20px',
+  color: '012A4A',
 }
 
 export const convenientText: CSS.Properties = {
@@ -206,10 +206,9 @@ export const convenientText: CSS.Properties = {
   fontWeight: 700,
   fontSize: '40px',
   lineHeight: '140%',
-  color: "#3538CD",
-  letterSpacing: "0.25px",
+  color: '#3538CD',
+  letterSpacing: '0.25px',
 }
-
 
 export const dashBoardHText: CSS.Properties = {
   height: '20px',

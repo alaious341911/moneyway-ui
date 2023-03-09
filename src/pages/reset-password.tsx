@@ -35,8 +35,8 @@ export default function ResetPassword() {
     borderWidth: 1,
     paddingLeft: 40, // Add padding to the left to create space for the icon
     marginBottom: 20,
-  };
-  
+  }
+
   const router = useRouter()
 
   const handleSubmit = () => {
@@ -51,7 +51,13 @@ export default function ResetPassword() {
 
       <PagesTitle>
         <div className="text-center flex-1 lg:text-left lg:pl-6 xl:text-center xl:pl-0 pt-10">
-        <Image src="moneyway-logo.png" width={250} height={100} alt="moneyway" className="inline" />
+          <Image
+            src="moneyway-logo.png"
+            width={250}
+            height={100}
+            alt="moneyway"
+            className="inline"
+          />
         </div>
       </PagesTitle>
 

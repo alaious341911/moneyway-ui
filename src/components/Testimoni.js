@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useState } from 'react'
 
 // import react slick
-import Slider from "react-slick";
-import Image from "next/image";
+import Slider from 'react-slick'
+import Image from 'next/image'
 // import Stars from "../public/assets/Icon/stars.svg";
 // import ArrowBack from "../public/assets/Icon/eva_arrow-back-fill.svg";
 // import ArrowNext from "../public/assets/Icon/eva_arrow-next-fill.svg";
@@ -10,40 +10,40 @@ import Image from "next/image";
 const Testimoni = ({
   listTestimoni = [
     {
-      name: "iezh Robert",
-      image: "/assets/people-3.png",
-      city: "Warsaw",
-      country: "Poland",
-      rating: "4.5",
+      name: 'iezh Robert',
+      image: '/assets/people-3.png',
+      city: 'Warsaw',
+      country: 'Poland',
+      rating: '4.5',
       testimoni:
-        "Wow... I am very happy to use this VPN, it turned out to be more than my expectations and so far there have been no problems. LaslesVPN always the best",
+        'Wow... I am very happy to use this VPN, it turned out to be more than my expectations and so far there have been no problems. LaslesVPN always the best',
     },
     {
-      name: "iezh Robert",
-      image: "/assets/people-3.png",
-      city: "Warsaw",
-      country: "Poland",
-      rating: "4.5",
+      name: 'iezh Robert',
+      image: '/assets/people-3.png',
+      city: 'Warsaw',
+      country: 'Poland',
+      rating: '4.5',
       testimoni:
-        "Wow... I am very happy to use this VPN, it turned out to be more than my expectations and so far there have been no problems. LaslesVPN always the best",
+        'Wow... I am very happy to use this VPN, it turned out to be more than my expectations and so far there have been no problems. LaslesVPN always the best',
     },
     {
-      name: "iezh Robert",
-      image: "/assets/people-3.png",
-      city: "Warsaw",
-      country: "Poland",
-      rating: "4.5",
+      name: 'iezh Robert',
+      image: '/assets/people-3.png',
+      city: 'Warsaw',
+      country: 'Poland',
+      rating: '4.5',
       testimoni:
-        "Wow... I am very happy to use this VPN, it turned out to be more than my expectations and so far there have been no problems. LaslesVPN always the best",
+        'Wow... I am very happy to use this VPN, it turned out to be more than my expectations and so far there have been no problems. LaslesVPN always the best',
     },
     {
-      name: "iezh Robert",
-      image: "/assets/people-3.png",
-      city: "Warsaw",
-      country: "Poland",
-      rating: "4.5",
+      name: 'iezh Robert',
+      image: '/assets/people-3.png',
+      city: 'Warsaw',
+      country: 'Poland',
+      rating: '4.5',
       testimoni:
-        "Wow... I am very happy to use this VPN, it turned out to be more than my expectations and so far there have been no problems. LaslesVPN always the best",
+        'Wow... I am very happy to use this VPN, it turned out to be more than my expectations and so far there have been no problems. LaslesVPN always the best',
     },
   ],
 }) => {
@@ -54,9 +54,9 @@ const Testimoni = ({
         <a className="">
           <span className="mx-2 rounded-l-full rounded-r-full h-4 w-4 block cursor-pointer transition-all "></span>
         </a>
-      );
+      )
     },
-    dotsClass: "slick-dots w-max absolute mt-20  ",
+    dotsClass: 'slick-dots w-max absolute mt-20  ',
     infinite: true,
     speed: 500,
     slidesToShow: 3,
@@ -78,8 +78,8 @@ const Testimoni = ({
         },
       },
     ],
-  };
-  const [sliderRef, setSliderRef] = useState(null);
+  }
+  const [sliderRef, setSliderRef] = useState(null)
 
   return (
     <>
@@ -94,16 +94,9 @@ const Testimoni = ({
             <div className="border-2 border-gray-500 hover:border-orange-500 transition-all rounded-lg p-8 flex flex-col">
               <div className="flex flex-col xl:flex-row w-full items-stretch xl:items-center">
                 <div className="flex order-2 xl:order-1">
-                  <Image
-                    src={listTestimonis.image}
-                    height={50}
-                    width={50}
-                    alt="Icon People"
-                  />
+                  <Image src={listTestimonis.image} height={50} width={50} alt="Icon People" />
                   <div className="flex flex-col ml-5 text-left">
-                    <p className="text-lg text-black-600 capitalize">
-                      {listTestimonis.name}
-                    </p>
+                    <p className="text-lg text-black-600 capitalize">{listTestimonis.name}</p>
                     <p className="text-sm text-black-500 capitalize">
                       {listTestimonis.city},{listTestimonis.country}
                     </p>
@@ -138,7 +131,7 @@ const Testimoni = ({
         </div>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default Testimoni;
+export default Testimoni

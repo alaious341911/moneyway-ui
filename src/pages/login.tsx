@@ -1,108 +1,116 @@
-import React from 'react'
-import Image from 'next/image'
+import React, { useState, useRef, useEffect } from 'react'
 import type { ReactElement } from 'react'
 import Head from 'next/head'
 import BaseButton from '../components/BaseButton'
-import CardBoxGeneral from '../components/CardBoxGeneral'
+import CardBox from '../components/CardBox'
 import SectionFullScreen from '../components/SectionFullScreen'
 import LayoutGuest from '../layouts/Guest'
 import { Field, Form, Formik } from 'formik'
 import FormField from '../components/FormField'
-import FormCheckRadio from '../components/FormCheckRadio'
 import BaseDivider from '../components/BaseDivider'
 import BaseButtons from '../components/BaseButtons'
 import { useRouter } from 'next/router'
 import { getPageTitle } from '../config'
-import {
-  mdiAccount,
-  mdiMail,
-  mdiBallotOutline,
-  mdiEmail,
-  mdiKey,
-  mdiEmailAlertOutline,
-  mdiEmailOutline,
-} from '@mdi/js'
-import SectionTitle from '../components/SectionTitle'
+import axios from '../stores/hooks'
+import {useAppDispatch, useAppSelector, decodeErrorStatus} from '../stores/hooks'
+import { toast, ToastContainer } from 'react-toastify';
+  import "react-toastify/dist/ReactToastify.css";
 import PagesTitle from '../components/PagesTitle'
-import {
-  textInput,
-  submitButton,
-  formPText,
-  formLink,
-  moneyWayHeader,
-  forgotPText,
-  pagesTitle,
-} from '../styles'
+import Image from 'next/image'
 
 export default function Login() {
-  const textInput = {
-    width: '100%',
-    height: 40,
-    borderRadius: 5,
-    borderColor: 'gray',
-    borderWidth: 1,
-    paddingLeft: 40, // Add padding to the left to create space for the icon
-    marginBottom: 20,
-  };
   const router = useRouter()
+  const LOGIN_URL = "/api/v1/auth/login";
+  const [errMsg, setErrMsg] = useState('Unknown error');
 
-  const handleSubmit = () => {
-    router.push('/dashboard')
-  }
+  useEffect(() => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("role");
+    localStorage.removeItem("userId");
+    localStorage.removeItem("userName");
+    sessionStorage.clear();
+  }, [])
+  
+
+  const handleSubmit = async (values) => {
+    const id = toast.loading("Please wait...")
+    const customId = "custom-id-yes";
+    try {
+        const response = await axios.post(LOGIN_URL,
+            values,
+            {
+                headers: { 'Content-Type': 'application/json' },
+                withCredentials: true
+            }
+        )
+        
+        
+          if(response.status == 200){
+
+            localStorage.setItem('token',response?.data.token );
+            // localStorage.setItem('role',response?.data.role );
+            // localStorage.setItem('userId',response?.data.userId );
+            // localStorage.setItem('userName',response?.data.userName );
+            
+            toast.update(id, { render: "Authenticating....", type: "success", 
+            toastId: customId, theme: "colored", isLoading: false });
+           
+            router.push('/dashboard')
+          }
+        console.log(JSON.stringify(response?.status));
+        
+    } catch (err) {
+      if (!err?.response) {
+         setErrMsg('No Server Response');
+      } 
+      else  {
+       setErrMsg(decodeErrorStatus(err?.response.status))
+         }
+
+     //toast(errMsg || "Unknown error")
+     toast.update(id, { render: errMsg, type: "error", theme: "colored", toastId: customId, isLoading: false });
+ }
+}
 
   return (
     <>
       <Head>
         <title>{getPageTitle('Login')}</title>
       </Head>
-
       <PagesTitle>
         <div className="text-center flex-1 lg:text-left lg:pl-6 xl:text-center xl:pl-0 pt-11">
-          <Image src="moneyway-logo.png" width={250} height={100} alt="moneyway" className="inline" />
-          {/* <span style={pagesTitle}>MoneyWay</span> */}
+          <Image src="moneyway-logo.png" width={200} height={100} alt="moneyway" className="inline" />
+          
         </div>
       </PagesTitle>
 
       <SectionFullScreen bg="lightBlue">
-        <CardBoxGeneral className="w-11/12 md:w-7/12 lg:w-6/12 xl:w-4/12 shadow-2xl mt-20">
-          <SectionTitle>
-            <p style={moneyWayHeader}>Hi, Welcome back</p>
-          </SectionTitle>
+      <ToastContainer />
+        <CardBox className="w-11/12 md:w-7/12 lg:w-6/12 xl:w-4/12 shadow-2xl">
+        
           <Formik
-            initialValues={{ email: '', password: '', remember: true }}
-            onSubmit={() => handleSubmit()}
+            initialValues={{ email: '', password: '' }}
+            onSubmit={(values) => handleSubmit(values)}
           >
+            
             <Form>
-              <FormField label="Email" icons={[mdiEmailOutline]}>
-                <Field style={textInput} name="email" placeholder="Enter your email" />
+              <FormField label="Login" help="Please enter your login ID">
+                <Field name="email" id="email" />
               </FormField>
 
-              <FormField label="Password" icons={[mdiKey]}>
-                <Field
-                  style={textInput}
-                  name="password"
-                  type="password"
-                  placeholder="Enter your password"
-                />
+              <FormField label="Password" help="Please enter your password">
+                <Field name="password" id="password" type="password" />
               </FormField>
-              <a href="forgot-password" style={forgotPText}>
-                forgot password?
-              </a>
+
 
               <BaseDivider />
 
-              <FormField>
-                <Field type="submit" value="Submit" style={submitButton} />
-              </FormField>
+              <BaseButtons>
+                <BaseButton type="submit" label="Login" color="info" />
+              </BaseButtons>
             </Form>
           </Formik>
-          <p style={formPText}>
-            Don't have an account?{' '}
-            <a href="signup" style={formLink}>
-              Create account
-            </a>
-          </p>
-        </CardBoxGeneral>
+        </CardBox>
       </SectionFullScreen>
     </>
   )

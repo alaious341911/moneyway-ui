@@ -10,20 +10,19 @@ export default axios.create({
   baseURL: 'http://localhost:8080',
 })
 
-export function decodeErrorStatus(err: number): string{
+export function decodeErrorStatus(err: number): string {
   let errorMsg = ''
   if (err === 200) {
-      errorMsg = 'No Server Response';
+    errorMsg = 'No Server Response'
   } else if (err === 400) {
-     errorMsg = 'Missing required filed(s) - Bad request';
-} else if (err=== 401 || err === 403) {
-     errorMsg = 'Unauthorized action';
-  }
-  else if (err=== 302){
-   errorMsg = 'Duplicate action detected';
+    errorMsg = 'Missing required filed(s) - Bad request'
+  } else if (err === 401 || err === 403) {
+    errorMsg = 'Unauthorized action'
+  } else if (err === 302) {
+    errorMsg = 'Duplicate action detected'
   } else {
-    errorMsg = 'proccess failed. Try again';
- }
+    errorMsg = 'proccess failed. Try again'
+  }
 
- return errorMsg
+  return errorMsg
 }

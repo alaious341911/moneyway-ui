@@ -38,7 +38,7 @@ const HomePage = () => {
 
   return (
     <>
-      <SeoHead title='LaslesVPN Landing Page' />
+      <SeoHead title="LaslesVPN Landing Page" />
       <Layout>
         <Hero />
         <Feature />

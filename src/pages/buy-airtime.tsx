@@ -35,11 +35,11 @@ const MenuPage = () => {
 
   const styles = {
     formCheckInputChecked: {
-    '& + .form-check-label:before': {
-    backgroundColor: 'green',
+      '& + .form-check-label:before': {
+        backgroundColor: 'green',
+      },
     },
-    },
-    };
+  }
 
   const [errMsg, setErrMsg] = useState('')
   const [token, setAppToken] = useState('')
@@ -111,8 +111,8 @@ const MenuPage = () => {
                   />
                 </FormField>
                 <FormCheckRadio type="switch" label="">
-                    <Field type="checkbox" name="switches" value="lorem" />
-                  </FormCheckRadio>
+                  <Field type="checkbox" name="switches" value="lorem" />
+                </FormCheckRadio>
                 <p style={dashboardFormPText}>
                   <a href="#">Save as beneficiary</a>
                 </p>
