@@ -27,6 +27,7 @@ export const mainSlice = createSlice({
       state.userEmail = action.payload.email
       state.userAvatar = action.payload.avatar
     },
+    
   },
 })
 

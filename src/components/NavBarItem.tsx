@@ -9,6 +9,7 @@ import NavBarMenuList from './NavBarMenuList'
 import { useAppDispatch, useAppSelector } from '../stores/hooks'
 import { MenuNavBarItem } from '../interfaces'
 import { setDarkMode } from '../stores/styleSlice'
+import { handleLogout } from '../pages/logout'
 
 type Props = {
   item: MenuNavBarItem
@@ -39,6 +40,10 @@ export default function NavBarItem({ item }: Props) {
   const itemLabel = item.isCurrentUser ? userName : item.label
 
   const handleMenuClick = () => {
+    if(item.isLogout){
+      handleLogout()
+      return;
+    }
     if (item.menu) {
       setIsDropdownActive(!isDropdownActive)
     }

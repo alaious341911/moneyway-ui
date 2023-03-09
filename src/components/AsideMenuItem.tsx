@@ -7,6 +7,7 @@ import AsideMenuList from './AsideMenuList'
 import { MenuAsideItem } from '../interfaces'
 import { useAppSelector } from '../stores/hooks'
 import { useRouter } from 'next/router'
+import { handleLogout } from '../pages/logout'
 
 type Props = {
   item: MenuAsideItem
@@ -16,6 +17,11 @@ type Props = {
 const AsideMenuItem = ({ item, isDropdownList = false }: Props) => {
   const [isLinkActive, setIsLinkActive] = useState(false)
   const [isDropdownActive, setIsDropdownActive] = useState(false)
+  const handleClick = ()=>{
+    if(item.isLogout){
+      handleLogout()
+    }
+  }
 
   const asideMenuItemStyle = useAppSelector((state) => state.style.asideMenuItemStyle)
   const asideMenuDropdownStyle = useAppSelector((state) => state.style.asideMenuDropdownStyle)
@@ -47,6 +53,9 @@ const AsideMenuItem = ({ item, isDropdownList = false }: Props) => {
         />
       )}
       <span
+      onClick={
+      ()=>handleClick()
+      }
         className={`grow text-ellipsis line-clamp-1 ${
           item.menu ? '' : 'pr-12'
         } ${activeClassAddon}`}

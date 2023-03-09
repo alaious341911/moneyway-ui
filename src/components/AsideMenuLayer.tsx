@@ -8,6 +8,7 @@ import { MenuAsideItem } from '../interfaces'
 import { useAppSelector } from '../stores/hooks'
 import BaseDivider from './BaseDivider'
 import { moneyWayTitle } from '../styles'
+import { handleLogout } from '../pages/logout'
 
 type Props = {
   menu: MenuAsideItem[]
@@ -26,6 +27,7 @@ export default function AsideMenuLayer({ menu, className = '', ...props }: Props
     icon: mdiLogout,
     color: 'lightBlue',
     isLogout: true,
+    onClick: handleLogout
   }
 
   const handleAsideLgCloseClick = (e: React.MouseEvent) => {

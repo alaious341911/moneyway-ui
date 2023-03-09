@@ -23,13 +23,13 @@ export default function Login() {
   const LOGIN_URL = "/api/v1/auth/login";
   const [errMsg, setErrMsg] = useState('Unknown error');
 
-  useEffect(() => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("role");
-    localStorage.removeItem("userId");
-    localStorage.removeItem("userName");
-    sessionStorage.clear();
-  }, [])
+  // useEffect(() => {
+  //   localStorage.removeItem("token");
+  //   localStorage.removeItem("role");
+  //   localStorage.removeItem("userId");
+  //   localStorage.removeItem("userName");
+  //   sessionStorage.clear();
+  // }, [])
   
 
   const handleSubmit = async (values) => {
@@ -43,11 +43,13 @@ export default function Login() {
                 withCredentials: true
             }
         )
-        
+        console.log(response)
+       
         
           if(response.status == 200){
 
-            localStorage.setItem('token',response?.data.token );
+            localStorage.setItem('token',response?.data );
+            //localStorage.setItem('token',response?.data.token );
             // localStorage.setItem('role',response?.data.role );
             // localStorage.setItem('userId',response?.data.userId );
             // localStorage.setItem('userName',response?.data.userName );
@@ -71,6 +73,7 @@ export default function Login() {
      toast.update(id, { render: errMsg, type: "error", theme: "colored", toastId: customId, isLoading: false });
  }
 }
+
 
   return (
     <>
