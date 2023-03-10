@@ -47,7 +47,8 @@ export default function Login() {
         
           if(response.status == 200){
 
-            localStorage.setItem('token',response?.data.token );
+            localStorage.setItem('token',response?.data );
+            console.log(response?.data )
             // localStorage.setItem('role',response?.data.role );
             // localStorage.setItem('userId',response?.data.userId );
             // localStorage.setItem('userName',response?.data.userName );

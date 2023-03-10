@@ -1,4 +1,5 @@
-import { mdiAccount, mdiBallotOutline, mdiGithub, mdiMail, mdiMenu, mdiUpload } from '@mdi/js'
+import { mdiAccount, mdiArrowUpDown, mdiBallotOutline, mdiDownloadCircle, mdiGithub, mdiMail, mdiMenu, mdiUpload } from '@mdi/js'
+import { Icon } from '@mdi/react';
 import { Field, Form, Formik, ErrorMessage } from 'formik'
 import Head from 'next/head'
 import { ReactElement, useState, useEffect } from 'react'
@@ -21,17 +22,28 @@ import type { AirtimeForm } from '../interfaces'
 import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import * as Yup from 'yup'
+import { useRouter } from 'next/router'
 import {
   cardBoxStyle,
   dashBoardField,
   dashboardFormPText,
   dashboardHeading,
+  dashBoardHText,
   submitButton,
   submitButtonDashboard,
+  textInput,
 } from '../styles'
+import MySelect from '../components/MySelect'
+import { render } from 'react-dom';
+import { withFormik } from 'formik';
+import PayBillTable from '../components/PayBillTable';
+import FundWalletTable from '../components/FundWalletTable';
 
-const MenuPage = () => {
-  const CREATE_MENU_ENDPOINT = '/api/v1/menus'
+
+const BuyAirtime = (props ) => {
+  
+  
+  const router = useRouter()
 
   const styles = {
     formCheckInputChecked: {
@@ -43,25 +55,39 @@ const MenuPage = () => {
 
   const [errMsg, setErrMsg] = useState('')
   const [token, setAppToken] = useState('')
+  //const [cValues, setCValues] = useState({})
 
   const airTimeValue: AirtimeForm = {
-    amount: '',
-    network: '',
+    amount: null,
+    serviceId: '',
     phoneNumber: '',
   }
 
+  const options = [
+    { value: 'mtn', label: 'MTN' },
+    { value: 'glo', label: 'Glo' },
+    { value: 'airtel', label: 'Airtel' },
+    { value: '9mobile', label: '9Mobile' }
+  ];
   useEffect(() => {
     setAppToken(localStorage.getItem('token'))
   }, [])
+
+  const handleSubmit = (values) => {
+  
+    console.log(values);
+    router.push({
+      pathname: '/airtime-confirmation',
+      query: values,
+    });
+  };
+
 
   return (
     <>
       <Head>
         <title>{getPageTitle('Create-Menu')}</title>
       </Head>
-
-      {/* <SectionTitleLineWithoutButton icon={mdiMenu} title="Buy Airtime on-the-go!" main>  
-        </SectionTitleLineWithoutButton> */}
 
       <SectionTitle>
         <p style={dashboardHeading}>Buy Airtime on-the-go!</p>
@@ -75,32 +101,29 @@ const MenuPage = () => {
               <a href="#">Beneficiaries</a>
             </p>
             <Formik
-              initialValues={airTimeValue}
-              validationSchema={Yup.object({
-                phoneNumber: Yup.string().required('Required'),
-                network: Yup.string().required('Required'),
-                amount: Yup.string().required('Required'),
-              })}
-              onSubmit={(values, { setSubmitting }) => console.log(values)}
+            initialValues={airTimeValue}
+            onSubmit={(values) => handleSubmit(values)}
+            
             >
+
+{({ values, setFieldValue }) => (
               <Form>
                 <FormField label="Amount">
                   <Field
                     className=""
                     style={dashBoardField}
-                    type="text"
+                    type="number"
                     name="amount"
                     placeholder="Enter an amount"
                   />
                 </FormField>
 
-                <FormField label="Network">
-                  <select style={dashBoardField} name="amount">
-                    <option>MTN</option>
-                    <option>Airtel</option>
-                    <option>Etisalat</option>
-                  </select>
-                </FormField>
+<MySelect  name="serviceId"
+            value={values.serviceId}
+            setFieldValue={setFieldValue}
+           options={options}
+           
+          />
 
                 <FormField label="Phone Number">
                   <Field
@@ -111,7 +134,7 @@ const MenuPage = () => {
                   />
                 </FormField>
                 <FormCheckRadio type="switch" label="">
-                  <Field type="checkbox" name="switches" value="lorem" />
+                  <Field type="checkbox" name="beneficiary" id="beneficiary" />
                 </FormCheckRadio>
                 <p style={dashboardFormPText}>
                   <a href="#">Save as beneficiary</a>
@@ -121,20 +144,24 @@ const MenuPage = () => {
 
                 <BaseButtons>
                   <button type="submit" style={submitButton}>
-                    Submit
+                    Continue
                   </button>
                 </BaseButtons>
+              
+
               </Form>
-            </Formik>
+              
+              )}
+              </Formik>
           </CardBoxGeneral>
         </SectionMain>
       </div>
     </>
   )
-}
+};
 
-MenuPage.getLayout = function getLayout(page: ReactElement) {
+BuyAirtime.getLayout = function getLayout(page: ReactElement) {
   return <LayoutAuthenticated>{page}</LayoutAuthenticated>
 }
 
-export default MenuPage
+export default BuyAirtime
