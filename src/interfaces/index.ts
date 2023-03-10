@@ -4,6 +4,11 @@ export type UserPayloadObject = {
   avatar: string
 }
 
+export type InternetPayloadObject = {
+  serviceId: { [key: string]: any }[];
+  // serviceIdV: string;
+};
+
 export type MenuAsideItem = {
   label: string
   icon?: string
@@ -87,9 +92,20 @@ export type UserForm = {
 }
 
 export type AirtimeForm = {
-  amount: string
-  network: string
+  amount: number | null
+  serviceId: string
   phoneNumber: string
+}
+
+export type InternetForm = {
+  serviceID: ''
+  variationCode: string
+  billersCode: string
+  amount: string
+  phoneNumber: string
+  pin: string
+  saveBeneficiary: boolean
+  
 }
 export type FundWalletForm = {
   amount: string
