@@ -108,3 +108,8 @@ export type SignupForm = {
   bvn: string
   pin: string
 }
+
+export type ResetPasswordForm = {
+  currentPassword: string
+  newPassword: string
+}

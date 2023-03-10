@@ -74,6 +74,9 @@ export default function ForgotPassword() {
               <FormField>
                 <Field type="submit" value="Reset Password" style={submitButton} />
               </FormField>
+              <a href="login" style={formLink}>
+              Back to login
+            </a>
             </Form>
           </Formik>
         </CardBoxGeneral>

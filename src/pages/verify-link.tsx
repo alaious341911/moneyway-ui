@@ -36,7 +36,7 @@ export default function VerifyLink() {
 
   const initialValues = { email: '' };
   const handleVerify = () => {
-    const gmailLink = `https://mail.google.com/mail/u/0/`;
+    const gmailLink = `https://gmail.com`;
     window.open(gmailLink, '_blank');
     //resetForm();
   }
@@ -77,7 +77,7 @@ export default function VerifyLink() {
               <BaseDivider />
             
             <BaseButtons>
-                <BaseButton className='mt-3' type="submit" label="Open Gmail" color="info" />
+                <BaseButton className='mt-3' type="submit" label="Verify email" color="info" />
               </BaseButtons>
             
           </Form>

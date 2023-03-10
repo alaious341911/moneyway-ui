@@ -56,7 +56,17 @@ export default function Error() {
                 {' '}
                 We sent a password reset link to your email. Please click the link to reset your
                 password
+                {' '}
+              </p>{' '}
+              
+              <p style={formPText}>
+                {' '}
+                
+                didn't receive an email? <a href="login" style={formLink}>
+              Back to login
+            </a>
               </p>
+
 
               <BaseDivider />
 

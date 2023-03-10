@@ -1,6 +1,7 @@
 import React from 'react'
 import Image from 'next/image'
 import type { ReactElement } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import Head from 'next/head'
 import BaseButton from '../components/BaseButton'
 import CardBoxGeneral from '../components/CardBoxGeneral'
@@ -13,6 +14,8 @@ import BaseDivider from '../components/BaseDivider'
 import BaseButtons from '../components/BaseButtons'
 import { useRouter } from 'next/router'
 import { getPageTitle } from '../config'
+import axios, { decodeErrorStatus } from '../stores/hooks'
+import { toast, ToastContainer } from 'react-toastify';
 import { mdiLockOutline } from '@mdi/js'
 import SectionTitle from '../components/SectionTitle'
 import {
@@ -25,8 +28,22 @@ import {
   pagesTitle,
 } from '../styles'
 import PagesTitle from '../components/PagesTitle'
+import { ResetPasswordForm } from '../interfaces'
 
 export default function ResetPassword() {
+
+  const RESETPASSWORD_URL = "/api/v1/auth/reset-password";
+  const [errMsg, setErrMsg] = useState('Unknown error');
+  const [token, setAppToken] = useState('');
+
+
+  const signupFormInitialValues: ResetPasswordForm ={
+    currentPassword: '',
+    newPassword: ''
+    
+  }
+
+
   const textInput = {
     width: '100%',
     height: 40,
@@ -37,10 +54,52 @@ export default function ResetPassword() {
     marginBottom: 20,
   }
 
+  useEffect(() => {
+    setAppToken(localStorage.getItem("token"));
+    
+  }, [])
+
   const router = useRouter()
 
-  const handleSubmit = () => {
-    router.push('/dashboard')
+  const handleSubmit = async(values, {setSubmitting}) => {
+    const id = toast.loading("Please wait...")
+    const customId = "custom-id-yes";
+    try {
+      const response = await axios.put(RESETPASSWORD_URL,
+        values,
+        {
+            headers: { 'Content-Type': 'application/json',
+                        'Authorization': 'Bearer' + token 
+          },
+            withCredentials: true
+        }
+    )
+
+    if(response.status == 200){
+
+      // localStorage.setItem('role',response?.data.role );
+      // localStorage.setItem('userId',response?.data.userId );
+      // localStorage.setItem('userName',response?.data.userName );
+      
+      toast.update(id, { render: "Your password has been reset successfully", type: "success", 
+      toastId: customId, theme: "colored", isLoading: false });
+     
+      // router.push('/dashboard')
+    } 
+    } catch (err) {
+      if (!err?.response) {
+         setErrMsg('No Server Response');
+      } 
+      else  {
+       setErrMsg(decodeErrorStatus(err?.response.status))
+         }
+
+     //toast(errMsg || "Unknown error")
+     toast.update(id, { render: errMsg, type: "error", theme: "colored", toastId: customId, isLoading: false });
+ }
+
+
+    
   }
 
   return (
@@ -67,14 +126,15 @@ export default function ResetPassword() {
             <p style={moneyWayHeader}>Reset Password</p>
           </SectionTitle>
           <Formik
-            initialValues={{ email: '', password: '', remember: true }}
-            onSubmit={() => handleSubmit()}
+            initialValues={{ currentPassword: '', newPassword: '' }}
+            // onSubmit={() => handleSubmit()}
+            onSubmit= {(values, {setSubmitting}) => handleSubmit(values, {setSubmitting})}
           >
             <Form>
               <FormField label="Password" icons={[mdiLockOutline]}>
                 <Field
                   style={textInput}
-                  name="password"
+                  name="currentPassword"
                   type="password"
                   placeholder="Enter your new password"
                 />
@@ -82,7 +142,7 @@ export default function ResetPassword() {
               <FormField label="Confirm Password" icons={[mdiLockOutline]}>
                 <Field
                   style={textInput}
-                  name="confirmPassword"
+                  name="newPassword"
                   type="password"
                   placeholder="Confirm password"
                 />
