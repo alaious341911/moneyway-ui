@@ -24,39 +24,12 @@ import CardBoxModal from '../components/CardBoxModal';
 import Image from 'next/image';
 import { ClipLoader, MoonLoader } from 'react-spinners';
 
-const AirtimeConfirmation = (props ) => {
+const DataConfirmation = (props ) => {
 
   const router = useRouter();
-  const { amount, phoneNumber, serviceId } = router.query;
+  const { amount, phoneNumber, serviceID, variationCode, billersCode, pin, saveBeneficiary } = router.query;
 
-  
-  const modalSampleContents = (
-    <>
-     
-    <Image src="success-logo.png" width={50} height={50} alt="success-logo" className="inline" />
-      <p>
-        <b style={confirmationTextBig}>Successful</b>
-      </p>
-      <p>Your {serviceId} recharge is successfully.</p>
-      
-    </>
-  )
-
-  const modalFooterSuccess = (
-    <BaseButtons>
-      <BaseButton label="Close" color="success" />
-    </BaseButtons>
-  )
-
-  const handleModalAction = () => {
-    setIsModalSuccessActive(false)
-  }
-const [isModalSuccessActive, setIsModalSuccessActive] = useState(false)
-const [loading, setLoading] = useState(false);
-
-  
-   
-  const BUY_AIRTIME_ENDPOINT = '/api/v1/bills/buy-airtime'
+  const BUY_DATA_ENDPOINT = "/api/v1/bills/buy-data/";
 
  
 
@@ -68,15 +41,41 @@ const [loading, setLoading] = useState(false);
     setAppToken(localStorage.getItem('token'))
   }, [])
 
+  
+  const modalSampleContents = (
+    <>
+     
+    <Image src="success-logo.png" width={50} height={50} alt="success-logo" className="inline" />
+      <p>
+        <b style={confirmationTextBig}>Successful</b>
+      </p>
+      <p>Your {serviceID} Data Recharge is successfully.</p>
+      
+    </>
+  )
+
+  
+
+  const handleModalAction = () => {
+    setIsModalSuccessActive(false)
+  }
+const [isModalSuccessActive, setIsModalSuccessActive] = useState(false)
+const [loading, setLoading] = useState(false);
+
+  
+   
+
+
   const handleSubmit = async () => {
     setLoading(true)
-       const values = {"amount": amount, "phoneNumber" : phoneNumber, "serviceId" : serviceId}
+       const values = {"amount": amount, "phoneNumber" : phoneNumber, "serviceID" : serviceID, 
+       "billersCode": billersCode, "variationCode": variationCode, "pin": pin, "saveBeneficiary": saveBeneficiary}
 
        console.log(values)
        console.log(token)
     try {
       
-        const response = await axios.post(BUY_AIRTIME_ENDPOINT,
+        const response = await axios.post(BUY_DATA_ENDPOINT,
             values,
             {
                 headers: { 'Content-Type': 'application/json',
@@ -156,13 +155,13 @@ const [loading, setLoading] = useState(false);
           <tr key={1}>
               <td style={confirmationTextSmall}>Package</td>
               <td className="text-right" style={confirmationTextSmall}>
-                Airtime Recharge
+               {variationCode}
               </td>
             </tr>
             <tr key={2}>
               <td style={confirmationTextSmall}>Network</td>
               <td className="text-right" style={confirmationTextSmall}>
-                {serviceId}
+                {serviceID}
               </td>
             </tr>
          
@@ -175,7 +174,7 @@ const [loading, setLoading] = useState(false);
                 {loading ? <ClipLoader color="#3538CD" size={25} /> : null}
                 </div>
                   <button type="button" style={submitButton} onClick={handleSubmit}>
-                    Buy Airtime
+                    Purchase Internet Data
                   </button>
                 </BaseButtons>
                 </div>
@@ -188,8 +187,8 @@ const [loading, setLoading] = useState(false);
   )
 };
 
-AirtimeConfirmation.getLayout = function getLayout(page: ReactElement) {
+DataConfirmation.getLayout = function getLayout(page: ReactElement) {
   return <LayoutAuthenticated>{page}</LayoutAuthenticated>
 }
 
-export default AirtimeConfirmation
+export default DataConfirmation

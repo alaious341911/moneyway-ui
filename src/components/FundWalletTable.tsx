@@ -1,22 +1,21 @@
 import { mdiEye, mdiTrashCan } from '@mdi/js'
 import React, { useState } from 'react'
 import { useSampleClients } from '../hooks/sampleData'
-import { Client } from '../interfaces'
+import { Beneficiary, Client } from '../interfaces'
 import BaseButton from './BaseButton'
 import BaseButtons from './BaseButtons'
 import CardBoxModal from './CardBoxModal'
 import UserAvatar from './UserAvatar'
 
-const FundWalletTable = () => {
-  const { clients } = useSampleClients()
-
+const FundWalletTable = ({beneficiaries}) => {
+  
   const perPage = 5
 
   const [currentPage, setCurrentPage] = useState(0)
 
-  const clientsPaginated = clients.slice(perPage * currentPage, perPage * (currentPage + 1))
+  const clientsPaginated = beneficiaries.slice(perPage * currentPage, perPage * (currentPage + 1))
 
-  const numPages = clients.length / perPage
+  const numPages = beneficiaries.length / perPage
 
   const pagesList = []
 
@@ -24,51 +23,17 @@ const FundWalletTable = () => {
     pagesList.push(i)
   }
 
-  const [isModalInfoActive, setIsModalInfoActive] = useState(false)
-  const [isModalTrashActive, setIsModalTrashActive] = useState(false)
-
-  const handleModalAction = () => {
-    setIsModalInfoActive(false)
-    setIsModalTrashActive(false)
-  }
-
   return (
     <>
-      <CardBoxModal
-        title="Sample modal"
-        buttonColor="info"
-        buttonLabel="Done"
-        isActive={isModalInfoActive}
-        onConfirm={handleModalAction}
-        onCancel={handleModalAction}
-      >
-        <p>
-          Lorem ipsum dolor sit amet <b>adipiscing elit</b>
-        </p>
-        <p>This is sample modal</p>
-      </CardBoxModal>
-
-      <CardBoxModal
-        title="Please confirm"
-        buttonColor="danger"
-        buttonLabel="Confirm"
-        isActive={isModalTrashActive}
-        onConfirm={handleModalAction}
-        onCancel={handleModalAction}
-      >
-        <p>
-          Lorem ipsum dolor sit amet <b>adipiscing elit</b>
-        </p>
-        <p>This is sample modal</p>
-      </CardBoxModal>
+     
 
       <table>
         <tbody>
-          {clientsPaginated.map((client: Client) => (
+          {clientsPaginated.map((client: Beneficiary) => (
             <tr key={client.id}>
-              <td data-label="Name">{client.name}</td>
-              <td data-label="Company" className="text-right">
-                {client.company}
+              <td data-label="Customer">{client.name} <br/>{client.phoneNumber}</td>
+              <td data-label="Transaction" className="text-right">
+                {client.transactionType}
               </td>
             </tr>
           ))}

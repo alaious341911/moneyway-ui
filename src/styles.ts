@@ -407,3 +407,53 @@ export const activeTab: CSS.Properties = {
   background: 'white',
   borderBottom: '1px solid transparent',
 }
+
+export const transferIntroBox: CSS.Properties = {
+  display: 'flex',
+flexDirection: 'row',
+alignItems: 'flex-start',
+padding: '12px 16px',
+gap: '8px',
+//position: 'absolute',
+width: '357px',
+height: '106px',
+left: '24px',
+top: '114px',
+
+/* Warning 50 */
+
+background: '#FFFAEB',
+/* Orange 900 */
+
+border: '1px solid #772917',
+borderRadius: '6px'
+}
+
+export const transferIntroText: CSS.Properties = {
+  fontFamily: 'Inter',
+  fontStyle: 'normal',
+  fontWeight: 400,
+  fontSize: '14px',
+  lineHeight: '20px',
+  color: '#772917',
+  display: 'flex',
+  alignItems: 'center'
+}
+
+export const confirmationTextBig: CSS.Properties = {
+  fontFamily: 'Inter',
+  fontStyle: 'normal',
+  fontWeight: 700,
+  fontSize: '24px',
+  lineHeight: '140%',
+  color: '#101828',
+}
+
+export const confirmationTextSmall: CSS.Properties = {
+  fontFamily: 'Inter',
+  fontStyle: 'normal',
+  fontWeight: 400,
+  fontSize: '14px',
+  lineHeight: '20px',
+  color: '#101828',
+}

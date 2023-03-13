@@ -17,7 +17,6 @@ import SectionTitleLineWithoutButton from '../components/SectionTitleLineWithout
 import { getPageTitle } from '../config'
 import axios from '../stores/hooks'
 import { useAppDispatch, useAppSelector } from '../stores/hooks'
-import type { FundWalletForm } from '../interfaces'
 import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import * as Yup from 'yup'
@@ -37,12 +36,6 @@ const MenuPage = () => {
   const [errMsg, setErrMsg] = useState('')
   const [token, setAppToken] = useState('')
 
-  const fundWalletValue: FundWalletForm = {
-    amount: '',
-    bank: '',
-    pin: '',
-    description: '',
-  }
 
   useEffect(() => {
     setAppToken(localStorage.getItem('token'))

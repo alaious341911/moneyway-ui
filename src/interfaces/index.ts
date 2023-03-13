@@ -70,7 +70,21 @@ export type Transaction = {
   business: string
 }
 
-export type Client = {
+export type Beneficiary = {
+  id: number
+  transactionType: string
+  name: string
+  company: string
+  accountNumber: string
+  phoneNumber: string
+  meterNumber: string
+  email: string
+  createdAt: string
+  updatedAt: string
+  bankName: string
+}
+
+export type  Client = {
   id: number
   avatar: string
   login: string
@@ -107,11 +121,21 @@ export type InternetForm = {
   saveBeneficiary: boolean
   
 }
-export type FundWalletForm = {
-  amount: string
-  bank: string
+export type LocalTransfer = {
+  amount: number | null
+  email: string
   pin: string
   description: string
+  saveBeneficiary : boolean
+}
+export type ThirdPartyTransfer = {
+  amount: number | null
+  account_bank: string
+  pin: string
+  description: string
+  bankCode: string
+  account_number : string
+  saveBeneficiary : boolean
 }
 
 export type SignupForm = {

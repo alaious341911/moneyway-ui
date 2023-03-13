@@ -13,7 +13,6 @@ const PayBillTable = () => {
 
   const internetService = (values) => {
   
-    alert(values);
      router.push({
       pathname: '/internet-service',
       query: values,

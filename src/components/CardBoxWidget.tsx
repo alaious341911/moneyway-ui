@@ -4,7 +4,7 @@ import { ColorKey, TrendType } from '../interfaces'
 import { colorsText } from '../colors'
 import BaseButton from './BaseButton'
 import BaseIcon from './BaseIcon'
-import CardBox from './CardBox'
+import CardBoxx from './CardBoxx'
 import CardBoxLight from './CardBoxLight'
 import NumberDynamic from './NumberDynamic'
 import PillTagTrend from './PillTagTrend'
@@ -34,7 +34,7 @@ type Props = {
 
 const CardBoxWidget = (props: Props) => {
   return (
-    <CardBox boxColor={props.cardBoxColor}>
+    <CardBoxx boxColor={props.cardBoxColor}>
       {props.trendLabel && props.trendType && props.trendColor && (
         <div className="flex items-center justify-between mb-3">
           <PillTagTrend
@@ -87,7 +87,7 @@ const CardBoxWidget = (props: Props) => {
           </h2>
         </div>
       </div>
-    </CardBox>
+    </CardBoxx>
   )
 }
 

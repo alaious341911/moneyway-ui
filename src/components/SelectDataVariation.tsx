@@ -6,10 +6,12 @@ import FormField from './FormField';
 
 
 
-  const SelectData = ({ value, setFieldValue, options, name}) => {
+  const SelectDataVariation = ({ value, setFieldValue, options, name, amount, originalPayload}) => {
     const handleChange = (selectedOption) => {
+      const filteredPayload = originalPayload.filter(item => item.variation_code === selectedOption.value);
         setFieldValue(name, selectedOption.value);
-        alert(selectedOption.value)
+        setFieldValue(amount, filteredPayload[0].variation_amount)
+         console.log(filteredPayload[0].variation_amount)
     };
 
    
@@ -28,7 +30,7 @@ import FormField from './FormField';
     );
   };
   
-  export default SelectData;
+  export default SelectDataVariation;
  
   
   

@@ -1,5 +1,3 @@
-import { mdiAccount, mdiArrowUpDown, mdiBallotOutline, mdiDownloadCircle, mdiGithub, mdiMail, mdiMenu, mdiUpload } from '@mdi/js'
-import { Icon } from '@mdi/react';
 import { Field, Form, Formik, ErrorMessage } from 'formik'
 import Head from 'next/head'
 import { ReactElement, useState, useEffect } from 'react'
@@ -8,9 +6,6 @@ import BaseButtons from '../components/BaseButtons'
 import BaseDivider from '../components/BaseDivider'
 import CardBoxGeneral from '../components/CardBoxGeneral'
 import FormCheckRadio from '../components/FormCheckRadio'
-import FormCheckRadioGroup from '../components/FormCheckRadioGroup'
-import FormField from '../components/FormField'
-import FormFilePicker from '../components/FormFilePicker'
 import LayoutAuthenticated from '../layouts/Authenticated'
 import SectionMain from '../components/SectionMain'
 import SectionTitle from '../components/SectionTitle'
@@ -24,23 +19,15 @@ import 'react-toastify/dist/ReactToastify.css'
 import * as Yup from 'yup'
 import { useRouter } from 'next/router'
 import {
-  cardBoxStyle,
   dashBoardField,
   dashboardFormPText,
   dashboardHeading,
-  dashBoardHText,
   submitButton,
-  submitButtonDashboard,
-  textInput,
 } from '../styles'
-import MySelect from '../components/MySelect'
-import { render } from 'react-dom';
-import { withFormik } from 'formik';
-import PayBillTable from '../components/PayBillTable';
-import FundWalletTable from '../components/FundWalletTable';
 import SelectData from '../components/SelectData';
 import SelectDataVariation from '../components/SelectDataVariation';
 import { setServiceId } from '../stores/internetSlice'
+import FormField from '../components/FormField'
 
 
 
@@ -66,6 +53,7 @@ const InternetService = (props ) => {
   const [cValues, setCValues] = useState(false);
   const[vstate, setVarationData] = useState([])
   const [showFields, setHow] = useState(false);
+  const [originalPayload, setPayLoad] = useState([]);
   
 
   
@@ -74,7 +62,7 @@ const InternetService = (props ) => {
     serviceID: '',
     variationCode: '',
        billersCode: "08033367789",
-        amount: "200",
+        amount: "",
         phoneNumber: "08011111111",
         pin: "1234",
         saveBeneficiary: true
@@ -95,8 +83,7 @@ const InternetService = (props ) => {
         // Add any additional properties from the interface as needed
       };
     dispatch(setServiceId(ppt))
-    console.log(IserviceState)
-
+    
     console.log(vstate)
   }, [vstate])
 
@@ -120,8 +107,10 @@ const InternetService = (props ) => {
             return { value: option.variation_code, label: option.name };
           });
           setVarationData(mappedOption)
+          setPayLoad(variations);
          //setVarationData(variations)
          console.log(vstate)
+         console.log(originalPayload)
          
         }
      console.log(JSON.stringify(response?.data.content));
@@ -137,50 +126,59 @@ const InternetService = (props ) => {
        toast("Error fetching data variations. Please check your network!");
 }
   }
-  const handleSubmit = async (values) => {
-    const id = toast.loading("Proccessing...", {theme: 'light'})
-    const customId = "buy-data-id";
+//   const handleSubmit = async (values) => {
+//     const id = toast.loading("Proccessing...", {theme: 'light'})
+//     const customId = "buy-data-id";
    
-    console.log(values)
-    console.log(token)
- try {
+//     console.log(values)
+//     console.log(token)
+//  try {
    
-     const response = await axios.post(BUY_DATA_ENDPOINT,
-         values,
-         {
-             headers: { 'Content-Type': 'application/json',
-                        'Authorization': 'Bearer ' + token
-           },
-             withCredentials: true
-         }
-     );
-       if(response?.status == 200){
+//      const response = await axios.post(BUY_DATA_ENDPOINT,
+//          values,
+//          {
+//              headers: { 'Content-Type': 'application/json',
+//                         'Authorization': 'Bearer ' + token
+//            },
+//              withCredentials: true
+//          }
+//      );
+//        if(response?.status == 200){
          
-         toast.update(id, { render: "Your Data purchase is successful!", type: "success", 
-       toastId: customId, theme: "colored", isLoading: false,
-        closeOnClick: true, position: "top-right",
-        autoClose: 1000, });
+//          toast.update(id, { render: "Your Data purchase is successful!", type: "success", 
+//        toastId: customId, theme: "colored", isLoading: false,
+//         closeOnClick: true, position: "top-right",
+//         autoClose: 1000, });
          
-       }
-     console.log(JSON.stringify(response?.status));
-     console.log(JSON.stringify(response?.data));
+//        }
+//      console.log(JSON.stringify(response?.status));
+//      console.log(JSON.stringify(response?.data));
      
- } catch (err) {
-      if (!err?.response) {
-         setErrMsg('No Server Response');
-      } 
-      else  {
-       setErrMsg(decodeErrorStatus(err?.response.status))
-         }
+//  } catch (err) {
+//       if (!err?.response) {
+//          setErrMsg('No Server Response');
+//       } 
+//       else  {
+//        setErrMsg(decodeErrorStatus(err?.response.status))
+//          }
 
-         toast.update(id, { render: errMsg, type: "error", 
-         toastId: customId, theme: "colored", isLoading: false,
-         closeOnClick: true, position: "top-right",
-         autoClose: 3000});
- }
+//          toast.update(id, { render: errMsg, type: "error", 
+//          toastId: customId, theme: "colored", isLoading: false,
+//          closeOnClick: true, position: "top-right",
+//          autoClose: 3000});
+//  }
   
-    console.log(values);
-  };
+//     console.log(values);
+//   };
+
+const handleSubmit = (values) => {
+  
+  console.log(values);
+  router.push({
+    pathname: '/data-confirmation',
+    query: values,
+  });
+};
 
  
 
@@ -222,12 +220,40 @@ const InternetService = (props ) => {
           />
 
           {cValues && (
+            <>
            <SelectDataVariation  name="variationCode"
            value={values.variationCode}
            setFieldValue={setFieldValue}
           options={vstate}
+          originalPayload = {originalPayload}
+          amount = "amount"
           
          />
+
+         
+<FormField label="Amount">
+                 <Field
+                   className=""
+                   style={dashBoardField}
+                   type="text"
+                   name="amount"
+                   placeholder="amount"
+                   value={values.amount}
+                 />
+                
+               </FormField>
+               <FormField label="Phone number">
+                 <Field
+                   className=""
+                   style={dashBoardField}
+                   type="text"
+                   name="phoneNumber"
+                   placeholder="phone number"
+                   value={values.phoneNumber}
+                 />
+                
+               </FormField>
+         </>
           )}
 
             {showFields && (
@@ -238,9 +264,9 @@ const InternetService = (props ) => {
                 <p style={dashboardFormPText}>
                   <a href="#">Save as beneficiary</a>
                 </p>
-<Field name="amount" id="amount" />
+
 <Field name="billersCode" id="billersCode" />
-<Field name="phoneNumber" id="phoneNumber" />
+
 <Field name="pin" id="pin" />
 </>
 )}
