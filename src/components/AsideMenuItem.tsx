@@ -6,7 +6,7 @@ import { getButtonColor } from '../colors'
 import AsideMenuList from './AsideMenuList'
 import { MenuAsideItem } from '../interfaces'
 import { useAppSelector } from '../stores/hooks'
-import { useRouter } from 'next/router'
+import { Router, useRouter } from 'next/router'
 
 type Props = {
   item: MenuAsideItem
@@ -24,6 +24,13 @@ const AsideMenuItem = ({ item, isDropdownList = false }: Props) => {
   const activeClassAddon = !item.color && isLinkActive ? asideMenuItemActiveStyle : ''
 
   const { asPath, isReady } = useRouter()
+  const router = useRouter()
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    router.push("/")
+    
+  };
 
   useEffect(() => {
     if (item.href && isReady) {
@@ -48,8 +55,10 @@ const AsideMenuItem = ({ item, isDropdownList = false }: Props) => {
       )}
       <span
         className={`grow text-ellipsis line-clamp-1 ${
-          item.menu ? '' : 'pr-12'
-        } ${activeClassAddon}`}
+          item.menu ? '' : 'pr-12' 
+        } 
+        ${activeClassAddon}`}
+        onClick={item.isLogout ? handleLogout : undefined}
       >
         {item.label}
       </span>

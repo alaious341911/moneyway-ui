@@ -13,6 +13,7 @@ type Props = {
   menu: MenuAsideItem[]
   className?: string
   onAsideLgCloseClick: () => void
+  handleLogout?: () =>void
 }
 
 export default function AsideMenuLayer({ menu, className = '', ...props }: Props) {
@@ -32,6 +33,8 @@ export default function AsideMenuLayer({ menu, className = '', ...props }: Props
     e.preventDefault()
     props.onAsideLgCloseClick()
   }
+
+  
 
   return (
     <aside

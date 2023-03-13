@@ -39,8 +39,8 @@ const FundWalletTable = ({beneficiaries}) => {
           ))}
         </tbody>
       </table>
-      <div className="p-3 lg:px-6 border-t border-gray-100 dark:border-slate-800">
-        <div className="flex flex-col md:flex-row items-center justify-between py-3 md:py-0">
+      {/* <div className="p-3 lg:px-6 border-t border-gray-100 dark:border-slate-800"> */}
+        {/* <div className="flex flex-col md:flex-row items-center justify-between py-3 md:py-0">
           <BaseButtons>
             {pagesList.map((page) => (
               <BaseButton
@@ -56,8 +56,8 @@ const FundWalletTable = ({beneficiaries}) => {
           <small className="mt-6 md:mt-0">
             Page {currentPage + 1} of {numPages}
           </small>
-        </div>
-      </div>
+        </div> */}
+      {/* </div> */}
     </>
   )
 }

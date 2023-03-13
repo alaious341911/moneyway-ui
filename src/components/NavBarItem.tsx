@@ -9,6 +9,8 @@ import NavBarMenuList from './NavBarMenuList'
 import { useAppDispatch, useAppSelector } from '../stores/hooks'
 import { MenuNavBarItem } from '../interfaces'
 import { setDarkMode } from '../stores/styleSlice'
+import { Router, useRouter } from 'next/router'
+
 
 type Props = {
   item: MenuNavBarItem
@@ -16,7 +18,7 @@ type Props = {
 
 export default function NavBarItem({ item }: Props) {
   const dispatch = useAppDispatch()
-
+  const router = useRouter()
   const navBarItemLabelActiveColorStyle = useAppSelector(
     (state) => state.style.navBarItemLabelActiveColorStyle
   )
@@ -48,6 +50,12 @@ export default function NavBarItem({ item }: Props) {
     }
   }
 
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    router.push("/")
+    
+  };
+
   const NavBarItemComponentContents = (
     <>
       <div
@@ -64,7 +72,7 @@ export default function NavBarItem({ item }: Props) {
           className={`px-2 transition-colors ${
             item.isDesktopNoLabel && item.icon ? 'lg:hidden' : ''
           }`}
-        >
+          onClick={item.isLogout ? handleLogout : undefined} >
           {itemLabel}
         </span>
         {item.menu && (
