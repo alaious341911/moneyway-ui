@@ -1,13 +1,41 @@
 import React from 'react';
-import Select from 'react-select';
+// import Select from 'react-select';
 import FormField from './FormField';
 import { useAppDispatch, useAppSelector } from '../stores/hooks'
 import { setServiceId } from '../stores/internetSlice'
 import { InternetPayloadObject } from '../interfaces';
 import axios from '../stores/hooks'
+import Select, { components } from 'react-select';
 // import 'react-select/dist/react-select.css';
 
 
+const CustomOption = ({ data, innerRef, innerProps }) => (
+  <div ref={innerRef} {...innerProps} className="flex items-center">
+    <img src={data.icon} alt={data.label} style={{ marginRight: "10px" }} className="rounded-full mr-2 ml-1"/>
+    {data.label}
+  </div>
+);
+
+const customStyles = {
+  option: (provided, state) => ({
+    ...provided,
+    display: "flex",
+    alignItems: "center",
+    padding: "5px 10px",
+    fontFamily: 'Inter',
+    fontStyle: "normal",
+    fontWight: "400",
+    fontSize: "14px",
+    lineHeight: "20px",
+    color: "#101828",
+    marginTop: "50px",
+   
+  }),
+  menu: (provided, state) => ({
+    ...provided,
+    marginTop: "20px", // Increase the top margin of the menu
+  }),
+};
 
   const SelectData = ({ value, setFieldValue, options, name, fetchDataVariation}) => {
     const IserviceState = useAppSelector((state) => state.internet.serviceId)
@@ -42,6 +70,8 @@ import axios from '../stores/hooks'
           value={options.find((option) => option.value === value)}
           onChange={handleChange}
           isSearchable
+          components={{ Option: CustomOption }}
+      styles={customStyles}
         />
         </div>
      

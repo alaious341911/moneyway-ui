@@ -70,10 +70,10 @@ const InternetService = (props ) => {
   }
 
   const options = [
-    { value: 'mtn', label: 'MTN Data' },
-    { value: 'glo', label: 'Glo Data' },
-    { value: 'airtel', label: 'Airtel Data' },
-    { value: 'etisalat', label: '9Mobile Data' }
+    { value: 'mtn', label: 'MTN Data', icon: 'mtn-logo.png' },
+    { value: 'glo', label: 'Glo Data', icon: 'glo-logo.png' },
+    { value: 'airtel', label: 'Airtel Data', icon: 'airtel-logo.png' },
+    { value: '9Mobile', label: '9Mobile Data', icon: '9mobile-logo.png' }
   ];
   useEffect(() => {
     setAppToken(localStorage.getItem('token'))
