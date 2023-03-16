@@ -15,6 +15,7 @@ import * as Yup from 'yup'
 import { useRouter } from 'next/router'
 import {
   confirmationTextBig,
+  confirmationTextBigLight,
   confirmationTextSmall,
   dashboardHeading,
   submitButton,
@@ -30,6 +31,7 @@ const TvConfirmation = (props ) => {
   const { amount, phoneNumber, serviceId, subscriptionPackage, subscriptionType } = router.query;
 
   
+
   const modalSampleContents = (
     <>
      
@@ -37,16 +39,12 @@ const TvConfirmation = (props ) => {
       <p>
         <b style={confirmationTextBig}>Successful</b>
       </p>
-      <p>Your {serviceId} recharge is successfully.</p>
+      <p>Your {serviceId} Recharge was success.</p>
       
     </>
   )
 
-  const modalFooterSuccess = (
-    <BaseButtons>
-      <BaseButton label="Close" color="success" />
-    </BaseButtons>
-  )
+  
 
   const handleModalAction = () => {
     setIsModalSuccessActive(false)
@@ -154,14 +152,14 @@ const [loading, setLoading] = useState(false);
         <table>
         <tbody>
           <tr key={1}>
-              <td style={confirmationTextSmall}>Package</td>
-              <td className="text-right" style={confirmationTextSmall}>
+              <td style={confirmationTextBigLight}>Package</td>
+              <td className="text-right" style={confirmationTextBigLight}>
                 {subscriptionPackage}
               </td>
             </tr>
             <tr key={2}>
-              <td style={confirmationTextSmall}>Subscription Type</td>
-              <td className="text-right" style={confirmationTextSmall}>
+              <td style={confirmationTextBigLight}>Subscription Type</td>
+              <td className="text-right" style={confirmationTextBigLight}>
                 {subscriptionType}
               </td>
             </tr>

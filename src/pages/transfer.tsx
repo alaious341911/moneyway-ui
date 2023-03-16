@@ -22,6 +22,8 @@ import * as Yup from 'yup'
 import {
   cardBoxStyle,
   confirmationTextBig,
+  confirmationTextBigLight,
+  confirmationTextSmall,
   dashBoardField,
   dashboardFormPText,
   dashboardHeading,
@@ -82,13 +84,15 @@ const [isThirdModalSuccessActive, setIsThirdModalSuccessActive] = useState(false
 made would be at owner’s descretion, it cannot be reversed.
           </p>
           </div>
-          <p className='mb-5mt-5 '>Email</p>
-          <p>{localtranferState.email}</p>
+          
+          <div className='mb-5 mt-5'>
+          <p  style={confirmationTextSmall}>Email</p>
+          <p  style={confirmationTextBigLight}>{localtranferState.email}</p>
 
-          <p className='mb-5 mt-5'>Amount</p>
-          <p>N{localtranferState.amount}</p>
          
-       
+          <p style={confirmationTextSmall} >Amount</p>
+          <p  style={confirmationTextBigLight}>N{localtranferState.amount}</p>
+          </div>
          
         </>
       )
@@ -101,15 +105,18 @@ made would be at owner’s descretion, it cannot be reversed.
 made would be at owner’s descretion, it cannot be reversed.
           </p>
           </div>
-          <p className='mb-5mt-5 '>Bank Name</p>
-          <p>{thirdtranferState.account_bank}</p>
+          <div className='mb-5 mt-5'>
+          <p  style={confirmationTextSmall}>Bank Name</p>
+          <p  style={confirmationTextBigLight}>{thirdtranferState.account_bank}</p>
 
-          <p className='mb-5mt-5 '>Account Number</p>
-          <p>{thirdtranferState.account_number}</p>
-
-          <p className='mb-5 mt-5'>Amount</p>
-          <p>N{thirdtranferState.amount}</p>
          
+          
+          <p style={confirmationTextSmall}>Account Number</p>
+          <p  style={confirmationTextBigLight}>{thirdtranferState.account_number}</p>
+
+          <p style={confirmationTextSmall} >Amount</p>
+          <p  style={confirmationTextBigLight}>N{thirdtranferState.amount}</p>
+          </div>
        
          
         </>
@@ -119,11 +126,13 @@ made would be at owner’s descretion, it cannot be reversed.
         <>
          
         <Image src="success-logo.png" width={50} height={50} alt="success-logo" className="inline" />
+
+        <div className='mb-5 mt-5'>
           <p>
-            <b style={confirmationTextBig}>Successful</b>
+            <b style={confirmationTextBigLight}>Successful</b>
           </p>
-          <p>Your local transfer is successfully.</p>
-          
+          <p style={confirmationTextSmall}>Your local transfer was successful!</p>
+          </div>
         </>
       )
 
@@ -131,10 +140,13 @@ made would be at owner’s descretion, it cannot be reversed.
         <>
          
         <Image src="success-logo.png" width={50} height={50} alt="success-logo" className="inline" />
+          
+          <div className='mb-5 mt-5'>
           <p>
-            <b style={confirmationTextBig}>Successful</b>
+            <b style={confirmationTextBigLight}>Successful</b>
           </p>
-          <p>Your third party transfer is successfully.</p>
+          <p style={confirmationTextSmall}>Your third party transfer was successful!</p>
+          </div>
           
         </>
       )

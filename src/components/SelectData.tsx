@@ -1,20 +1,12 @@
 import React from 'react';
 // import Select from 'react-select';
 import FormField from './FormField';
-import { useAppDispatch, useAppSelector } from '../stores/hooks'
+import { useAppDispatch, useAppSelector} from '../stores/hooks'
 import { setServiceId } from '../stores/internetSlice'
 import { InternetPayloadObject } from '../interfaces';
 import axios from '../stores/hooks'
 import Select, { components } from 'react-select';
-// import 'react-select/dist/react-select.css';
 
-
-const CustomOption = ({ data, innerRef, innerProps }) => (
-  <div ref={innerRef} {...innerProps} className="flex items-center">
-    <img src={data.icon} alt={data.label} style={{ marginRight: "10px" }} className="rounded-full mr-2 ml-1"/>
-    {data.label}
-  </div>
-);
 
 const customStyles = {
   option: (provided, state) => ({
@@ -28,14 +20,21 @@ const customStyles = {
     fontSize: "14px",
     lineHeight: "20px",
     color: "#101828",
-    marginTop: "50px",
+    // marginTop: "100px",
    
   }),
   menu: (provided, state) => ({
     ...provided,
-    marginTop: "20px", // Increase the top margin of the menu
+    marginTop: "10px", // Increase the top margin of the menu
   }),
 };
+
+const CustomOption = ({ data, innerRef, innerProps }) => (
+  <div ref={innerRef} {...innerProps} className="flex items-center" style={{ marginRight: "15px", marginBottom: "50px", }}>
+    <img src={data.icon} alt={data.label}  className="rounded-full mr-2 ml-1" style={{ width: "20px", height: "20px", }}/>
+    {data.label}
+  </div>
+);
 
   const SelectData = ({ value, setFieldValue, options, name, fetchDataVariation}) => {
     const IserviceState = useAppSelector((state) => state.internet.serviceId)
@@ -46,13 +45,7 @@ const customStyles = {
 
     
     const handleChange = (selectedOption) => {
-        // const ppt: InternetPayloadObject = {
-        //     serviceId: [{ variation_code: "mtn-10mb-100",
-        //     name: "N100 100MB - 24 hrs",
-        //     variation_amount: "100.00",
-        //     fixedPrice: "Yes"}],
-        //     // Add any additional properties from the interface as needed
-        //   };
+       
         console.log(selectedOption.value)
           fetchDataVariation(selectedOption.value)
         setFieldValue(name, selectedOption.value);

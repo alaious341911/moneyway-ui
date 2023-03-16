@@ -31,7 +31,7 @@ export default function OverlayLayer({
       className={`${type} ${zIndex} ${className} items-center flex-col justify-center overflow-hidden fixed inset-0`}
     >
       <div
-        className={`${overlayStyle} absolute inset-0 bg-gradient-to-tr opacity-90 dark:from-gray-700 dark:via-gray-900 dark:to-gray-700`}
+        className={`${overlayStyle} absolute inset-0 bg-gradient-to-tr opacity-50 dark:from-gray-300 dark:via-gray-400 dark:to-gray-200`}
         onClick={handleClick}
       ></div>
 

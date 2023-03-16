@@ -33,8 +33,9 @@ export default function Login() {
   
 
   const handleSubmit = async (values) => {
-    const id = toast.loading("Please wait...")
-    const customId = "custom-id-yes";
+    const id = toast.loading("Authenticating...", {theme: 'light'})
+    const customId = "login-id";
+    
     try {
         const response = await axios.post(LOGIN_URL,
             values,
@@ -53,8 +54,10 @@ export default function Login() {
             // localStorage.setItem('userId',response?.data.userId );
             // localStorage.setItem('userName',response?.data.userName );
             
-            toast.update(id, { render: "Authenticating....", type: "success", 
-            toastId: customId, theme: "colored", isLoading: false });
+            toast.update(id, { render: "Authenticated! Loging in.....", type: "success", 
+            toastId: customId, theme: "colored", isLoading: false,
+             closeOnClick: true, position: "top-right",
+             autoClose: 3000, });
            
             router.push('/dashboard')
           }
@@ -69,7 +72,10 @@ export default function Login() {
          }
 
      //toast(errMsg || "Unknown error")
-     toast.update(id, { render: errMsg, type: "error", theme: "colored", toastId: customId, isLoading: false });
+     toast.update(id, { render: errMsg, type: "error", 
+     toastId: customId, theme: "colored", isLoading: false,
+     closeOnClick: true, position: "top-right",
+     autoClose: 3000});
  }
 }
 

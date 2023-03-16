@@ -61,10 +61,10 @@ const TvService = (props ) => {
 
 
     const options = [
-        { value: 'dstv', label: 'DSTV' },
-        { value: 'gotv', label: 'GOTV' },
-        { value: 'startimes', label: 'STARTIMES' },
-        { value: 'showmax', label: 'SHOWMAX' },
+        { value: 'dstv', label: 'DSTV', icon: 'dstv-logo.png' },
+        { value: 'gotv', label: 'GOTV', icon: 'gotv-logo.png' },
+        { value: 'startimes', label: 'STARTIMES', icon: 'startimes-logo.jpeg' },
+        { value: 'showmax', label: 'SHOWMAX', icon: 'showmax-logo.png' },
         
       ];
 

@@ -13,8 +13,9 @@ const PayBillTable = () => {
 
   const internetService = (values) => {
   
+    let pathName = '/'+values+'-service'
      router.push({
-      pathname: '/tv-service',
+      pathname: pathName,
       query: values,
     });
   };

@@ -15,6 +15,7 @@ import * as Yup from 'yup'
 import { useRouter } from 'next/router'
 import {
   confirmationTextBig,
+  confirmationTextBigLight,
   confirmationTextSmall,
   dashboardHeading,
   submitButton,
@@ -154,14 +155,14 @@ const [loading, setLoading] = useState(false);
         <table>
         <tbody>
           <tr key={1}>
-              <td style={confirmationTextSmall}>Package</td>
-              <td className="text-right" style={confirmationTextSmall}>
+              <td style={confirmationTextBigLight}>Package</td>
+              <td className="text-right" style={confirmationTextBigLight}>
                 Airtime Recharge
               </td>
             </tr>
             <tr key={2}>
-              <td style={confirmationTextSmall}>Network</td>
-              <td className="text-right" style={confirmationTextSmall}>
+              <td style={confirmationTextBigLight}>Network</td>
+              <td className="text-right" style={confirmationTextBigLight}>
                 {serviceId}
               </td>
             </tr>

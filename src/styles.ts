@@ -99,14 +99,19 @@ export const textInput: CSS.Properties = {
 export const submitButton: CSS.Properties = {
   justifyContent: 'center',
   alignItems: 'center',
-  padding: '12px 16px',
   gap: '8px',
   color: '#fff',
+  border: 'none',
+  borderRadius: '5px',
+  cursor: 'pointer',
+  fontWeight: 'bold',
+  padding: '10px 16px',
+  width: '100%', // add this line
+  marginTop: '10px',
 
   /* Indigo 700 */
 
   background: '#3538CD',
-  borderRadius: '6px',
 }
 
 export const moneyWayHeader: CSS.Properties = {
@@ -449,6 +454,15 @@ export const confirmationTextBig: CSS.Properties = {
   color: '#101828',
 }
 
+export const confirmationTextBigLight: CSS.Properties = {
+  fontFamily: 'Inter',
+  fontStyle: 'normal',
+  fontWeight: 300,
+  fontSize: '24px',
+  lineHeight: '140%',
+  color: '#101828',
+}
+
 export const confirmationTextSmall: CSS.Properties = {
   fontFamily: 'Inter',
   fontStyle: 'normal',
@@ -457,3 +471,4 @@ export const confirmationTextSmall: CSS.Properties = {
   lineHeight: '20px',
   color: '#101828',
 }
+

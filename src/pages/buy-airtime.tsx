@@ -64,10 +64,10 @@ const BuyAirtime = (props ) => {
   }
 
   const options = [
-    { value: 'mtn', label: 'MTN' },
-    { value: 'glo', label: 'Glo' },
-    { value: 'airtel', label: 'Airtel' },
-    { value: '9mobile', label: '9Mobile' }
+    { value: 'mtn', label: 'MTN', icon: 'mtn-logo.png' },
+    { value: 'glo', label: 'Glo', icon: 'glo-logo.png' },
+    { value: 'airtel', label: 'Airtel', icon: 'airtel-logo.png' },
+    { value: '9mobile', label: '9Mobile', icon: '9mobile-logo.png' }
   ];
   useEffect(() => {
     setAppToken(localStorage.getItem('token'))
