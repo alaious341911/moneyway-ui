@@ -9,6 +9,11 @@ export type InternetPayloadObject = {
   // serviceIdV: string;
 };
 
+export type TvPayloadObject = {
+  serviceId: { [key: string]: any }[];
+  // serviceIdV: string;
+};
+
 export type MenuAsideItem = {
   label: string
   icon?: string
@@ -121,6 +126,19 @@ export type InternetForm = {
   saveBeneficiary: boolean
   
 }
+
+export type TvForm = {
+  decoderName: ''
+  decoderOrSmartCardNumber: string
+  subscriptionPackage: string
+  amount: string
+  pin: string
+  phone: string
+  numberOfMonthlySubscription: string
+  subscriptionType: string
+  saveBeneficiary: boolean
+}
+
 export type LocalTransfer = {
   amount: number | null
   email: string
