@@ -1,11 +1,11 @@
 import React from 'react';
-import Select from 'react-select';
+// import Select from 'react-select';
 import FormField from './FormField';
-import { useAppDispatch, useAppSelector } from '../stores/hooks'
+import { useAppDispatch, useAppSelector} from '../stores/hooks'
 import { setServiceId } from '../stores/internetSlice'
 import { InternetPayloadObject } from '../interfaces';
 import axios from '../stores/hooks'
-// import 'react-select/dist/react-select.css';
+import Select, { components } from 'react-select';
 
 
 const customStyles = {
@@ -36,25 +36,16 @@ const CustomOption = ({ data, innerRef, innerProps }) => (
   </div>
 );
 
+  const SelectElectric = ({ value, setFieldValue, options, name,}) => {
+    //const IserviceState = useAppSelector((state) => state.internet.serviceId)
+    const dispatch = useAppDispatch()
 
-  const SelectTv = ({ value, setFieldValue, options, name, fetchTvVariation}) => {
-    // const IserviceState = useAppSelector((state) => state.internet.serviceId)
-    // const dispatch = useAppDispatch()
-
-    // console.log(IserviceState)
+    //console.log(IserviceState)
     
 
     
     const handleChange = (selectedOption) => {
-        // const ppt: InternetPayloadObject = {
-        //     serviceId: [{ variation_code: "mtn-10mb-100",
-        //     name: "N100 100MB - 24 hrs",
-        //     variation_amount: "100.00",
-        //     fixedPrice: "Yes"}],
-        //     // Add any additional properties from the interface as needed
-        //   };
-        console.log(selectedOption.value)
-          fetchTvVariation(selectedOption.value)
+       
         setFieldValue(name, selectedOption.value);
 
        
@@ -64,8 +55,8 @@ const CustomOption = ({ data, innerRef, innerProps }) => (
   
     return (
         <div>
-      <label>Decodder name</label>
-      <Select
+      <label>Service Provider</label>
+        <Select
           options={options}
           value={options.find((option) => option.value === value)}
           onChange={handleChange}
@@ -78,7 +69,7 @@ const CustomOption = ({ data, innerRef, innerProps }) => (
     );
   };
   
-  export default SelectTv;
+  export default SelectElectric;
  
   
   

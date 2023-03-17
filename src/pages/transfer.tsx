@@ -62,6 +62,9 @@ const [validatedAccountName, setValidatedAccountName] = useState('');
 const [beneficiaries, setBeneficiares] = useState([])
 const [isModalSuccessActive, setIsModalSuccessActive] = useState(false)
 const [isThirdModalSuccessActive, setIsThirdModalSuccessActive] = useState(false)
+const [localBeneficiaryEmail, setlocalBeneficiaryEmail] = useState('');
+
+
 
   useEffect(() => {
     setAppToken(localStorage.getItem('token'))
@@ -165,6 +168,11 @@ made would be at owner’s descretion, it cannot be reversed.
     
   }
 
+  const handleLocalBeneficary = (email) => {
+    setlocalBeneficiaryEmail(email)
+    
+  }
+
  
   const errorMessage = {
     color: "red",
@@ -175,6 +183,7 @@ made would be at owner’s descretion, it cannot be reversed.
   const GET_BANKLIST_ENDPOINT = '/api/v1/banks'
   const VALIDATE_ACCOUNT_ENDPOINT = 'api/v1/wallet/validate-account'
   const GET_BENEFICIARY_ENDPOINT = '/api/v1/beneficiaries?type=LocalTransfer'
+  const GET_THIRDBENEFICIARY_ENDPOINT = '/api/v1/beneficiaries?type=ThirdPartyTransfer'
 
  
   const localTranferInitialValue: LocalTransfer = {
@@ -268,7 +277,7 @@ made would be at owner’s descretion, it cannot be reversed.
      setErrMsg(decodeErrorStatus(err?.response.status))
        }
     
-      setValidatedAccountName("account validation unsuccessfyl")
+      setValidatedAccountName("account number validation unsuccessful")
       setLoading(false);
 }
   }
@@ -648,6 +657,9 @@ made would be at owner’s descretion, it cannot be reversed.
                 {loading ? <MoonLoader color="#3538CD" size={25} /> : null}
                 </div>
              
+                {validatedAccountName.length > 0 && (
+               <span style={reponseMessage}>{validatedAccountName}</span>
+              )}
                  <FormField label="Account number">
                  <Field
                    className=""
@@ -665,9 +677,7 @@ made would be at owner’s descretion, it cannot be reversed.
                 
                </FormField>
                <ErrorMessage name="account_number">{msg => <span style={errorMessage}>{msg}</span>}</ErrorMessage>
-               {validatedAccountName.length > 0 && (
-               <span style={reponseMessage}>{validatedAccountName}</span>
-              )}
+              
                </>
               )}
                
@@ -727,7 +737,7 @@ made would be at owner’s descretion, it cannot be reversed.
                   </Formik>
                 )}
 
-                {toggleState === 3 && <FundWalletTable beneficiaries={beneficiaries} />}
+                {toggleState === 3 && <FundWalletTable beneficiaries={beneficiaries} handleLocalBeneficary={handleLocalBeneficary} />}
               
           </CardBoxGeneral>
         </SectionMain>

@@ -127,6 +127,16 @@ export type InternetForm = {
   
 }
 
+export type ElectricityForm = {
+  serviceID: ''
+  variationCode: string
+  billersCode: string
+  amount: string
+  phoneNumber: string
+  saveBeneficiary: boolean
+  
+}
+
 export type TvForm = {
   decoderName: ''
   decoderOrSmartCardNumber: string
@@ -134,7 +144,6 @@ export type TvForm = {
   amount: string
   pin: string
   phone: string
-  numberOfMonthlySubscription: string
   subscriptionType: string
   saveBeneficiary: boolean
 }
@@ -145,6 +154,14 @@ export type LocalTransfer = {
   pin: string
   description: string
   saveBeneficiary : boolean
+}
+
+export type FundWalletForm = {
+  amount: ''
+  bank: string
+  pin: string
+  description: string
+  
 }
 export type ThirdPartyTransfer = {
   amount: number | null
