@@ -26,8 +26,8 @@ export default function SectionTitleLineWithButton({handleSearchClick, icon, tit
   const hasChildren = !!Children.count(children)
   const [showDatePickers, setShowDatePickers] = useState(false);
   const [showSearch, setSearch] = useState(false);
-  const [value, setValue] = React.useState<Dayjs | null>(dayjs('2022-04-17'));
-  const [ovalue, setOValue] = React.useState<Dayjs | null>(dayjs('2022-04-18'));
+  const [value, setValue] = React.useState<Dayjs | null>(dayjs());
+  const [ovalue, setOValue] = React.useState<Dayjs | null>(dayjs());
   const dispatch = useAppDispatch()
 
   

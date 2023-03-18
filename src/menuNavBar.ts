@@ -25,6 +25,7 @@ const menuNavBar: MenuNavBarItem[] = [
       {
         icon: mdiCogOutline,
         label: 'Security',
+        href: '/security',
       },
 
       {

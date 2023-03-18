@@ -1,7 +1,9 @@
 export type UserPayloadObject = {
-  name: string
+  firstName: string | null
+  lastName : string |null
   email: string
   avatar: string
+  phoneNumber?: string | null
 }
 
 export type TransactionPayloadObject = {
@@ -123,7 +125,9 @@ export type StyleKey = 'white' | 'basic'
 export type HomeMenus = 'login' | 'Create an account' | 'forgot-password' | 'verify-link'
 
 export type UserForm = {
-  name: string
+  firstName: string
+  lastName: string
+  phoneNumber: string
   email: string
 }
 

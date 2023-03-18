@@ -8,8 +8,8 @@ type Props = {
 }
 
 export default function UserAvatarCurrentUser({ className = '', children }: Props) {
-  const userName = useAppSelector((state) => state.main.userName)
-  const userAvatar = useAppSelector((state) => state.main.userAvatar)
+  const userName = useAppSelector((state) => state.main.firstName)
+  const userAvatar = useAppSelector((state) => state.main.avatar)
 
   return (
     <UserAvatar username={userName} avatar={userAvatar} className={className}>

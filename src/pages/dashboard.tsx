@@ -17,6 +17,7 @@ import { useSampleClients, useSampleTransactions } from '../hooks/sampleData'
 import CardBoxTransaction from '../components/CardBoxTransaction'
 import { Client, Transaction } from '../interfaces'
 import CardBoxClient from '../components/CardBoxClient'
+import CardBoxComponentEmpty from '../components/CardBoxComponentEmpty'
 import CardBoxGeneral from '../components/CardBoxGeneral'
 import CardBoxx from '../components/CardBoxx'
 import { sampleChartData } from '../components/ChartLineSample/config'
@@ -27,21 +28,28 @@ import { dashboardHeading, dashBoardHText, darkBlueBox } from '../styles'
 import axios, { decodeErrorStatus } from '../stores/hooks'
 import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-import { useAppSelector } from '../stores/hooks'
+import { useAppSelector, useAppDispatch } from '../stores/hooks'
+import { MoonLoader } from 'react-spinners'
+import { setUser } from '../stores/mainSlice'
 
 const Dashboard = () => {
   const { clients } = useSampleClients()
   //const { transactions } = useSampleTransactions()
   const GET_TRANSACTION_ENDPOINT = "/api/v1/transactions";
+  const GET_PROFILE_ENDPOINT = "/api/v1/auth/user";
 
   const clientsListed = clients.slice(0, 3)
-
+  const dispatch = useAppDispatch()
+  
 
   const [chartData, setChartData] = useState(sampleChartData())
   const [errMsg, setErrMsg] = useState('')
   const [token, setAppToken] = useState('')
   const [cValues, setCValues] = useState(false);
   const [transactions, setTransactions] = useState([]);
+  // const [profile, setProfile] = useState({firstName: '', lastName: '', email: '',
+  //  phoneNumber: '', avatar: ''});
+  const [loading, setLoading] = useState(false);
   
   const pageNumber = useAppSelector((state) => state.transaction.pageNumber)
   const startDate = useAppSelector((state) => state.transaction.startDate)
@@ -51,6 +59,7 @@ const Dashboard = () => {
     setAppToken(localStorage.getItem('token'))
 
   handleSearchClick()
+  fetchProfile()
 
   }, [])
 
@@ -60,16 +69,52 @@ const Dashboard = () => {
     setChartData(sampleChartData())
   }
 
+  const fetchProfile = async () => {
+    
+     try {
+      
+       const response = await axios.get(GET_PROFILE_ENDPOINT,
+         
+           {
+               headers: {
+                          'Authorization': 'Bearer ' + localStorage.getItem('token')
+             },
+               withCredentials: true
+           }
+       );
+         if(response?.status == 200 || response?.status==201){
+          const userP = response.data.data;
+           
+            dispatch(setUser({firstName: userP.firstName, lastName: userP.lastName, 
+              phoneNumber: userP.phoneNumber, email: userP.email, 
+              avatar: 'https://api.dicebear.com/5.x/personas/svg?skinColor=623d36'}))
+         }
+      
+       
+   } catch (err) {
+     if (!err || !err?.response) {
+        setErrMsg('No Server Response');
+     } 
+     else  {
+      setErrMsg(decodeErrorStatus(err?.response.status))
+        }
+     
+        toast("Error fetching profile info. Please check your network!");
+ }
+   }
+
   const handleSearchClick = async () => {
    // alert("gg")
     //alert("start")
-   alert(startDate)
-   alert(endDate)
-   alert(pageNumber)
+  //  alert(startDate)
+  //  alert(endDate)
+  //  alert(pageNumber)
    //console.log("end")
     const values = {pageNumber : pageNumber, startDate: startDate, endDate: endDate}
     console.log("values start here")
     console.log(values)
+
+    setLoading(true);
     try {
      
       const response = await axios.post(GET_TRANSACTION_ENDPOINT,
@@ -89,6 +134,7 @@ const Dashboard = () => {
           // });
           setTransactions([...response.data.data]); 
           console.log(transactions)
+          setLoading(false);
         }
      //console.log(JSON.stringify(transactions));
       
@@ -101,6 +147,7 @@ const Dashboard = () => {
        }
     
        toast("Error fetching transactions. Please check your network!");
+       setLoading(false);
 }
   }
 
@@ -158,12 +205,20 @@ const Dashboard = () => {
           <CardBoxGeneral className="mb-6">
             {chartData && <ChartLineSample data={chartData} />}
           </CardBoxGeneral>
-
-          <SectionTitleLineWithButton handleSearchClick={handleSearchClick} />
-
-          <CardBoxGeneral hasTable>
-            <TableSampleClients handleSearchClick={handleSearchClick}  transactions={{data: transactions}}/>
-          </CardBoxGeneral>
+          <div>
+      {loading ? <MoonLoader color="#3538CD" size={20} /> : null}
+      <SectionTitleLineWithButton handleSearchClick={handleSearchClick} />
+      {transactions.length > 0 ? (
+        <CardBoxGeneral hasTable>
+          <TableSampleClients
+            handleSearchClick={handleSearchClick}
+            transactions={{ data: transactions }}
+          />
+        </CardBoxGeneral>
+      ) : (
+        <CardBoxComponentEmpty />
+      )}
+    </div>
         </SectionMain>
       </div>
     </>
