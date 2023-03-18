@@ -2,12 +2,14 @@ import { configureStore } from '@reduxjs/toolkit'
 import styleReducer from './styleSlice'
 import mainReducer from './mainSlice'
 import internetReducer from './internetSlice'
+import transactionReducer from './transactionSlice'
 
 export const store = configureStore({
   reducer: {
     style: styleReducer,
     main: mainReducer,
-    internet: internetReducer
+    internet: internetReducer,
+    transaction: transactionReducer
   },
 })
 

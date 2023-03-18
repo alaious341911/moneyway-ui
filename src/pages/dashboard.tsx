@@ -1,18 +1,10 @@
 import {
-  mdiAccountMultiple,
-  mdiCartOutline,
-  mdiChartPie,
   mdiChartTimelineVariant,
-  mdiGithub,
-  mdiMonitorCellphone,
-  mdiReload,
   mdiSendOutline,
-  mdiTransfer,
-  mdiWallet,
   mdiWalletOutline,
 } from '@mdi/js'
 import Head from 'next/head'
-import React, { useState } from 'react'
+import React, {useState, useEffect } from 'react'
 import type { ReactElement } from 'react'
 import BaseButton from '../components/BaseButton'
 import LayoutAuthenticated from '../layouts/Authenticated'
@@ -32,20 +24,87 @@ import ChartLineSample from '../components/ChartLineSample'
 import TableSampleClients from '../components/TableSampleClients'
 import { getPageTitle } from '../config'
 import { dashboardHeading, dashBoardHText, darkBlueBox } from '../styles'
+import axios, { decodeErrorStatus } from '../stores/hooks'
+import { toast, ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+import { useAppSelector } from '../stores/hooks'
 
 const Dashboard = () => {
   const { clients } = useSampleClients()
-  const { transactions } = useSampleTransactions()
+  //const { transactions } = useSampleTransactions()
+  const GET_TRANSACTION_ENDPOINT = "/api/v1/transactions";
 
   const clientsListed = clients.slice(0, 3)
 
+
   const [chartData, setChartData] = useState(sampleChartData())
+  const [errMsg, setErrMsg] = useState('')
+  const [token, setAppToken] = useState('')
+  const [cValues, setCValues] = useState(false);
+  const [transactions, setTransactions] = useState([]);
+  
+  const pageNumber = useAppSelector((state) => state.transaction.pageNumber)
+  const startDate = useAppSelector((state) => state.transaction.startDate)
+  const endDate = useAppSelector((state) => state.transaction.endDate)
+
+  useEffect(() => {
+    setAppToken(localStorage.getItem('token'))
+
+  handleSearchClick()
+
+  }, [])
 
   const fillChartData = (e: React.MouseEvent) => {
     e.preventDefault()
 
     setChartData(sampleChartData())
   }
+
+  const handleSearchClick = async () => {
+   // alert("gg")
+    //alert("start")
+   alert(startDate)
+   alert(endDate)
+   alert(pageNumber)
+   //console.log("end")
+    const values = {pageNumber : pageNumber, startDate: startDate, endDate: endDate}
+    console.log("values start here")
+    console.log(values)
+    try {
+     
+      const response = await axios.post(GET_TRANSACTION_ENDPOINT,
+        values,
+          {
+              headers: {
+                         'Authorization': 'Bearer ' + localStorage.getItem('token')
+            },
+              withCredentials: true
+          }
+      );
+        if(response?.status == 200 || response?.status==201){
+          console.log(response.data)
+           const fetchedData =response.data.data;
+          // const mappedOption = fetchedData.map((option) => {
+          //   return { value: option.requestId, label: option.status };
+          // });
+          setTransactions([...response.data.data]); 
+          console.log(transactions)
+        }
+     //console.log(JSON.stringify(transactions));
+      
+  } catch (err) {
+    if (!err || !err?.response) {
+       setErrMsg('No Server Response');
+    } 
+    else  {
+     setErrMsg(decodeErrorStatus(err?.response.status))
+       }
+    
+       toast("Error fetching transactions. Please check your network!");
+}
+  }
+
+ 
 
   return (
     <>
@@ -100,10 +159,10 @@ const Dashboard = () => {
             {chartData && <ChartLineSample data={chartData} />}
           </CardBoxGeneral>
 
-          <SectionTitleLineWithButton icon={mdiAccountMultiple} title="Transaction history" />
+          <SectionTitleLineWithButton handleSearchClick={handleSearchClick} />
 
           <CardBoxGeneral hasTable>
-            <TableSampleClients />
+            <TableSampleClients handleSearchClick={handleSearchClick}  transactions={{data: transactions}}/>
           </CardBoxGeneral>
         </SectionMain>
       </div>

@@ -52,7 +52,7 @@ const TvService = (props ) => {
 
 
     const tvValue: TvForm = {
-        decoderName: '',
+        "decoderName": '',
         decoderOrSmartCardNumber: '',
         subscriptionPackage: '',
         amount: '',

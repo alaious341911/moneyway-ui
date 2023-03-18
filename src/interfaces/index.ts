@@ -4,6 +4,12 @@ export type UserPayloadObject = {
   avatar: string
 }
 
+export type TransactionPayloadObject = {
+  pageNumber?: number
+  startDate?: string
+  endDate?: string
+}
+
 export type InternetPayloadObject = {
   serviceId: { [key: string]: any }[];
   // serviceIdV: string;
@@ -99,6 +105,17 @@ export type  Client = {
   progress: number
   created: string
   created_mm_dd_yyyy: string
+}
+
+export type  Transactions = {
+  status: string
+  requestId: string
+  currency: string
+  amount: number | null
+  paymentType: string
+  accountName?: string
+  date: string
+  
 }
 
 export type StyleKey = 'white' | 'basic'
