@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Image from 'next/image'
 import type { ReactElement } from 'react'
 import Head from 'next/head'
@@ -17,8 +17,21 @@ import { mdiAccount, mdiMail, mdiBallotOutline } from '@mdi/js'
 import SectionTitle from '../components/SectionTitle'
 import { textInput, submitButton, formPText, formLink, moneyWayHeader, pagesTitle } from '../styles'
 import PagesTitle from '../components/PagesTitle'
+import { EmailForm } from '../interfaces'
+import axios, { decodeErrorStatus } from '../stores/hooks'
+import { toast } from 'react-toastify'
+import * as Yup from 'yup'
 
 export default function ForgotPassword() {
+
+  const GET_FORGOT_PASSWORD_ENDPOINT = '/api/v1/auth/forgot-password';
+
+  const emailValue: EmailForm = {
+    email: ''
+  }
+
+  const [errMsg, setErrMsg] = useState('')
+
   const textInput = {
     width: '100%',
     height: 40,
@@ -30,8 +43,53 @@ export default function ForgotPassword() {
   }
   const router = useRouter()
 
-  const handleSubmit = () => {
-    router.push('/email-check')
+  // const handleSubmit = () => {
+  //   router.push('/email-check')
+  // }
+
+  const handleForgotPassword = async (values, { setSubmitting }) => {
+    const id = toast.loading('Proccessing...', { theme: 'light' })
+    const customId = 'sign-up-id'
+    try {
+      const response = await axios.post(GET_FORGOT_PASSWORD_ENDPOINT, values, {
+        withCredentials: true,
+      })
+      if (response?.data.status == 200) {
+        toast.update(id, {
+          render: 'email is registered',
+          type: 'success',
+          toastId: customId,
+          theme: 'colored',
+          isLoading: false,
+          closeOnClick: true,
+          position: 'top-right',
+          autoClose: 10000,
+        })
+
+        router.push('/email-check')
+
+        //alert (JSON.stringify(response.data))
+      }
+      console.log(JSON.stringify(response?.status))
+      console.log(JSON.stringify(response?.data))
+    } catch (err) {
+      if (!err?.response) {
+        setErrMsg('No Server Response')
+      } else {
+        setErrMsg(decodeErrorStatus(err?.response.status))
+      }
+
+      toast.update(id, {
+        render: errMsg,
+        type: 'error',
+        toastId: customId,
+        theme: 'colored',
+        isLoading: false,
+        closeOnClick: true,
+        position: 'top-right',
+        autoClose: 1000,
+      })
+    }
   }
 
   return (
@@ -57,8 +115,11 @@ export default function ForgotPassword() {
             <p style={moneyWayHeader}>Forgot Password</p>
           </SectionTitle>
           <Formik
-            initialValues={{ login: 'john.doe', password: 'bG1sL9eQ1uD2sK3b', remember: true }}
-            onSubmit={() => handleSubmit()}
+            initialValues={emailValue}
+            validationSchema={Yup.object({
+              email: Yup.string().email().required('email is required'),
+            })}
+            onSubmit={(values, { setSubmitting }) => handleForgotPassword(values, { setSubmitting })}
           >
             <Form>
               <p style={formPText}>

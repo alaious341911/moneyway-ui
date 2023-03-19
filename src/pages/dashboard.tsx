@@ -32,7 +32,8 @@ import ChartLineSample from '../components/ChartLineSample'
 import TableSampleClients from '../components/TableSampleClients'
 import { getPageTitle } from '../config'
 import { dashboardHeading, dashBoardHText, darkBlueBox } from '../styles'
-
+import axios, { decodeErrorStatus } from '../stores/hooks'
+import { toast, ToastContainer } from 'react-toastify';
 const Dashboard = () => {
   const { clients } = useSampleClients()
   const { transactions } = useSampleTransactions()
@@ -46,6 +47,47 @@ const Dashboard = () => {
 
     setChartData(sampleChartData())
   }
+  const [errMsg, setErrMsg] = useState('Unknown error');
+
+  const ACCOUNT_SUMMARY_ENDPOINT = "api/v1/auth/financial/summary/"
+  const [amountSpent, setAmountSpent] = useState(0);
+  const [monthlyPercent, setMonthlyPercent] = useState('');
+
+  const handleAmountSpent = async () => {
+    const id = toast.loading("Authenticating...", {theme: 'light'})
+    const customId = "login-id";
+    
+    try {
+        const response = await axios.get(ACCOUNT_SUMMARY_ENDPOINT,
+            
+            {
+                headers: { 
+                  'Authorization': 'Bearer ' + localStorage.getItem('token')
+                 },
+                withCredentials: true
+            }
+        )
+            .then(response => setAmountSpent(response.data.amountSpent))
+            console.log(amountSpent)
+        
+        
+          
+           
+          }
+        
+       
+        
+     catch (err) {
+      if (!err?.response) {
+         setErrMsg('No Server Response');
+      } 
+      else  {
+       setErrMsg(decodeErrorStatus(err?.response.status))
+         }
+
+     toast("Error fetching amount spent. please check your network")
+        }           
+}
 
   return (
     <>
@@ -82,7 +124,7 @@ const Dashboard = () => {
                 trendColor="white"
                 icon={mdiSendOutline}
                 iconColor="dark"
-                number={65000}
+                number={amountSpent}
                 numberPrefix="N"
                 label="Amount spent"
                 cardBoxColor="bg-[#FEFDF0] border-radius[24px]"

@@ -166,3 +166,7 @@ export type SignupForm = {
   bvn: string
   pin: string
 }
+
+export type EmailForm = {
+  email: string
+}

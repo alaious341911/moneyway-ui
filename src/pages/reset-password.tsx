@@ -23,10 +23,15 @@ import {
   moneyWayHeader,
   forgotPText,
   pagesTitle,
+  confirmationTextBig,
 } from '../styles'
 import PagesTitle from '../components/PagesTitle'
+import { setServiceId } from '../stores/internetSlice'
 
 export default function ResetPassword() {
+
+  const RESET_PASSWORD_ENDPOINT = "/api/v1/auth/reset-password/"
+
   const textInput = {
     width: '100%',
     height: 40,
@@ -39,6 +44,18 @@ export default function ResetPassword() {
 
   const router = useRouter()
 
+  const modalSampleContents = (
+    <>
+     
+    <Image src="success-logo.png" width={50} height={50} alt="success-logo" className="inline" />
+      <p>
+        <b style={confirmationTextBig}>Successful</b>
+      </p>
+      <p>Your password has been changed successfully.<br/> Login to access your account</p>
+      
+    </>
+  )
+
   const handleSubmit = () => {
     router.push('/dashboard')
   }
@@ -46,7 +63,7 @@ export default function ResetPassword() {
   return (
     <>
       <Head>
-        <title>{getPageTitle('Login')}</title>
+        <title>{getPageTitle('Reset-Password')}</title>
       </Head>
 
       <PagesTitle>
