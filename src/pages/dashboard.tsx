@@ -26,16 +26,12 @@ import TableSampleClients from '../components/TableSampleClients'
 import { getPageTitle } from '../config'
 import { dashboardHeading, dashBoardHText, darkBlueBox } from '../styles'
 import axios, { decodeErrorStatus } from '../stores/hooks'
-<<<<<<< HEAD
 import { toast, ToastContainer } from 'react-toastify';
-=======
-import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { useAppSelector, useAppDispatch } from '../stores/hooks'
 import { MoonLoader } from 'react-spinners'
 import { setUser } from '../stores/mainSlice'
 
->>>>>>> main
 const Dashboard = () => {
   const { clients } = useSampleClients()
   //const { transactions } = useSampleTransactions()
@@ -47,7 +43,7 @@ const Dashboard = () => {
   
 
   const [chartData, setChartData] = useState(sampleChartData())
-  const [errMsg, setErrMsg] = useState('')
+  // const [errMsg, setErrMsg] = useState('')
   const [token, setAppToken] = useState('')
   const [cValues, setCValues] = useState(false);
   const [transactions, setTransactions] = useState([]);
@@ -61,7 +57,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     setAppToken(localStorage.getItem('token'))
-
+    handleAmountSpent()
   handleSearchClick()
   fetchProfile()
 
@@ -74,7 +70,7 @@ const Dashboard = () => {
   }
   const [errMsg, setErrMsg] = useState('Unknown error');
 
-  const ACCOUNT_SUMMARY_ENDPOINT = "api/v1/auth/financial/summary/"
+  const ACCOUNT_SUMMARY_ENDPOINT = "api/v1/financial/summary/"
   const [amountSpent, setAmountSpent] = useState(0);
   const [monthlyPercent, setMonthlyPercent] = useState('');
 
@@ -92,7 +88,7 @@ const Dashboard = () => {
                 withCredentials: true
             }
         )
-            .then(response => setAmountSpent(response.data.amountSpent))
+            .then(response => setAmountSpent(response.data.total))
             console.log(amountSpent)
         
         
