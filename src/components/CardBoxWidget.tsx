@@ -56,6 +56,8 @@ const CardBoxWidget = (props: Props) => {
             className={colorsText[props.iconColor]}
           />
         )}
+
+        
         <div>
           <h3
             className="text-lg leading-tight text-white dark:text-slate-400"

@@ -37,37 +37,72 @@ const Dashboard = () => {
   //const { transactions } = useSampleTransactions()
   const GET_TRANSACTION_ENDPOINT = "/api/v1/transactions";
   const GET_PROFILE_ENDPOINT = "/api/v1/auth/user";
-
+  const GET_BALANCE_ENDPOINT = '/api/v1/wallet/view_balance';
   const clientsListed = clients.slice(0, 3)
   const dispatch = useAppDispatch()
-  
-
   const [chartData, setChartData] = useState(sampleChartData())
   const [errMsg, setErrMsg] = useState('')
   const [token, setAppToken] = useState('')
   const [cValues, setCValues] = useState(false);
   const [transactions, setTransactions] = useState([]);
+  const[balance, setBalance] = useState();
+  const[accountNumber, setAccountNumber] = useState('');
   // const [profile, setProfile] = useState({firstName: '', lastName: '', email: '',
   //  phoneNumber: '', avatar: ''});
   const [loading, setLoading] = useState(false);
-  
   const pageNumber = useAppSelector((state) => state.transaction.pageNumber)
   const startDate = useAppSelector((state) => state.transaction.startDate)
   const endDate = useAppSelector((state) => state.transaction.endDate)
+
 
   useEffect(() => {
     setAppToken(localStorage.getItem('token'))
 
   handleSearchClick()
   fetchProfile()
+  fetchBalance()
 
   }, [])
 
+  
   const fillChartData = (e: React.MouseEvent) => {
     e.preventDefault()
 
     setChartData(sampleChartData())
   }
+
+
+
+
+
+  const fetchBalance = async()=> {
+    
+    try {
+     
+      const response = await axios.get(GET_BALANCE_ENDPOINT, 
+        {
+          headers: { 'Authorization': 'Bearer ' + localStorage.getItem('token')},
+          withCredentials: true
+      });
+         if(response?.status == 200 || response?.status==201){
+          const balance = response.data.data;
+          const accountNumber = response.data.accountNumber;}
+          git 
+    }catch (err) {
+    if (!err || !err?.response) {
+       setErrMsg('No Server Response');
+    } 
+    else  {
+     setErrMsg(decodeErrorStatus(err?.response.status))
+       }
+       toast("Error fetching balance info. Please check your network!");
+}
+  }
+  
+
+
+
+
 
   const fetchProfile = async () => {
     
@@ -88,28 +123,20 @@ const Dashboard = () => {
             dispatch(setUser({firstName: userP.firstName, lastName: userP.lastName, 
               phoneNumber: userP.phoneNumber, email: userP.email, 
               avatar: 'https://api.dicebear.com/5.x/personas/svg?skinColor=623d36'}))
-         }
-      
-       
-   } catch (err) {
+         }    
+   } 
+   catch (err) {
      if (!err || !err?.response) {
         setErrMsg('No Server Response');
      } 
      else  {
       setErrMsg(decodeErrorStatus(err?.response.status))
         }
-     
         toast("Error fetching profile info. Please check your network!");
  }
    }
-
   const handleSearchClick = async () => {
-   // alert("gg")
-    //alert("start")
-  //  alert(startDate)
-  //  alert(endDate)
-  //  alert(pageNumber)
-   //console.log("end")
+  
     const values = {pageNumber : pageNumber, startDate: startDate, endDate: endDate}
     console.log("values start here")
     console.log(values)
@@ -151,7 +178,6 @@ const Dashboard = () => {
 }
   }
 
- 
 
   return (
     <>
@@ -174,10 +200,10 @@ const Dashboard = () => {
                 trendColor="white"
                 icon={mdiWalletOutline}
                 iconColor="white"
-                number={60000}
+                number={balance}
                 label="Account Balance"
                 bankName="Wema bank"
-                accountNumber="3089434692"
+                accountNumber={accountNumber}
                 cardBoxColor="bg-[#3538CD] border-radius[24px]"
                 cardBoxLight="yes"
               />
