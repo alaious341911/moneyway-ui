@@ -26,12 +26,16 @@ import { getPageTitle } from '../config'
 import { useAppSelector } from '../stores/hooks'
 
 const ProfilePage = () => {
-  const userName = useAppSelector((state) => state.main.userName)
-  const userEmail = useAppSelector((state) => state.main.userEmail)
+  const firstName = useAppSelector((state) => state.main.firstName)
+  const lastName = useAppSelector((state) => state.main.lastName)
+  const phoneNumber = useAppSelector((state) => state.main.phoneNumber)
+  const email = useAppSelector((state) => state.main.email)
 
   const userForm: UserForm = {
-    name: userName,
-    email: userEmail,
+    firstName: firstName,
+    lastName : lastName,
+    email: email,
+    phoneNumber : phoneNumber
   }
 
   return (
@@ -41,7 +45,7 @@ const ProfilePage = () => {
       </Head>
 
       <SectionMain>
-        <SectionTitleLineWithButton icon={mdiAccount} title="Profile" main>
+        {/* <SectionTitleLineWithButton icon={mdiAccount} title="Profile" main>
           <BaseButton
             href="https://github.com/justboil/admin-one-react-tailwind"
             target="_blank"
@@ -51,17 +55,17 @@ const ProfilePage = () => {
             roundedFull
             small
           />
-        </SectionTitleLineWithButton>
+        </SectionTitleLineWithButton> */}
 
-        <UserCard className="mb-6" />
+        <UserCard className="mb-6"/>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-1 gap-6">
           <div className="flex flex-col">
-            <CardBox className="mb-6">
+            {/* <CardBox className="mb-6">
               <FormField label="Avatar" help="Max 500kb">
                 <FormFilePicker label="Upload" color="info" icon={mdiUpload} />
               </FormField>
-            </CardBox>
+            </CardBox> */}
 
             <CardBox className="flex-1" hasComponentLayout>
               <Formik
@@ -71,12 +75,21 @@ const ProfilePage = () => {
                 <Form className="flex flex-col flex-1">
                   <CardBoxComponentBody>
                     <FormField
-                      label="Name"
+                      label="First Name"
                       help="Required. Your name"
-                      labelFor="name"
+                      labelFor="first name"
                       icons={[mdiAccount]}
                     >
-                      <Field name="name" id="name" placeholder="Name" />
+                      <Field name="firstName" id="firstName" placeholder="First Name" />
+                    </FormField>
+
+                    <FormField
+                      label="Last Name"
+                      help="Required. Your name"
+                      labelFor="last name"
+                      icons={[mdiAccount]}
+                    >
+                      <Field name="lastName" id="lastName" placeholder="Last Name" />
                     </FormField>
                     <FormField
                       label="E-mail"
@@ -85,6 +98,14 @@ const ProfilePage = () => {
                       icons={[mdiMail]}
                     >
                       <Field name="email" id="email" placeholder="E-mail" />
+                    </FormField>
+                    <FormField
+                      label="Phone Number"
+                      help="Required. Your name"
+                      labelFor="first name"
+                      icons={[mdiAccount]}
+                    >
+                      <Field name="phoneNumber" id="phoneNumber" placeholder="phone" />
                     </FormField>
                   </CardBoxComponentBody>
                   <CardBoxComponentFooter>
@@ -98,7 +119,7 @@ const ProfilePage = () => {
             </CardBox>
           </div>
 
-          <CardBox hasComponentLayout>
+          {/* <CardBox hasComponentLayout>
             <Formik
               initialValues={{
                 currentPassword: '',
@@ -162,7 +183,7 @@ const ProfilePage = () => {
                 </CardBoxComponentFooter>
               </Form>
             </Formik>
-          </CardBox>
+          </CardBox> */}
         </div>
       </SectionMain>
     </>

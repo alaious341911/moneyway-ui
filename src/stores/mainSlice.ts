@@ -2,18 +2,21 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { UserPayloadObject } from '../interfaces'
 
 interface MainState {
-  userName: string
-  userEmail: null | string
-  userAvatar: null | string
+  firstName: string
+  lastName: string
+  email: null | string
+  phoneNumber: null | string
+  avatar : string | null
   isFieldFocusRegistered: boolean
 }
 
 const initialState: MainState = {
   /* User */
-  userName: '',
-  userEmail: null,
-  userAvatar: null,
-
+  firstName: '',
+  lastName: '',
+  email: null,
+  phoneNumber: '',
+  avatar: '',
   /* Field focus with ctrl+k (to register only once) */
   isFieldFocusRegistered: false,
 }
@@ -23,9 +26,11 @@ export const mainSlice = createSlice({
   initialState,
   reducers: {
     setUser: (state, action: PayloadAction<UserPayloadObject>) => {
-      state.userName = action.payload.name
-      state.userEmail = action.payload.email
-      state.userAvatar = action.payload.avatar
+      state.firstName = action.payload.firstName
+      state.lastName = action.payload.lastName
+      state.email = action.payload.email
+      state.phoneNumber = action.payload.phoneNumber
+      state.avatar = action.payload.avatar
     },
   },
 })

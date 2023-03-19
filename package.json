@@ -9,11 +9,14 @@
     "format": "prettier '{components,pages,src,interfaces,hooks}/**/*.{tsx,ts,js}' --write"
   },
   "dependencies": {
+    "@emotion/styled": "^11.10.6",
     "@mdi/js": "^7.0.96",
     "@mdi/react": "^1.6.1",
+    "@mui/x-date-pickers": "^6.0.2",
     "@reduxjs/toolkit": "^1.8.5",
     "axios": "^1.3.3",
     "chart.js": "^3.9.1",
+    "dayjs": "^1.11.7",
     "formik": "^2.2.9",
     "framer-motion": "^6.0.0",
     "grommet": "^2.30.0",

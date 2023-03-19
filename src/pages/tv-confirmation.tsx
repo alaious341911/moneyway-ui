@@ -28,7 +28,7 @@ import { ClipLoader, MoonLoader } from 'react-spinners';
 const TvConfirmation = (props ) => {
 
   const router = useRouter();
-  const { amount, phoneNumber, serviceId, subscriptionPackage, subscriptionType } = router.query;
+  const { amount, pin, decoderOrSmartCardNumber, subscriptionPackage, subscriptionType, phone, decoderName, saveBeneficiary } = router.query;
 
   
 
@@ -39,7 +39,7 @@ const TvConfirmation = (props ) => {
       <p>
         <b style={confirmationTextBig}>Successful</b>
       </p>
-      <p>Your {serviceId} Recharge was success.</p>
+      <p>Your {subscriptionPackage} Recharge was success.</p>
       
     </>
   )
@@ -68,7 +68,10 @@ const [loading, setLoading] = useState(false);
 
   const handleSubmit = async () => {
     setLoading(true)
-       const values = {"amount": amount, "phoneNumber" : phoneNumber, "serviceId" : serviceId, "subscriptionPackage" : subscriptionPackage, "subscriptionType" :subscriptionType}
+       const values = {"amount": amount, "saveBeneficiary" : saveBeneficiary, 
+       "decoderOrSmartCardNumber" : decoderOrSmartCardNumber, 
+       "subscriptionPackage" : subscriptionPackage, "subscriptionType": subscriptionType,
+        "decoderName" :decoderName, "pin" : pin, "phone": phone}
 
        console.log(values)
        console.log(token)
@@ -145,22 +148,24 @@ const [loading, setLoading] = useState(false);
 
                <div className='mb-5'>
                <p style={confirmationTextSmall}> To</p>
-                <p style={confirmationTextBig}>{phoneNumber}</p>
+                <p style={confirmationTextBig}>{decoderOrSmartCardNumber}</p>
                </div>
               
 
         <table>
         <tbody>
-          <tr key={1}>
+         
+            <tr key={2}>
+              <td style={confirmationTextBigLight}>Decoder name</td>
+              <td className="text-right" style={confirmationTextBigLight}>
+                {decoderName}
+              </td>
+            </tr>
+
+            <tr key={1}>
               <td style={confirmationTextBigLight}>Package</td>
               <td className="text-right" style={confirmationTextBigLight}>
                 {subscriptionPackage}
-              </td>
-            </tr>
-            <tr key={2}>
-              <td style={confirmationTextBigLight}>Subscription Type</td>
-              <td className="text-right" style={confirmationTextBigLight}>
-                {subscriptionType}
               </td>
             </tr>
          

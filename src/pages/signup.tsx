@@ -24,6 +24,8 @@ import {
   mdiTrackpadLock,
   mdiLockOutline,
   mdiPin,
+  mdiFormatListNumbered,
+  mdiTextAccount,
 } from '@mdi/js'
 import SectionTitle from '../components/SectionTitle'
 import { textInput, submitButton, formPText, formLink, moneyWayHeader, pagesTitle } from '../styles'
@@ -174,11 +176,11 @@ export default function SignUp() {
                   placeholder="Confirm your password"
                 />
               </FormField> */}
-              <FormField label="Pin" icons={[mdiPin]}>
+              <FormField label="Pin" icons={[mdiLockOutline]}>
                 <Field style={textInput} name="pin" type="password" placeholder="Enter pin" />
               </FormField>
 
-              <FormField label="BVN" icons={[mdiPin]}>
+              <FormField label="BVN" icons={[mdiTextAccount]}>
                 <Field style={textInput} name="bvn" type="text" placeholder="Enter BVN" />
               </FormField>
               <ErrorMessage name="bvn" />

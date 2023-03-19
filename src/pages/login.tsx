@@ -17,6 +17,7 @@ import { toast, ToastContainer } from 'react-toastify';
   import "react-toastify/dist/ReactToastify.css";
 import PagesTitle from '../components/PagesTitle'
 import Image from 'next/image'
+import { submitButton } from '../styles'
 
 export default function Login() {
   const router = useRouter()
@@ -54,7 +55,7 @@ export default function Login() {
             // localStorage.setItem('userId',response?.data.userId );
             // localStorage.setItem('userName',response?.data.userName );
             
-            toast.update(id, { render: "Authenticated! Loging in.....", type: "success", 
+            toast.update(id, { render: "Authenticated! Logging in...", type: "success", 
             toastId: customId, theme: "colored", isLoading: false,
              closeOnClick: true, position: "top-right",
              autoClose: 3000, });
@@ -113,7 +114,9 @@ export default function Login() {
               <BaseDivider />
 
               <BaseButtons>
-                <BaseButton type="submit" label="Login" color="info" />
+              <button type="submit" style={submitButton}>
+                    Login
+                  </button>
               </BaseButtons>
             </Form>
           </Formik>

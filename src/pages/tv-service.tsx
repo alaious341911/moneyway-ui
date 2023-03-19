@@ -18,12 +18,14 @@ import { TvForm, TvPayloadObject } from "../interfaces";
 import LayoutAuthenticated from "../layouts/Authenticated";
 import { decodeErrorStatus, useAppDispatch } from "../stores/hooks";
 import { dashBoardField, dashboardFormPText, dashboardHeading, submitButton } from "../styles";
+import { MoonLoader } from 'react-spinners';
 
 
 const TvService = (props ) => {
 
     const GET_TVVARIATTION_ENDPOINT = "/api/v1/bills/tv-variations/";
     const VERIFY_CABLETV_ENDPOINT = "api/v1/bills/verify-cabletv";
+
 
 
     const dispatch = useAppDispatch();
@@ -45,18 +47,19 @@ const TvService = (props ) => {
     const[vstate, setVarationData] = useState([])
     const [showFields, setHow] = useState(false);
     const [originalPayload, setPayLoad] = useState([]);
+    const [loading, setLoading] = useState(false);
+    const [validatedAccountName, setValidatedAccountName] = useState('');
 
 
     const tvValue: TvForm = {
-        decoderName: '',
+        "decoderName": '',
         decoderOrSmartCardNumber: '',
         subscriptionPackage: '',
         amount: '',
         pin: '',
         phone: '',
-        numberOfMonthlySubscription: '',
-        subscriptionType: '',
-        saveBeneficiary: false,
+        subscriptionType: 'change',
+        saveBeneficiary: true,
     }
 
 
@@ -64,7 +67,7 @@ const TvService = (props ) => {
         { value: 'dstv', label: 'DSTV', icon: 'dstv-logo.png' },
         { value: 'gotv', label: 'GOTV', icon: 'gotv-logo.png' },
         { value: 'startimes', label: 'STARTIMES', icon: 'startimes-logo.jpeg' },
-        { value: 'showmax', label: 'SHOWMAX', icon: 'showmax-logo.png' },
+        { value: 'showmax', label: 'SHOWMAX', icon: 'showmax-logo1.jpeg' },
         
       ];
 
@@ -128,6 +131,52 @@ const TvService = (props ) => {
         });
       };
 
+      const handleAccountNumberChange = (event, fieldName, setFieldValue) => {
+        const newValue = event.target.value;
+        setFieldValue(fieldName, newValue);
+       
+        if (newValue.length === 10) {
+          //     // Call your method here
+               validateAccount(newValue, '044')
+             }
+      };
+    
+      const validateAccount = async (accountNumber, bankCode)  => {
+        setLoading(true);
+     const validatePayLoad = {"accountNumber": accountNumber, "accountBank": bankCode};
+       
+    
+        try {
+          const response = await axios.post(VERIFY_CABLETV_ENDPOINT,
+            validatePayLoad,
+              {
+                  headers: {
+                             'Authorization': 'Bearer ' + token
+                },
+                  withCredentials: true
+              }
+          );
+            if(response?.status == 200){
+              const account_name = response.data.data.account_name;
+              
+              setValidatedAccountName(account_name)
+              setLoading(false);
+            }
+         
+          
+      } catch (err) {
+        if (!err || !err?.response) {
+           setErrMsg('No Server Response');
+        } 
+        else  {
+         setErrMsg(decodeErrorStatus(err?.response.status))
+           }
+        
+          setValidatedAccountName("account validation unsuccessfyl")
+          setLoading(false);
+    }
+      }
+
 
 
       return(
@@ -158,8 +207,8 @@ const TvService = (props ) => {
               <Form>
                
 
-<SelectTv  name="subscriptionType"
-            value={values.subscriptionType}
+<SelectTv  name="decoderName"
+            value={values.decoderName}
             setFieldValue={setFieldValue}
             fetchTvVariation = {fetchTvVariation}
            options={options}
@@ -190,6 +239,8 @@ const TvService = (props ) => {
                  />
                 
                </FormField>
+
+              
                <FormField label="Smart Card Number">
                  <Field
                    className=""
@@ -198,17 +249,31 @@ const TvService = (props ) => {
                    name="decoderOrSmartCardNumber"
                    placeholder="smart card number"
                    value={values.decoderOrSmartCardNumber}
+
+                  
                  />
 
-                 
-                
+               </FormField>
+
+               <FormField label="Phone number">
+                 <Field
+                   className=""
+                   style={dashBoardField}
+                   type="text"
+                   name="phone"
+                   placeholder="phone number"
+                   value={values.phone}
+
+                  
+                 />
+
                </FormField>
 
                <FormField label="Transaction pin">
                  <Field
                    className=""
                    style={dashBoardField}
-                   type="text"
+                   type="number"
                    name="pin"
                    placeholder="pin"
                    value={values.pin}

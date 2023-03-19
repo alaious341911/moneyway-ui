@@ -20,16 +20,10 @@ type Props = {
 
 export default function LayoutAuthenticated({ children }: Props) {
   const dispatch = useAppDispatch()
+  
 
   useEffect(() => {
-    dispatch(
-      setUser({
-        name: 'Adetutu Oluwaseun',
-        email: 'john@example.com',
-        avatar:
-          'https://avatars.dicebear.com/api/avataaars/example.svg?options[top][]=shortHair&options[accessoriesChance]=93',
-      })
-    )
+  
   })
 
   const darkMode = useAppSelector((state) => state.style.darkMode)

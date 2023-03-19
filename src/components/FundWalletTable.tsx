@@ -7,7 +7,7 @@ import BaseButtons from './BaseButtons'
 import CardBoxModal from './CardBoxModal'
 import UserAvatar from './UserAvatar'
 
-const FundWalletTable = ({beneficiaries}) => {
+const FundWalletTable = ({beneficiaries, handleLocalBeneficary}) => {
   
   const perPage = 5
 
@@ -31,7 +31,7 @@ const FundWalletTable = ({beneficiaries}) => {
         <tbody>
           {clientsPaginated.map((client: Beneficiary) => (
             <tr key={client.id}>
-              <td data-label="Customer">{client.name} <br/>{client.phoneNumber}</td>
+              <td data-label="Customer" onClick={handleLocalBeneficary(client.email)}>{client.name} <br/>{client.email}</td>
               <td data-label="Transaction" className="text-right">
                 {client.transactionType}
               </td>

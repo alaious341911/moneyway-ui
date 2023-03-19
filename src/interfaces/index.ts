@@ -1,7 +1,15 @@
 export type UserPayloadObject = {
-  name: string
+  firstName: string | null
+  lastName : string |null
   email: string
   avatar: string
+  phoneNumber?: string | null
+}
+
+export type TransactionPayloadObject = {
+  pageNumber?: number
+  startDate?: string
+  endDate?: string
 }
 
 export type InternetPayloadObject = {
@@ -101,12 +109,25 @@ export type  Client = {
   created_mm_dd_yyyy: string
 }
 
+export type  Transactions = {
+  status: string
+  requestId: string
+  currency: string
+  amount: number | null
+  paymentType: string
+  accountName?: string
+  date: string
+  
+}
+
 export type StyleKey = 'white' | 'basic'
 
 export type HomeMenus = 'login' | 'Create an account' | 'forgot-password' | 'verify-link'
 
 export type UserForm = {
-  name: string
+  firstName: string
+  lastName: string
+  phoneNumber: string
   email: string
 }
 
@@ -127,6 +148,16 @@ export type InternetForm = {
   
 }
 
+export type ElectricityForm = {
+  serviceID: ''
+  variationCode: string
+  billersCode: string
+  amount: string
+  phoneNumber: string
+  saveBeneficiary: boolean
+  
+}
+
 export type TvForm = {
   decoderName: ''
   decoderOrSmartCardNumber: string
@@ -134,7 +165,6 @@ export type TvForm = {
   amount: string
   pin: string
   phone: string
-  numberOfMonthlySubscription: string
   subscriptionType: string
   saveBeneficiary: boolean
 }
@@ -145,6 +175,14 @@ export type LocalTransfer = {
   pin: string
   description: string
   saveBeneficiary : boolean
+}
+
+export type FundWalletForm = {
+  amount: ''
+  bank: string
+  pin: string
+  description: string
+  
 }
 export type ThirdPartyTransfer = {
   amount: number | null

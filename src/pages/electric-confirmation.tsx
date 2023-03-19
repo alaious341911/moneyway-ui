@@ -25,12 +25,12 @@ import CardBoxModal from '../components/CardBoxModal';
 import Image from 'next/image';
 import { ClipLoader, MoonLoader } from 'react-spinners';
 
-const DataConfirmation = (props ) => {
+const ElectricConfirmation = (props ) => {
 
   const router = useRouter();
-  const { amount, phoneNumber, serviceID, variationCode, billersCode, pin, saveBeneficiary } = router.query;
+  const { amount, phoneNumber, serviceID, variationCode, billersCode, saveBeneficiary } = router.query;
 
-  const BUY_DATA_ENDPOINT = "/api/v1/bills/buy-data/";
+  const BUY_ELECTRICITY_ENDPOINT = "/api/v1/bills/purchase-EKEDC-electricity";
 
  
 
@@ -50,7 +50,7 @@ const DataConfirmation = (props ) => {
       <p>
         <b style={confirmationTextBig}>Successful</b>
       </p>
-      <p>Your {serviceID} Data Recharge was successful!</p>
+      <p>Your {serviceID} Electricity Purchase was successful!</p>
       
     </>
   )
@@ -70,13 +70,13 @@ const [loading, setLoading] = useState(false);
   const handleSubmit = async () => {
     setLoading(true)
        const values = {"amount": amount, "phoneNumber" : phoneNumber, "serviceID" : serviceID, 
-       "billersCode": billersCode, "variationCode": variationCode, "pin": pin, "saveBeneficiary": saveBeneficiary}
+       "billersCode": billersCode, "variationCode": variationCode, "saveBeneficiary": saveBeneficiary}
 
        console.log(values)
        console.log(token)
     try {
       
-        const response = await axios.post(BUY_DATA_ENDPOINT,
+        const response = await axios.post(BUY_ELECTRICITY_ENDPOINT,
             values,
             {
                 headers: { 'Content-Type': 'application/json',
@@ -147,20 +147,20 @@ const [loading, setLoading] = useState(false);
 
                <div className='mb-5'>
                <p style={confirmationTextSmall}> To</p>
-                <p style={confirmationTextBig}>{phoneNumber}</p>
+                <p style={confirmationTextBig}>{billersCode}</p>
                </div>
               
 
         <table>
         <tbody>
           <tr key={1}>
-              <td style={confirmationTextBigLight}>Package</td>
+              <td style={confirmationTextBigLight}>Service Type</td>
               <td className="text-right" style={confirmationTextBigLight}>
                {variationCode}
               </td>
             </tr>
             <tr key={2}>
-              <td style={confirmationTextBigLight}>Network</td>
+              <td style={confirmationTextBigLight}>Service Description</td>
               <td className="text-right" style={confirmationTextBigLight}>
                 {serviceID}
               </td>
@@ -175,7 +175,7 @@ const [loading, setLoading] = useState(false);
                 {loading ? <ClipLoader color="#3538CD" size={25} /> : null}
                 </div>
                   <button type="button" style={submitButton} onClick={handleSubmit}>
-                    Purchase Internet Data
+                    Purchase Electricity
                   </button>
                 </BaseButtons>
                 </div>
@@ -188,8 +188,8 @@ const [loading, setLoading] = useState(false);
   )
 };
 
-DataConfirmation.getLayout = function getLayout(page: ReactElement) {
+ElectricConfirmation.getLayout = function getLayout(page: ReactElement) {
   return <LayoutAuthenticated>{page}</LayoutAuthenticated>
 }
 
-export default DataConfirmation
+export default ElectricConfirmation

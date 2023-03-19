@@ -11,8 +11,8 @@ type Props = {
 }
 
 const UserCard = ({ className }: Props) => {
-  const userName = useAppSelector((state) => state.main.userName)
-
+  const firstName = useAppSelector((state) => state.main.firstName)
+ //alert(firstName)
   return (
     <CardBox className={className}>
       <div className="flex flex-col lg:flex-row items-center justify-around lg:justify-center">
@@ -26,18 +26,14 @@ const UserCard = ({ className }: Props) => {
               onSubmit={(values) => alert(JSON.stringify(values, null, 2))}
             >
               <Form>
-                <FormCheckRadio type="switch" label="Notifications">
-                  <Field type="checkbox" name="notifications" value={'1'} />
-                </FormCheckRadio>
+               
               </Form>
             </Formik>
           </div>
           <h1 className="text-2xl">
-            Howdy, <b>{userName}</b>!
+            Howdy, <b>{firstName}</b>!
           </h1>
-          <p>
-            Last login <b>12 mins ago</b> from <b>127.0.0.1</b>
-          </p>
+         
           <div className="flex justify-center md:block">
             <PillTag label="Verified" color="info" icon={mdiCheckDecagram} />
           </div>
