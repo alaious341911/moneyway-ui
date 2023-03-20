@@ -14,7 +14,7 @@ const TableSampleClients = ({transactions, handleSearchClick}) => {
   const dispatch = useAppDispatch()
 
 
-  const perPage = 5
+  const perPage = 20
 
   const [currentPage, setCurrentPage] = useState(0)
   
@@ -101,7 +101,7 @@ console.log(clientsPaginated.data)
               <td data-label="Name">{client.accountName} {client.paymentType}</td>
 
               <td data-label="Created" className="lg:w-1 whitespace-nowrap">
-                <p className="text-gray-700 dark:text-slate-600">{dateFormatter(client.date)}<br></br> {client.currency}{client.amount}</p>
+                <small className="text-gray-700 dark:text-slate-600">{dateFormatter(client.date)}<br></br> {client.currency}{client.amount}</small>
               </td>
               <td className="before:hidden lg:w-1 whitespace-nowrap">
                 <BaseButtons type="justify-start lg:justify-end" noWrap>

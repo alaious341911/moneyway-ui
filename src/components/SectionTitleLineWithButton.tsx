@@ -70,13 +70,14 @@ export default function SectionTitleLineWithButton({handleSearchClick, icon, tit
         <BaseButton icon={mdiFilter} iconSize={20} color="whiteDark" onClick={handleFilterClick} />
         {showDatePickers && (
          <LocalizationProvider dateAdapter={AdapterDayjs}>
+        
         <DatePicker label="Start Date"
-         value={value}
-         onChange={(oldValue) => setValue(oldValue)}
-        />
-        <DatePicker label="End Date"
          value={ovalue}
          onChange={(newValue) => setOValue(newValue)}
+        />
+        <DatePicker label="End Date"
+         value={value}
+         onChange={(oldValue) => setValue(oldValue)}
         />
         </LocalizationProvider>
         )}

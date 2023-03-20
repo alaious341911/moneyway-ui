@@ -26,7 +26,7 @@ import TableSampleClients from '../components/TableSampleClients'
 import { getPageTitle } from '../config'
 import { dashboardHeading, dashBoardHText, darkBlueBox } from '../styles'
 import axios, { decodeErrorStatus } from '../stores/hooks'
-import { toast, ToastContainer } from 'react-toastify'
+import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'
 import { useAppSelector, useAppDispatch } from '../stores/hooks'
 import { MoonLoader } from 'react-spinners'
@@ -43,13 +43,15 @@ const Dashboard = () => {
   
 
   const [chartData, setChartData] = useState(sampleChartData())
-  const [errMsg, setErrMsg] = useState('')
+  // const [errMsg, setErrMsg] = useState('')
   const [token, setAppToken] = useState('')
   const [cValues, setCValues] = useState(false);
   const [transactions, setTransactions] = useState([]);
   // const [profile, setProfile] = useState({firstName: '', lastName: '', email: '',
   //  phoneNumber: '', avatar: ''});
   const [loading, setLoading] = useState(false);
+  const[balance, setBalance] = useState(0);
+  const[accountNumber, setAccountNumber] = useState('');
   
   const pageNumber = useAppSelector((state) => state.transaction.pageNumber)
   const startDate = useAppSelector((state) => state.transaction.startDate)
@@ -57,9 +59,10 @@ const Dashboard = () => {
 
   useEffect(() => {
     setAppToken(localStorage.getItem('token'))
-
+    handleAmountSpent()
   handleSearchClick()
   fetchProfile()
+  fetchBalance()
 
   }, [])
 
@@ -68,6 +71,67 @@ const Dashboard = () => {
 
     setChartData(sampleChartData())
   }
+  const [errMsg, setErrMsg] = useState('Unknown error');
+
+  const ACCOUNT_SUMMARY_ENDPOINT = "api/v1/financial/summary/"
+  const GET_BALANCE_ENDPOINT = '/api/v1/wallet/view_balance';
+  const [amountSpent, setAmountSpent] = useState(0);
+  const [monthlyPercent, setMonthlyPercent] = useState('');
+
+  const handleAmountSpent = async () => {
+   
+    try {
+        const response = await axios.get(ACCOUNT_SUMMARY_ENDPOINT,
+            
+            {
+                headers: { 
+                  'Authorization': 'Bearer ' + localStorage.getItem('token')
+                 },
+                withCredentials: true
+            }
+        )
+            .then(response => setAmountSpent(response.data.total))
+            console.log(amountSpent)
+         
+          }
+        
+     catch (err) {
+      if (!err?.response) {
+         setErrMsg('No Server Response');
+      } 
+      else  {
+       setErrMsg(decodeErrorStatus(err?.response.status))
+         }
+
+     toast("Error fetching amount spent. please check your network")
+        }           
+}
+
+const fetchBalance = async()=> {
+    
+  try {
+   
+    const response = await axios.get(GET_BALANCE_ENDPOINT, 
+      {
+        headers: { 'Authorization': 'Bearer ' + localStorage.getItem('token')},
+        withCredentials: true
+    });
+       if(response?.status == 200 || response?.status==201){
+        console.log(response?.data)
+        setBalance(response?.data.data.balance);
+        setAccountNumber(response?.data.data.accountNumber);
+      }
+         
+  }catch (err) {
+  if (!err || !err?.response) {
+     setErrMsg('No Server Response');
+  } 
+  else  {
+   setErrMsg(decodeErrorStatus(err?.response.status))
+     }
+     toast("Error fetching balance info. Please check your network!");
+}
+}
 
   const fetchProfile = async () => {
     
@@ -174,10 +238,10 @@ const Dashboard = () => {
                 trendColor="white"
                 icon={mdiWalletOutline}
                 iconColor="white"
-                number={60000}
+                number={balance}
                 label="Account Balance"
                 bankName="Wema bank"
-                accountNumber="3089434692"
+                accountNumber={accountNumber}
                 cardBoxColor="bg-[#3538CD] border-radius[24px]"
                 cardBoxLight="yes"
               />
@@ -188,7 +252,7 @@ const Dashboard = () => {
                 trendColor="white"
                 icon={mdiSendOutline}
                 iconColor="dark"
-                number={65000}
+                number={amountSpent}
                 numberPrefix="N"
                 label="Amount spent"
                 cardBoxColor="bg-[#FEFDF0] border-radius[24px]"
