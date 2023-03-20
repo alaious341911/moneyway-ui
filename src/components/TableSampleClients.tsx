@@ -48,7 +48,7 @@ console.log(clientsPaginated.data)
   }
 
   const dateFormatter = (dateValue) => {
-    const originalDate = new Date('2023-03-18T10:05:15.900+00:00');
+    const originalDate = new Date(dateValue);
 
     const year = originalDate.getFullYear();
     const month = ('0' + (originalDate.getMonth() + 1)).slice(-2);
