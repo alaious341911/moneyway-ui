@@ -26,7 +26,7 @@ import TableSampleClients from '../components/TableSampleClients'
 import { getPageTitle } from '../config'
 import { dashboardHeading, dashBoardHText, darkBlueBox } from '../styles'
 import axios, { decodeErrorStatus } from '../stores/hooks'
-import { toast, ToastContainer } from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { useAppSelector, useAppDispatch } from '../stores/hooks'
 import { MoonLoader } from 'react-spinners'
@@ -43,7 +43,7 @@ const Dashboard = () => {
   
 
   const [chartData, setChartData] = useState(sampleChartData())
-  // const [errMsg, setErrMsg] = useState('')
+  const [errMsg, setErrMsg] = useState('')
   const [token, setAppToken] = useState('')
   const [cValues, setCValues] = useState(false);
   const [transactions, setTransactions] = useState([]);
@@ -57,7 +57,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     setAppToken(localStorage.getItem('token'))
-    handleAmountSpent()
+
   handleSearchClick()
   fetchProfile()
 
@@ -68,47 +68,6 @@ const Dashboard = () => {
 
     setChartData(sampleChartData())
   }
-  const [errMsg, setErrMsg] = useState('Unknown error');
-
-  const ACCOUNT_SUMMARY_ENDPOINT = "api/v1/financial/summary/"
-  const [amountSpent, setAmountSpent] = useState(0);
-  const [monthlyPercent, setMonthlyPercent] = useState('');
-
-  const handleAmountSpent = async () => {
-    const id = toast.loading("Authenticating...", {theme: 'light'})
-    const customId = "login-id";
-    
-    try {
-        const response = await axios.get(ACCOUNT_SUMMARY_ENDPOINT,
-            
-            {
-                headers: { 
-                  'Authorization': 'Bearer ' + localStorage.getItem('token')
-                 },
-                withCredentials: true
-            }
-        )
-            .then(response => setAmountSpent(response.data.total))
-            console.log(amountSpent)
-        
-        
-          
-           
-          }
-        
-       
-        
-     catch (err) {
-      if (!err?.response) {
-         setErrMsg('No Server Response');
-      } 
-      else  {
-       setErrMsg(decodeErrorStatus(err?.response.status))
-         }
-
-     toast("Error fetching amount spent. please check your network")
-        }           
-}
 
   const fetchProfile = async () => {
     
@@ -229,7 +188,7 @@ const Dashboard = () => {
                 trendColor="white"
                 icon={mdiSendOutline}
                 iconColor="dark"
-                number={amountSpent}
+                number={65000}
                 numberPrefix="N"
                 label="Amount spent"
                 cardBoxColor="bg-[#FEFDF0] border-radius[24px]"
