@@ -267,6 +267,7 @@ made would be at owner’s descretion, it cannot be reversed.
           const account_name = response.data.data.account_name;
           
          setFieldValue(beneficiaryName, account_name)
+         setValidatedAccountName(account_name)
 
           setLoading(false);
         }
