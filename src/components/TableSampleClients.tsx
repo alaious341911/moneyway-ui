@@ -14,7 +14,7 @@ const TableSampleClients = ({transactions, handleSearchClick}) => {
   const dispatch = useAppDispatch()
 
 
-  const perPage = 20
+  const perPage = 5
 
   const [currentPage, setCurrentPage] = useState(0)
   
@@ -98,7 +98,7 @@ console.log(clientsPaginated.data)
           {clientsPaginated.map((client: Transactions) => (
             <tr key={client.requestId}>
               
-              <td data-label="Name">{client.accountName} {client.paymentType}</td>
+              <td data-label="Name">{client?.accountName ? client.accountName : 'Customer Name'} <br></br> {client.paymentType}</td>
 
               <td data-label="Created" className="lg:w-1 whitespace-nowrap">
                 <small className="text-gray-700 dark:text-slate-600">{dateFormatter(client.date)}<br></br> {client.currency}{client.amount}</small>

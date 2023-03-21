@@ -191,6 +191,7 @@ export type ThirdPartyTransfer = {
   description: string
   bankCode: string
   account_number : string
+  beneficiaryName: string
   saveBeneficiary : boolean
 }
 

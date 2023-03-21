@@ -2,7 +2,7 @@ export const chartColors = {
   default: {
     primary: '#00D1B2',
     info: '#209CEE',
-    danger: '#FF3860',
+    //danger: '#FF3860',
   },
 }
 
@@ -10,9 +10,10 @@ const randomChartData = (n: number) => {
   const data = []
 
   for (let i = 0; i < n; i++) {
-    data.push(Math.round(Math.random() * 200))
+    (i != 2)? data.push(0) : data.push(Math.round(Math.random() * 200))
   }
 
+  console.log(data)
   return data
 }
 
@@ -36,11 +37,12 @@ const datasetObject = (color: string, points: number) => {
   }
 }
 
-export const sampleChartData = (points = 9) => {
+export const sampleChartData = (points = 12) => {
   const labels = []
+   const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug","Sep","Oct", "Nov", "Dec"]
+  for (let i = 0; i < points; i++) {
 
-  for (let i = 1; i <= points; i++) {
-    labels.push(`0${i}`)
+      labels.push(`${months[i]}`)
   }
 
   return {
@@ -48,7 +50,7 @@ export const sampleChartData = (points = 9) => {
     datasets: [
       datasetObject('primary', points),
       datasetObject('info', points),
-      datasetObject('danger', points),
+      //datasetObject('danger', points),
     ],
   }
 }

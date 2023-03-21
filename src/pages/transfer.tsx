@@ -47,9 +47,10 @@ const FundTransfer = () => {
   '', description: '', saveBeneficiary : true})
 
   const [thirdtranferState, setThirdTranferState] = useState({amount: null, account_bank: '', pin: 
-  '', description: '', saveBeneficiary : true, bankCode: '', account_number: ''})
+  '', description: '', saveBeneficiary : true, bankCode: '', account_number: '', beneficiaryName: ''})
   const [isModalInfoActive, setIsModalInfoActive] = useState(false)
   const [isTModalInfoActive, setIsTModalInfoActive] = useState(false)
+  const [beneficiaryName, setBeneficiaryName] = useState('')
 
 
   const [bankList, setBankList] = useState([])
@@ -201,6 +202,7 @@ made would be at owner’s descretion, it cannot be reversed.
   description: '',
   bankCode: '',
   account_number : '',
+  beneficiaryName: '',
   saveBeneficiary : true
   }
 
@@ -236,17 +238,17 @@ made would be at owner’s descretion, it cannot be reversed.
   //   }
   // }
 
-  const handleAccountNumberChange = (event, fieldName, setFieldValue) => {
+  const handleAccountNumberChange = (event, fieldName, beneficiaryName, setFieldValue) => {
     const newValue = event.target.value;
     setFieldValue(fieldName, newValue);
    
     if (newValue.length === 10) {
       //     // Call your method here
-           validateAccount(newValue, '044')
+           validateAccount(newValue, '044', beneficiaryName, setFieldValue)
          }
   };
 
-  const validateAccount = async (accountNumber, bankCode)  => {
+  const validateAccount = async (accountNumber, bankCode, beneficiaryName, setFieldValue)  => {
     setLoading(true);
  const validatePayLoad = {"accountNumber": accountNumber, "accountBank": bankCode};
    
@@ -264,7 +266,8 @@ made would be at owner’s descretion, it cannot be reversed.
         if(response?.status == 200){
           const account_name = response.data.data.account_name;
           
-          setValidatedAccountName(account_name)
+         setFieldValue(beneficiaryName, account_name)
+
           setLoading(false);
         }
      
@@ -670,13 +673,21 @@ made would be at owner’s descretion, it cannot be reversed.
                    value={values.account_number}
                    
                    onChange={(event) =>
-                    handleAccountNumberChange(event, "account_number", setFieldValue)
+                    handleAccountNumberChange(event, "account_number", "beneficiaryName", setFieldValue)
                   }
                  />
                 
                 
                </FormField>
                <ErrorMessage name="account_number">{msg => <span style={errorMessage}>{msg}</span>}</ErrorMessage>
+
+              <FormField label="">
+              <Field
+                type="hidden"
+                name="beneficiaryName"
+                value={values.beneficiaryName}
+              />
+            </FormField>
               
                </>
               )}
