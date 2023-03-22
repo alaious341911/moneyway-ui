@@ -281,7 +281,7 @@ made would be at owner’s descretion, it cannot be reversed.
      setErrMsg(decodeErrorStatus(err?.response.status))
        }
     
-      setValidatedAccountName("account number validation unsuccessful")
+      setValidatedAccountName("invalid account number!")
       setLoading(false);
 }
   }

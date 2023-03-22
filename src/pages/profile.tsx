@@ -79,6 +79,7 @@ const ProfilePage = () => {
                       help="Required. Your name"
                       labelFor="first name"
                       icons={[mdiAccount]}
+                      readonly={true}
                     >
                       <Field name="firstName" id="firstName" placeholder="First Name" />
                     </FormField>
@@ -108,12 +109,6 @@ const ProfilePage = () => {
                       <Field name="phoneNumber" id="phoneNumber" placeholder="phone" />
                     </FormField>
                   </CardBoxComponentBody>
-                  <CardBoxComponentFooter>
-                    <BaseButtons>
-                      <BaseButton color="info" type="submit" label="Submit" />
-                      <BaseButton color="info" label="Options" outline />
-                    </BaseButtons>
-                  </CardBoxComponentFooter>
                 </Form>
               </Formik>
             </CardBox>

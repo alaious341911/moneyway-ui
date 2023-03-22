@@ -67,13 +67,6 @@ const SecuritySettings = () => {
   const THIRDPARTY_TRANSFER_ENDPOINT = '/api/v1/transfers/bank'
   
  
-  const localTranferInitialValue: LocalTransfer = {
-    amount: null,
-    email: '',
-    pin: '',
-    description: '',
-    saveBeneficiary : true,
-  }
 
   const thirdPartyTranferInitialValue: ThirdPartyTransfer = {
     amount: null,
@@ -82,6 +75,7 @@ const SecuritySettings = () => {
   description: '',
   bankCode: '',
   account_number : '',
+  beneficiaryName: '',
   saveBeneficiary : true
   }
 

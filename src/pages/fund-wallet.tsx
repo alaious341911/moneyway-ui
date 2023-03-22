@@ -1,4 +1,4 @@
-import { mdiAccount, mdiBallotOutline, mdiGithub, mdiMail, mdiMenu, mdiUpload } from '@mdi/js'
+import { mdiAccount, mdiBallotOutline, mdiGithub, mdiMail, mdiMenu, mdiUpload, mdiWalletOutline } from '@mdi/js'
 import { Field, Form, Formik, ErrorMessage } from 'formik'
 import Image from 'next/image'
 import Head from 'next/head'
@@ -16,7 +16,7 @@ import SectionMain from '../components/SectionMain'
 import SectionTitle from '../components/SectionTitle'
 import SectionTitleLineWithoutButton from '../components/SectionTitleLineWithoutButton'
 import { getPageTitle } from '../config'
-import axios from '../stores/hooks'
+import axios, { decodeErrorStatus } from '../stores/hooks'
 import { useAppDispatch, useAppSelector } from '../stores/hooks'
 import type { FundWalletForm } from '../interfaces'
 import { toast, ToastContainer } from 'react-toastify'
@@ -30,12 +30,17 @@ import {
   submitButton,
   submitButtonDashboard,
 } from '../styles'
+import CardBoxWidget from '../components/CardBoxWidget'
 
 const MenuPage = () => {
   const CREATE_MENU_ENDPOINT = '/api/v1/menus'
 
   const [errMsg, setErrMsg] = useState('')
   const [token, setAppToken] = useState('')
+  const[balance, setBalance] = useState(0);
+  const[accountNumber, setAccountNumber] = useState('');
+  
+  const GET_BALANCE_ENDPOINT = '/api/v1/wallet/view_balance';
 
   const fundWalletValue: FundWalletForm = {
     amount: '',
@@ -46,7 +51,34 @@ const MenuPage = () => {
 
   useEffect(() => {
     setAppToken(localStorage.getItem('token'))
+    fetchBalance()
   }, [])
+
+  const fetchBalance = async()=> {
+    
+    try {
+     
+      const response = await axios.get(GET_BALANCE_ENDPOINT, 
+        {
+          headers: { 'Authorization': 'Bearer ' + localStorage.getItem('token')},
+          withCredentials: true
+      });
+         if(response?.status == 200 || response?.status==201){
+          console.log(response?.data)
+          setBalance(response?.data.data.balance);
+          setAccountNumber(response?.data.data.accountNumber);
+        }
+           
+    }catch (err) {
+    if (!err || !err?.response) {
+       setErrMsg('No Server Response');
+    } 
+    else  {
+     setErrMsg(decodeErrorStatus(err?.response.status))
+       }
+       toast("Error fetching balance info. Please check your network!");
+  }
+  }
 
   return (
     <>
@@ -62,59 +94,22 @@ const MenuPage = () => {
         <SectionMain>
           <CardBoxGeneral>
             <ToastContainer />
-            <Formik
-              initialValues={fundWalletValue}
-              validationSchema={Yup.object({
-                amount: Yup.string().required('Required'),
-                bank: Yup.string().required('Required'),
-                pin: Yup.string().required('Required'),
-                description: Yup.string().required('Required'),
-              })}
-              onSubmit={(values, { setSubmitting }) => console.log(values)}
-            >
-              <Form>
-                <FormField label="Amount">
-                  <Field
-                    className=""
-                    style={dashBoardField}
-                    type="text"
-                    name="amount"
-                    placeholder="Enter an amount"
-                  />
-                </FormField>
-
-                <FormField label="Bank">
-                  <select style={dashBoardField} name="bank">
-                    <option disabled>Select</option>
-                    <option>First Bank</option>
-                    <option>Guarranty Trust Bank</option>
-                    <option>Polaris Bank</option>
-                  </select>
-                </FormField>
-
-                <FormField label="Pin">
-                  <Field style={dashBoardField} type="text" name="pin" placeholder="Enter pin" />
-                </FormField>
-
-                <FormField label="Description">
-                  <Field
-                    className=""
-                    style={dashBoardField}
-                    type="text"
-                    name="description"
-                    placeholder="Write a short description"
-                  />
-                </FormField>
-
-                <BaseDivider />
-
-                <BaseButtons>
-                  <button type="submit" style={submitButton}>
-                    Submit
-                  </button>
-                </BaseButtons>
-              </Form>
-            </Formik>
+            <div>
+              <p>To fund your wallet, send money to the account details below.</p>
+              <CardBoxWidget
+                //trendLabel="12%"
+                trendType="up"
+                trendColor="white"
+                icon={mdiWalletOutline}
+                iconColor="white"
+                number={balance}
+                label="Account State:"
+                bankName="Wema bank"
+                accountNumber={accountNumber}
+                cardBoxColor="bg-[#3538CD] border-radius[24px]"
+                cardBoxLight="yes"
+              />
+            </div>
           </CardBoxGeneral>
         </SectionMain>
       </div>

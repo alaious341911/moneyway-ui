@@ -10,6 +10,7 @@ type Props = {
   isTransparent?: boolean
   hasTextareaHeight?: boolean
   children: ReactNode
+  readonly?: boolean
 }
 
 const FormField = ({ icons = [], ...props }: Props) => {
