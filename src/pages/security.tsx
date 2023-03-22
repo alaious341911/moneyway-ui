@@ -15,7 +15,7 @@ import SectionTitleLineWithoutButton from '../components/SectionTitleLineWithout
 import { getPageTitle } from '../config'
 import axios, { decodeErrorStatus } from '../stores/hooks'
 import { useAppDispatch, useAppSelector } from '../stores/hooks'
-import type {LocalTransfer, ThirdPartyTransfer } from '../interfaces'
+import type {ChangePassword, LocalTransfer, ThirdPartyTransfer } from '../interfaces'
 import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import * as Yup from 'yup'
@@ -63,7 +63,7 @@ const SecuritySettings = () => {
     color: "red",
     fontSize : "11px",
   }
-  const LOCAL_TRANSFER_ENDPOINT = '/api/v1/transfers/local-transfer'
+  const CHANGE_PASSWORD_ENDPOINT = '/api/v1/auth/reset-password'
   const THIRDPARTY_TRANSFER_ENDPOINT = '/api/v1/transfers/bank'
   
  
@@ -83,6 +83,11 @@ const SecuritySettings = () => {
   bankCode: '',
   account_number : '',
   saveBeneficiary : true
+  }
+
+  const changePasswordForm: ChangePassword = {
+    currentPassword: '',
+    newPassword: ''
   }
 
   const toggleTab = (index) => {
@@ -109,7 +114,7 @@ const SecuritySettings = () => {
     setLoading(true)
     try {
       
-        const response = await axios.post(LOCAL_TRANSFER_ENDPOINT,
+        const response = await axios.put(CHANGE_PASSWORD_ENDPOINT,
             values,
             {
                 headers: { 'Content-Type': 'application/json',
@@ -119,7 +124,6 @@ const SecuritySettings = () => {
             }
         );
           if(response?.status == 200){
-            
            
           }
         console.log(JSON.stringify(response?.status));
@@ -229,12 +233,11 @@ const SecuritySettings = () => {
                 {toggleState === 1 && (
                   
                   <Formik
-                  initialValues={localTranferInitialValue}
+                  initialValues={changePasswordForm}
                   validationSchema={Yup.object({
                    
-                    currentPassword: Yup.string().email().required('this is required'),
+                    currentPassword: Yup.string().required('this is required'),
                     newPassword: Yup.string().required('this is required'),
-                    confirmNewPassword: Yup.string().required('this is required'),
                   })}
                   onSubmit={(values, event) => changePassword(values)}
                 >
@@ -262,17 +265,6 @@ const SecuritySettings = () => {
                         type="password"
                         name="newPassword"
                         placeholder="Enter new password"
-                      />
-                    </FormField>
-                    <ErrorMessage name="confirmNewPassword">{msg => <span style={errorMessage}>{msg}</span>}</ErrorMessage>
-
-                    <FormField label="confirm New Password">
-                      <Field
-                        className=""
-                        style={dashBoardField}
-                        type="password"
-                        name="confirmNewPassword"
-                        placeholder="Enter password confirm"
                       />
                     </FormField>
                     <ErrorMessage name="confirmNewPassword">{msg => <span style={errorMessage}>{msg}</span>}</ErrorMessage>
