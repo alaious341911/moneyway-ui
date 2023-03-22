@@ -195,6 +195,11 @@ export type ThirdPartyTransfer = {
   saveBeneficiary : boolean
 }
 
+export type ChangePassword = {
+  currentPassword: string
+  newPassword: string
+}
+
 export type SignupForm = {
   firstName: string
   lastName: string
