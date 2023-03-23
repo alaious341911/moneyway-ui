@@ -23,7 +23,7 @@ import SectionTitleLineWithButton from '../components/SectionTitleLineWithButton
 import UserCard from '../components/UserCard'
 import type { UserForm } from '../interfaces'
 import { getPageTitle } from '../config'
-import { useAppSelector } from '../stores/hooks'
+import { useAppSelector, capitalizeFirstLetter } from '../stores/hooks'
 
 const ProfilePage = () => {
   const firstName = useAppSelector((state) => state.main.firstName)
@@ -32,8 +32,8 @@ const ProfilePage = () => {
   const email = useAppSelector((state) => state.main.email)
 
   const userForm: UserForm = {
-    firstName: firstName,
-    lastName : lastName,
+    firstName: capitalizeFirstLetter(firstName),
+    lastName : capitalizeFirstLetter(lastName),
     email: email,
     phoneNumber : phoneNumber
   }

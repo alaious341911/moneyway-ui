@@ -1,6 +1,6 @@
 import { mdiCheckDecagram } from '@mdi/js'
 import { Field, Form, Formik } from 'formik'
-import { useAppSelector } from '../stores/hooks'
+import { capitalizeFirstLetter, useAppSelector } from '../stores/hooks'
 import CardBox from './CardBox'
 import FormCheckRadio from './FormCheckRadio'
 import PillTag from './PillTag'
@@ -31,7 +31,7 @@ const UserCard = ({ className }: Props) => {
             </Formik>
           </div>
           <h1 className="text-2xl">
-            Howdy, <b>{firstName}</b>!
+            Howdy, <b>{capitalizeFirstLetter(firstName)}</b>!
           </h1>
          
           <div className="flex justify-center md:block">

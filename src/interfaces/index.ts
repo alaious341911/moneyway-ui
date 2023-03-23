@@ -133,7 +133,7 @@ export type UserForm = {
 
 export type AirtimeForm = {
   amount: number | null
-  serviceId: string
+  serviceID: string
   phoneNumber: string
 }
 

@@ -28,7 +28,7 @@ import { ClipLoader, MoonLoader } from 'react-spinners';
 const AirtimeConfirmation = (props ) => {
 
   const router = useRouter();
-  const { amount, phoneNumber, serviceId } = router.query;
+  const { amount, phoneNumber, serviceID } = router.query;
 
   
   const modalSampleContents = (
@@ -38,7 +38,7 @@ const AirtimeConfirmation = (props ) => {
       <p>
         <b style={confirmationTextBig}>Successful</b>
       </p>
-      <p>Your {serviceId} recharge is successfully.</p>
+      <p>Your {serviceID} recharge is successfully.</p>
       
     </>
   )
@@ -71,7 +71,7 @@ const [loading, setLoading] = useState(false);
 
   const handleSubmit = async () => {
     setLoading(true)
-       const values = {"amount": amount, "phoneNumber" : phoneNumber, "serviceId" : serviceId}
+       const values = {"amount": amount, "phoneNumber" : phoneNumber, "serviceID" : serviceID}
 
        console.log(values)
        console.log(token)
@@ -163,7 +163,7 @@ const [loading, setLoading] = useState(false);
             <tr key={2}>
               <td style={confirmationTextBigLight}>Network</td>
               <td className="text-right" style={confirmationTextBigLight}>
-                {serviceId}
+                {serviceID}
               </td>
             </tr>
          

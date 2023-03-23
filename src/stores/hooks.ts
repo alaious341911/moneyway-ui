@@ -27,3 +27,7 @@ export function decodeErrorStatus(err: number): string {
   return errorMsg
 }
 
+export function  capitalizeFirstLetter(myString) {
+  return myString.charAt(0).toUpperCase() + myString.slice(1);
+}
+

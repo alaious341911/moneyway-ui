@@ -56,7 +56,7 @@ const Hero = ({
           variants={scrollAnimation}
         >
           <div className=" flex flex-col justify-center items-start row-start-2 sm:row-start-1">
-            <h1 style={heroHeadline}>Quick and easy payment platform for all you transactions</h1>
+            <h1 style={heroHeadline}>Quick and easy payment platform for all your transactions</h1>
             <p className="mt-4 mb-6" style={heroSubText}>
               Save and manage all your transaction in one place, easy payment anytime & anyday
             </p>

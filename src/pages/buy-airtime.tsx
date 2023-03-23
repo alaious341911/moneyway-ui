@@ -59,7 +59,7 @@ const BuyAirtime = (props ) => {
 
   const airTimeValue: AirtimeForm = {
     amount: null,
-    serviceId: '',
+    serviceID: '',
     phoneNumber: '',
   }
 
@@ -118,8 +118,8 @@ const BuyAirtime = (props ) => {
                   />
                 </FormField>
 
-<MySelect  name="serviceId"
-            value={values.serviceId}
+<MySelect  name="serviceID"
+            value={values.serviceID}
             setFieldValue={setFieldValue}
            options={options}
            

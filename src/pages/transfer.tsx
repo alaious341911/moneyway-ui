@@ -246,6 +246,11 @@ made would be at owner’s descretion, it cannot be reversed.
       //     // Call your method here
            validateAccount(newValue, '044', beneficiaryName, setFieldValue)
          }
+         if (newValue.length > 10){
+         
+          alert ("invalid account number!")
+          setFieldValue(fieldName, '');
+         }
   };
 
   const validateAccount = async (accountNumber, bankCode, beneficiaryName, setFieldValue)  => {
@@ -625,7 +630,7 @@ made would be at owner’s descretion, it cannot be reversed.
                   initialValues={thirdPartyTranferInitialValue}
                   // validationSchema={Yup.object({
                   //   amount: Yup.number().required('this field is required'),
-                  //   account_number: Yup.string().required('this field is required'),
+                  //   account_number: Yup.string().required('this field is required').min(11).max(11),
                   //   pin: Yup.string().required('Required'),
                   //   description: Yup.string().required('Required'),
                   // })}
